@@ -43,8 +43,8 @@ chordAs   = { d4 <<f4 bf4>> <<f4 bf4>> }
       \key f \major
       \time 3/4
       
-      \partial 4 c''8 c''8 | d''4  c''4 f''4 | e''2      c''8  c''8  | d''4 c''4 g''4 | \break
-      f''2       c''8 c''8 | c'''4 a''4 f''4 | e''4 d''4 bf''8 bf''8 | a''4 f''4 g''4 | f''2. \bar "|."
+      \partial 4 c''8^1 c''8 | d''4^2  c''4^1 f''4^4 | e''2^3      c''8^1  c''8  | d''4^2 c''4^1 g''4^5 | \break
+      f''2^4     c''8^1 c''8 | c'''4^5 a''4^3 f''4^1 | e''4 d''4 bf''8 bf''8 | a''4 f''4 g''4 | f''2. \bar "|."
     }
     \new Staff {
       \clef bass
