@@ -22,20 +22,20 @@ chordAs   = { d4 <<f4 bf4>> <<f4 bf4>> }
       \key f \major
       \time 3/4
       
-      \partial 4 c''8^1 c''8 | d''4^2  c''4^1 f''4^4 | e''2^3        c''8^1  c''8  | d''4^2 c''4^1 g''4^5 | \break
-      f''2^4     c''8^1 c''8 | c'''4^5 a''4^3 f''4^1 | e''4^2 d''4^2 bf''8^4 bf''8 | a''4^3 f''4^1 g''4^2 | f''2.^1 \bar "|."
+      \partial 4 c''8^1 c''8 | d''4^2  c''4^1 f''4^4 | e''2^3        c''8^1  c''8  | d''4^2 c''4^1 g''4^5 | f''2^4  \bar "" \break
+                 c''8^1 c''8 | c'''4^5 a''4^3 f''4^1 | e''4^2 d''4^2 bf''8^4 bf''8 | a''4^3 f''4^1 g''4^2 | f''2.^1 \bar "|."
     }
     \new Staff {
       \clef bass
       \key f \major
       \time 3/4
       
-      \partial 4 r4 | \chordF | \chordC  | \chordEdim | \break
-      \chordF       | \chordF | \chordAs | \chordCsus | <f a c'>2.\arpeggio \bar "|."
+      \partial 4 r4 | \chordF | \chordC  | \chordEdim |
+      \chordF       | \chordF | \chordAs | \chordCsus | <f a c'>2.\arpeggio
     }
     \chords {
       \set noChordSymbol = ""
-      r4  f2. c2.  e2.:dim \break
+      r4  f2. c2.  e2.:dim
       f2. f2. as2. c2.:sus f2.
     }
   >>

@@ -8,12 +8,14 @@
   right-margin  = #20
   system-system-spacing.basic-distance = #12
   system-system-spacing.padding = #2
+  indent = #0
   print-page-number = ##t
 }
 
 \layout {
   \context {
     \Score
+    barNumberVisibility = #all-bar-numbers-visible
     \override StaffGrouper.staff-staff-spacing.basic-distance = #12
     \override StaffGrouper.staff-staff-spacing.padding = #2
     \override TimeSignature.style = #'numbered
