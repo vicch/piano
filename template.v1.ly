@@ -6,7 +6,7 @@
   bottom-margin = #10
   left-margin   = #20
   right-margin  = #20
-  system-system-spacing.basic-distance = #12
+  system-system-spacing.basic-distance = #14
   system-system-spacing.padding = #2
   indent = #0
   print-page-number = ##t

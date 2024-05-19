@@ -6,7 +6,7 @@
   tagline = "EveryonePiano 495"
 }
 
-\markup \vspace #1.5
+\markup \vspace #1.25
 
 chordC    = { c4 <<g4 c'4>> <<g4 c'4>> }
 chordCsus = { c4 <<g4 bf4>> <<g4 bf4>> }

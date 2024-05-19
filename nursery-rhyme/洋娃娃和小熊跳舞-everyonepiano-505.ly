@@ -2,11 +2,11 @@
 \include "../template.v1.ly"
 
 \header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 7)) "洋娃娃和小熊跳舞"
+  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "洋娃娃和小熊跳舞"
   tagline = "EveryonePiano 505"
 }
 
-\markup \vspace #1.5
+\markup \vspace #1.25
 
 chordc      = { e8^.[ c'8^. g8^.  c'8^.] }
 chordcseven = { e8^.[ c'8^. bf8^. c'8^.] }

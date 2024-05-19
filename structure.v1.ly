@@ -1,5 +1,5 @@
 \header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 7)) "Title"
+  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "Title"
   tagline = "Sequence"
 }
 
@@ -12,13 +12,11 @@
       \clef treble
       \key c \major
       \time 3/4
-
     }
     \new Staff {
       \clef bass
       \key c \major
       \time 3/4
-
     }
     \chords {
       \set noChordSymbol = ""

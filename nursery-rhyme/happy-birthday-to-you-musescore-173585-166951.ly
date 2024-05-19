@@ -6,7 +6,7 @@
   tagline = "MuseScore 173585-166951"
 }
 
-\markup \vspace #1.5
+\markup \vspace #1.25
 
 \score {
   \new PianoStaff <<

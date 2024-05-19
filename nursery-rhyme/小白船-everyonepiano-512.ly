@@ -2,11 +2,11 @@
 \include "../template.v1.ly"
 
 \header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 7)) "小白船"
+  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "小白船"
   tagline = "EveryonePiano 512"
 }
 
-\markup \vspace #1.5
+\markup \vspace #1.25
 
 chordc         = { c'4 e'4 g'4 }
 chordcg        = { g4  c'4 e'4 }
