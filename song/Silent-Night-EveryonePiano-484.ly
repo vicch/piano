@@ -1,0 +1,47 @@
+\version "2.24.3"
+\include "../template.v1.ly"
+
+\header {
+  title = \markup \override #'((font-size . 6)) "Silent Night"
+  tagline = "EveryonePiano 484"
+}
+
+\markup \vspace #1.5
+
+chordc =      { c4  e4 g4 }
+chordf =      { c4  f4 a4 }
+chordg =      { b,4 d4 g4 }
+chordgseven = { b,4 f4 g4 }
+
+\score {
+  \new PianoStaff <<
+    \new Staff {
+      \tempo 4 = 96
+      \clef treble
+      \key c \major
+      \time 3/4
+      
+      g'4. a'8 g'4  | e'2.           | g'4. a'8 g'4 | e'2.  | d''2     d''4 | b'2.          | c''2     c''4 | g'2. | \break
+      a'2      a'4  | c''4. b'8  a'4 | g'4. a'8 g'4 | e'2.  | a'2      a'4  | c''4. b'8 a'4 | g'4. a'8 g'4  | e'2. | \break
+      d''2     d''4 | f''4. d''8 b'4 | c''2.        | e''2. | c''4 g'4 e'4  | g'4.  f'8 d'4 | c'2.~         | c'2. | \bar "|."
+    }
+    \new Staff {
+      \clef bass
+      \key c \major
+      \time 3/4
+      
+      \chordc | \chordc | \chordc | \chordc | \chordg | \chordg      | \chordc | \chordc |
+      \chordf | \chordf | \chordc | \chordc | \chordf | \chordf      | \chordc | \chordc |
+      \chordg | \chordg | \chordc | \chordc | \chordc | \chordgseven | \chordc | c2.     | 
+    }
+    \chords {
+      \set noChordSymbol = ""
+      
+      c2. | c2. | c2. | c2. | g2. | g2.   | c2. | c2. |
+      f2. | f2. | c2. | c2. | f2. | f2.   | c2. | c2. |
+      g2. | g2. | c2. | c2. | c2. | g2.:7 | c2. | r2. |
+    }
+  >>
+  \layout {}
+  \midi {}
+}
