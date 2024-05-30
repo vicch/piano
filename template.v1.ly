@@ -7,11 +7,10 @@
   left-margin   = #20
   right-margin  = #20
   
-  system-system-spacing.basic-distance = #15
+  system-system-spacing.basic-distance = #14
   system-system-spacing.padding = #2
   
   indent = #0
-  ragged-last = ##t
   
   print-page-number = ##t
 }
@@ -21,7 +20,7 @@
     \Score
     barNumberVisibility = #all-bar-numbers-visible
     
-    \override StaffGrouper.staff-staff-spacing.basic-distance = #10
+    \override StaffGrouper.staff-staff-spacing.basic-distance = #11
     \override StaffGrouper.staff-staff-spacing.padding = #2
     
     \override TimeSignature.style = #'numbered
