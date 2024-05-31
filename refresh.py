@@ -1,3 +1,7 @@
+"""
+This script iterates all folders under current path, and for each ".ly" file, remove its associated PDF and MIDI files,
+and execute LilyPond command to re-generate them.
+"""
 import os
 import subprocess
 
