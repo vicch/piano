@@ -34,8 +34,8 @@ chordbsus  = { b4(  f'4 b4   f'4) }
       \time 4/4
       
       \repeat volta 2 {
-        e''2 g'4  e''4 | d''4   c''4 b'4 c''4   | f''2 f''2 | f''2 g'2       | \break
-        e''2 gs'4 e''4 | d''4   c''4 b'4 c''4   | d''2 d''2 | d''2 ds''2     | \break
+        e''2^4 g'4^1  e''4^4 | d''4^3   c''4^2 b'4^1 c''4^2   | f''2^5 f''2 | f''2 g'2^1       | \break
+        e''2^5 gs'4^2 e''4^5 | d''4^4   c''4^3 b'4^2 c''4^3   | d''2^4 d''2 | d''2 ds''2^5     | \break
         e''2 g'4  e''4 | d''4\< c''4 b'4 c''4\! | a''2 a''2 | a''2 g''4 f''4 | \break
         e''2 d''4 c''4 | a'2         b'2        |
         \alternative {
