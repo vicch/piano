@@ -30,7 +30,7 @@
     \chords {
       \set noChordSymbol = ""
 
-      r4 c2   | r4 g2:7 | r4 g2:7 | r4   c2 | \break
+      r4 c2   | r4 g2:7 | r4 g2:7 | r4   c2 |
       r4 c2:7 | r4 f2   | r4 c2   | g4:7 c2 |
     }
   >>
