@@ -8,12 +8,12 @@
 
 \markup \vspace #1.25
 
-chordc         = { c'4 e'4 g'4 }
-chordcg        = { g4  c'4 e'4 }
-chordf         = { f4  a4  c'4 }
-chordfc        = { f4  c'4 f'4 }
-chordg         = { g4  b4  d'4 }
-chordgsevensus = { g4  d'4 f'4 }
+Ci        = { c'4 e'4 g'4 }
+Cii       = { g4  c'4 e'4 }
+Fi        = { f4  a4  c'4 }
+Fii       = { f4  c'4 f'4 }
+G         = { g4  b4  d'4 }
+Gsevensus = { g4  d'4 f'4 }
 
 \score {
   \new PianoStaff <<
@@ -33,19 +33,19 @@ chordgsevensus = { g4  d'4 f'4 }
       \key c \major
       \time 3/4
       
-      \chordc  | \chordc         | \chordc  | \chordcg |
-      \chordf  | \chordg         | \chordcg | \chordcg | \break
-      \chordc  | \chordc         | \chordc  | \chordcg |
-      \chordfc | \chordgsevensus | \chordc  | \chordc  | \break
+      \Ci  | \Ci        | \Ci  | \Cii |
+      \Fi  | \G         | \Cii | \Cii |
+      \Ci  | \Ci        | \Ci  | \Cii |
+      \Fii | \Gsevensus | \Ci  | \Ci  |
       
     }
     \chords {
       \set noChordSymbol = ""
       
-      c2. c2. c2. c2.
-      f2. g2. c2. c2. \break
-      c2. c2. c2. c2.
-      f2. g2.:7sus4 c2. c2. \break
+      c2. | c2.       | c2. | c2. |
+      f2. | g2.       | c2. | c2. |
+      c2. | c2.       | c2. | c2. |
+      f2. | g2.:7sus4 | c2. | c2. |
     }
   >>
   \layout {}
