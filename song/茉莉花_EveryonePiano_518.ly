@@ -12,10 +12,10 @@ Cfive   = { c8  g8  c'8 g8  }
 Dfive   = { d8  a8  d'8 a8  }
 Dseven  = { d8  fs8 a8  c'8 }
 Efive   = { e8  b8  e'8 b8  }
-FfiveI  = { f8  c'8 f'8 c'8 }
-FfiveII = { f,8 c8  f8  c8  }
-GfiveI  = { g8  d'8 g'8 d'8 }
-GfiveII = { g,8 d8  g8  d8  }
+Ffivei  = { f8  c'8 f'8 c'8 }
+Ffiveii = { f,8 c8  f8  c8  }
+Gfivei  = { g8  d'8 g'8 d'8 }
+Gfiveii = { g,8 d8  g8  d8  }
 Afive   = { a,8 e8  a8  e8  }
 
 \score {
@@ -37,9 +37,9 @@ Afive   = { a,8 e8  a8  e8  }
       \time 4/4
       
       \Cfive   \Cfive   | \Cfive   \Cfive   | \Cfive   \Cfive  | \Cfive   c8 g8 c8 d8 |
-      \Efive   \Efive   | \FfiveI  \GfiveI  | \Cfive   \Cfive  | \Afive   \Afive      |
-      \Cfive   \Dfive   | \Efive   \Efive   | \Dfive   \Dfive  | \GfiveII \FfiveII    |
-      \GfiveII \FfiveII | \GfiveII \FfiveII | \GfiveII \Dseven | g,8 g8 c'8 d'8 g'2   |
+      \Efive   \Efive   | \Ffivei  \Gfivei  | \Cfive   \Cfive  | \Afive   \Afive      |
+      \Cfive   \Dfive   | \Efive   \Efive   | \Dfive   \Dfive  | \Gfiveii \Ffiveii    |
+      \Gfiveii \Ffiveii | \Gfiveii \Ffiveii | \Gfiveii \Dseven | g,8 g8 c'8 d'8 g'2   |
     }
     \chords {
       \set noChordSymbol = ""

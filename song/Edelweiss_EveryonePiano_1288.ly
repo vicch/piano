@@ -8,10 +8,10 @@
 
 \markup \vspace #1.5
 
-chordds    = { bf,4 ef4 g4 }
-chordf     = { a,4  c4  f4 }
-chordas    = { bf,4 d4  f4 }
-chordassix = { bf,4 d4  g4 }
+Ds    = { bf,4 ef4 g4 }
+F     = { a,4  c4  f4 }
+As    = { bf,4 d4  f4 }
+Assix = { bf,4 d4  g4 }
 
 \score {
   \new PianoStaff <<
@@ -31,10 +31,10 @@ chordassix = { bf,4 d4  g4 }
       \key bf \major
       \time 3/4
       
-      \chordas | \chordf | \chordas | \chordds | \chordas | f4 ef4 d4 | \chordds | \chordas                  |
-      \chordas | \chordf | \chordas | \chordds | \chordas | f4 ef4 d4 | \chordas | \chordas                  |
-      \chordf  | \chordf | \chordas | \chordas | \chordds | \chordf   | \chordf  | \chordassix               |
-      \chordas | \chordf | \chordas | \chordds | \chordas | f4 ef4 d4 | \chordas | bf,4 d4 <<d4 f4\fermata>> |
+      \As | \F | \As | \Ds | \As | f4 ef4 d4 | \Ds | \As                       |
+      \As | \F | \As | \Ds | \As | f4 ef4 d4 | \As | \As                       |
+      \F  | \F | \As | \As | \Ds | \F        | \F  | \Assix                    |
+      \As | \F | \As | \Ds | \As | f4 ef4 d4 | \As | bf,4 d4 <<d4 f4\fermata>> |
     }
     \chords {
       \set noChordSymbol = ""
