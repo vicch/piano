@@ -8,12 +8,12 @@
 
 \markup \vspace #1.5
 
-chordc       = { c8[ g8]  c'8[ g8]  c'8[ g8]  }
-chordcseven  = { c8[ g8]  bf8[ g8]  bf8[ g8]  }
-chordcseveng = { g8[ bf8] c'8[ bf8] c'8[ bf8] }
-chordfi      = { f8[ a8]  c'8[ a8]  c'8[ a8]  }
-chordfii     = { f8[ a8]  c'8[ a8]  f4        }
-chordas      = { f8[ bf8] d'8[ bf8] d'8[ bf8] }
+C        = { c8[ g8]  c'8[ g8]  c'8[ g8]  }
+Cseveni  = { c8[ g8]  bf8[ g8]  bf8[ g8]  }
+Csevenii = { g8[ bf8] c'8[ bf8] c'8[ bf8] }
+Fi       = { f8[ a8]  c'8[ a8]  c'8[ a8]  }
+Fii      = { f8[ a8]  c'8[ a8]  f4        }
+As       = { f8[ bf8] d'8[ bf8] d'8[ bf8] }
 
 \score {
   \new PianoStaff <<
@@ -33,10 +33,10 @@ chordas      = { f8[ bf8] d'8[ bf8] d'8[ bf8] }
       \key f \major
       \time 3/4
       
-      r4 | \chordfi      | \chordfi      | \chordas     | \chordfi
-         | \chordcseveng | \chordcseveng | \chordcseven | \chordfii
-         | \chordas      | \chordfi      | \chordc      | \chordfi
-         | \chordas      | \chordfi      | \chordcseven | \chordfii
+      r4 | \Fi       | \Fi       | \As      | \Fi
+         | \Csevenii | \Csevenii | \Cseveni | \Fii
+         | \As       | \Fi       | \C       | \Fi
+         | \As       | \Fi       | \Cseveni | \Fii
     }
     \chords {
       \set noChordSymbol = ""
