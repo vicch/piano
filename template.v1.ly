@@ -23,6 +23,8 @@
     \override StaffGrouper.staff-staff-spacing.basic-distance = #11
     \override StaffGrouper.staff-staff-spacing.padding = #2
     
+    \override Stem.length-fraction = #1.1
+    
     \override TimeSignature.style = #'numbered
     
     \override ChordName.font-size = #-1
