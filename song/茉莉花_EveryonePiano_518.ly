@@ -26,20 +26,20 @@ Afive   = { a,8 e8  a8  e8  }
       \key c \major
       \time 4/4
       
-      e''4           e''8   g''8   a''8 c'''8 c'''8 a''8   | g''4   g''8   a''8    g''2         | e''4   e''8   g''8   a''8   c'''8  c'''8  a''8  | g''4 g''8 a''8 g''2                     | \break
-      g''4           g''4          g''4       e''8  g''8   | a''4   a''4           g''2         | e''4   d''8   e''8   g''4          e''8   d''8  | c''4 c''8 d''8 c''2                     | \break
-      e''8^3  d''8^2 c''8^1 e''8^3 d''4.^2          e''8^1 | g''4^2 a''8^3 c'''8^5 g''2^2       | d''4^2 e''8^3 g''8^5 d''8^4 e''8^5 c''8^3 a'8^2 | g'2^1          a'4 a'8  c''8            | \break
-      d''4.                 e''8   c''8 d''8  c''8  a'8    | g'2                   a'4 a'8 c''8 | d''4.         e''8   c''8   d''8   c''8   a'8   | g''2          <b'' d''' g'''>2\arpeggio | \bar "|."
+      e''4^1       e''8 g''8^2 a''8 c'''8 c'''8 a''8   | g''4   g''8 a''8  g''2         | e''4   e''8 g''8 a''8   c'''8 c'''8  a''8 | g''4 g''8 a''8 g''2                     | \break
+      g''4^2       g''4        g''4       e''8  g''8   | a''4   a''4       g''2         | e''4^3 d''8 e''8 g''4         e''8   d''8 | c''4 c''8 d''8 c''2                     | \break
+      e''8^3  d''8 c''8 e''8   d''4.            e''8^1 | g''4^2 a''8 c'''8 g''2         | d''4^2 e''8 g''8 d''8^3 e''8  c''8^3 a'8  | g'2            a'4^2 a'8  c''8^3        | \break
+      d''4.             e''8   c''8 d''8  c''8  a'8    | g'2               a'4 a'8 c''8 | d''4.       e''8 c''8^2 d''8  c''8   a'8  | g''2^5         <b'' d''' g'''>2\arpeggio | \bar "|."
     }
     \new Staff {
       \clef bass
       \key c \major
       \time 4/4
       
-      \Cfive   \Cfive   | \Cfive   \Cfive   | \Cfive   \Cfive  | \Cfive   c8 g8 c8 d8 |
-      \Efive   \Efive   | \Ffivei  \Gfivei  | \Cfive   \Cfive  | \Afive   \Afive      |
-      \Cfive   \Dfive   | \Efive   \Efive   | \Dfive   \Dfive  | \Gfiveii \Ffiveii    |
-      \Gfiveii \Ffiveii | \Gfiveii \Ffiveii | \Gfiveii \Dseven | g,8 g8 c'8 d'8 g'2   |
+      \Cfive   \Cfive   | \Cfive   \Cfive   | \Cfive   \Cfive  | \Cfive c8^5 g8^2 c8^5 d8^4   |
+      \Efive   \Efive   | \Ffivei  \Gfivei  | \Cfive   \Cfive  | \Afive \Afive                |
+      \Cfive   \Dfive   | \Efive   \Efive   | \Dfive   \Dfive  | \Gfiveii \Ffiveii            |
+      \Gfiveii \Ffiveii | \Gfiveii \Ffiveii | \Gfiveii \Dseven | g,8^5 g8^1 c'8^3 d'8^2 g'2^1 |
     }
     \chords {
       \set noChordSymbol = ""
