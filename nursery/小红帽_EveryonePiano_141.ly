@@ -6,6 +6,10 @@
   tagline = "EveryonePiano 141"
 }
 
+\paper {
+  total-page = 1
+}
+
 \markup \vspace #1.5
 
 Ci        = { c8[  <e  g>8 c8  <e  g>8] }

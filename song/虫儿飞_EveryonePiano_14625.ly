@@ -1,13 +1,14 @@
 \version "2.24.3"
 \include "../template.v1.ly"
 
-\paper {
-  ragged-last = ##t
-}
-
 \header {
   title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "虫儿飞"
   tagline = "EveryonePiano 14625"
+}
+
+\paper {
+  total-page = 2
+  ragged-last = ##t
 }
 
 \markup \vspace #1.5

@@ -1,5 +1,9 @@
 \language "english"
 
+#(define-markup-command (total-page layout props) ()
+   (interpret-markup layout props 
+     (number->string (ly:output-def-lookup layout 'total-page))))
+
 \paper {
   #(set-paper-size "letter")
   top-margin    = #15
@@ -18,22 +22,20 @@
   print-page-number = ##t
   
   oddHeaderMarkup = \markup \null
-  evenHeaderMarkup = \markup \null
+  evenHeaderMarkup = \oddHeaderMarkup
   
   oddFooterMarkup = \markup {
     \fill-line {
       \fromproperty #'header:tagline
       \null
-      \fromproperty #'page:page-number-string
+      \concat {
+        \fromproperty #'page:page-number-string
+        "/"
+        \total-page
+      }
     }
   }
-  evenFooterMarkup = \markup {
-    \fill-line {
-      \fromproperty #'header:tagline
-      \null
-      \fromproperty #'page:page-number-string
-    }
-  }
+  evenFooterMarkup = \oddFooterMarkup
 }
 
 \layout {

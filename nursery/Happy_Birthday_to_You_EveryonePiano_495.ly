@@ -6,6 +6,10 @@
   tagline = "EveryonePiano 495"
 }
 
+\paper {
+  total-page = 1
+}
+
 \markup \vspace #1.25
 
 C    = { c4 <<g4 c'4>> <<g4 c'4>> }

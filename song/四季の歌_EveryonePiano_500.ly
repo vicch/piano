@@ -6,6 +6,10 @@
   tagline = "EveryonePiano 500"
 }
 
+\paper {
+  total-page = 1
+}
+
 \markup \vspace #1.25
 
 Aseven = { cs8 g8 a4    }

@@ -6,6 +6,10 @@
   tagline = "EveryonePiano 505"
 }
 
+\paper {
+  total-page = 1
+}
+
 \markup \vspace #1.25
 
 C      = { e8^.[ c'8^. g8^.  c'8^.] }

@@ -6,6 +6,10 @@
   tagline = "Sequence"
 }
 
+\paper {
+  total-page = 1
+}
+
 \markup \vspace #1.5
 
 \score {

@@ -6,6 +6,10 @@
   tagline = "MuseScore 173585-166951"
 }
 
+\paper {
+  total-page = 1
+}
+
 \markup \vspace #1.25
 
 \score {
