@@ -33,8 +33,6 @@ Gm     = { d8  g8 bf4   }
       \Gm  \Gm  | \Dmi  \Dmii               | \Aseven \Aseven | \Dmii d2                  |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       d1:m | d1:m | g1:m | d1:m |
       g1:m | d1:m | a1:7 | d1:m |
     }

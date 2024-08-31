@@ -22,7 +22,6 @@
       \time 3/4
     }
     \chords {
-      \set noChordSymbol = ""
     }
   >>
   \layout {}

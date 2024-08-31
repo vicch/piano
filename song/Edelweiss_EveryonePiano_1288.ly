@@ -37,8 +37,6 @@ Assix = { bf,4 d4  g4 }
       \As | \F | \As | \Ds | \As | f4 ef4 d4 | \As | bf,4 d4 <<d4 f4\fermata>> |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       as2. | f2. | as2. | ds2. | as2. | r2. | ds2. | as2.   |
       as2. | f2. | as2. | ds2. | as2. | r2. | as2. | as2.   |
       f2.  | f2. | as2. | as2. | ds2. | f2. | f2.  | as2.:6 |

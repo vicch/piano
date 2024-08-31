@@ -45,8 +45,6 @@ Am = { a,4 <<c4  e4>>  <<c4  e4>>  }
       \Em | <a, c e>2. |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       e   | a:m | e   | e | d:m | d:m | e | a:m |
       a:m | a:m | d:m | e | a:m | e   | e | a:m |
       a:m | d:m | g   | c | e   | e   | e | e   |

@@ -69,8 +69,6 @@ Bsus  = { b4(  f'4 b4   f'4) }
       }
     }
     \chords {
-      \set noChordSymbol = ""
-      
       c1   | e1:5   | f1 | b1:sus |
       c1   | a1:5   | d1 | b1:m   |
       c1   | e1:5   | a1 | d1:m   |

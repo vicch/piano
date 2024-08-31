@@ -38,8 +38,6 @@ Gsevensus = { g,8[ <d  f>8 g,8 <c  e>8] }
       \F  | \Ci | \F | \Ci | \Ci | \Ci | \Gsevensus | \Cii |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       c2 | c2 | f2 | c2 | c2 | c2 | g2:7sus4 | g2 |
       c2 | c2 | f2 | c2 | c2 | c2 | g2:7sus4 | c2 |
       f2 | c2 | f2 | c2 | c2 | c2 | g2:7sus4 | c2 |

@@ -40,8 +40,6 @@ Gsevensus = { g4  d'4 f'4 }
       
     }
     \chords {
-      \set noChordSymbol = ""
-      
       c2. | c2.       | c2. | c2. |
       f2. | g2.       | c2. | c2. |
       c2. | c2.       | c2. | c2. |

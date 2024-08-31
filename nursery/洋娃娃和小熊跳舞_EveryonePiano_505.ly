@@ -37,8 +37,6 @@ As     = { f8^.[ d'8^. bf8^. d'8^.] }
       \As | \F | \Cseven | f8^. <<a8 c'8^.>> <<a4 c'4^.>> |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       f2  | f2 | c2   | f2 |
       f2  | f2 | c2   | f2 |
       as2 | f2 | c2   | f2 |

@@ -35,8 +35,6 @@ Gseven = { b,4 f4 g4 }
       \G | \G | \C | \C | \C | \Gseven | \C | c2. |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       c2. | c2. | c2. | c2. | g2. | g2.   | c2. | c2. |
       f2. | f2. | c2. | c2. | f2. | f2.   | c2. | c2. |
       g2. | g2. | c2. | c2. | c2. | g2.:7 | c2. | r2. |

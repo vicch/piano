@@ -28,8 +28,6 @@
       r4 <e as c'>2 | r4 <f a c'>2 | r4 <e  g c'>2 | <d f g>4 <c e g>2 |
     }
     \chords {
-      \set noChordSymbol = ""
-
       r4 c2   | r4 g2:7 | r4 g2:7 | r4   c2 |
       r4 c2:7 | r4 f2   | r4 c2   | g4:7 c2 |
     }

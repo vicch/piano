@@ -39,8 +39,6 @@ E  = { e,8 b,8 e8 b,8 gs4  }
       }
     }
     \chords {
-      \set noChordSymbol = ""
-      
       a2.:m | a2.:m | a2.:m | a2.:m |
       a2.   | a2.   | d2.:m | d2.:m |
       e2.   | e2.   | a2.:m | a2.:m |

@@ -42,8 +42,6 @@ Afive   = { a,8 e8  a8  e8  }
       \Gfiveii \Ffiveii | \Gfiveii \Ffiveii | \Gfiveii \Dseven | g,8^5 g8^1 c'8^3 d'8^2 g'2^1 |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       c1:5      | c1:5      | c1:5      | c2:5 r2   |
       e1:5      | f2:5 g2:5 | c1:5      | a1:5      |
       c2:5 d2:5 | e1:5      | d1:5      | g2:5 f2:5 |

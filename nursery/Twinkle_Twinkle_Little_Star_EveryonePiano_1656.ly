@@ -34,8 +34,6 @@ G = { b,8 g8 d8 g8 }
       \C \C | \F \C | \G \C | \G <c e g>2 |
     }
     \chords {
-      \set noChordSymbol = ""
-      
       c2 c2 | f2 c2 | g2 c2 | g2 c2 |
       c2 g2 | c2 g2 | c2 g2 | c2 g2 |
       c2 c2 | f2 c2 | g2 c2 | g2 c2 |

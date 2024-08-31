@@ -34,8 +34,6 @@ As   = { d4 <<f4 bf4>> <<f4 bf4>> }
          | \F | \As | \Csus | <f a c'>2.\arpeggio
     }
     \chords {
-      \set noChordSymbol = ""
-
       r4 | f2. | c2.  | e2.:dim | f2.
          | f2. | as2. | c2.:sus | f2.
     }
