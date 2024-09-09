@@ -7,7 +7,7 @@
 }
 
 \paper {
-  total-page = 1
+  total-page = 2
 }
 
 \markup \vspace #1.5
@@ -61,8 +61,10 @@ Afive = { a,4 e4 a2  }
     \chords {
       r1   | r1   | r1   | r1   |
       r1   | r1   | r1   | r1   |
+      
       c1:5 | g1:5 | a1:5 | g1:5 |
       r1   | r1   | r1   | a1:5 |
+      
       c1:5 | g1:5 | a1:5 | g1:5 |
       r1   | r1   | f1:5 | g1:5 | r1 |
     }
