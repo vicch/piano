@@ -4,7 +4,7 @@
    (interpret-markup layout props 
      (number->string (ly:output-def-lookup layout 'total-page))))
 
-#(set-global-staff-size 22)
+#(set-global-staff-size 20)
 
 \paper {
   #(set-paper-size "letter")
@@ -13,7 +13,7 @@
   left-margin   = #20
   right-margin  = #20
   
-  system-system-spacing.basic-distance = #12
+  system-system-spacing.basic-distance = #14
   system-system-spacing.padding = #2
   
   last-bottom-spacing.basic-distance = #14
