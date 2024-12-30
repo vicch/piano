@@ -28,7 +28,8 @@
   
   oddFooterMarkup = \markup {
     \fill-line {
-      \fromproperty #'header:tagline
+      % \fromproperty #'header:tagline
+      \null
       \null
       \concat {
         \fromproperty #'page:page-number-string
