@@ -4,6 +4,8 @@
    (interpret-markup layout props 
      (number->string (ly:output-def-lookup layout 'total-page))))
 
+#(set-global-staff-size 22)
+
 \paper {
   #(set-paper-size "letter")
   top-margin    = #15
@@ -11,7 +13,7 @@
   left-margin   = #20
   right-margin  = #20
   
-  system-system-spacing.basic-distance = #14
+  system-system-spacing.basic-distance = #12
   system-system-spacing.padding = #2
   
   last-bottom-spacing.basic-distance = #14
@@ -46,7 +48,7 @@
     \override StaffGrouper.staff-staff-spacing.basic-distance = #11
     \override StaffGrouper.staff-staff-spacing.padding = #2
     
-    \override Stem.length-fraction = #1.1
+    \override Stem.length-fraction = #1.15
     
     \override TimeSignature.style = #'numbered
     
