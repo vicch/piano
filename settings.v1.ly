@@ -45,6 +45,7 @@
   \context {
     \Score
     % barNumberVisibility = #all-bar-numbers-visible
+    barNumberVisibility = #first-bar-number-invisible-save-broken-bars
     
     \override StaffGrouper.staff-staff-spacing.basic-distance = #11
     \override StaffGrouper.staff-staff-spacing.padding = #2

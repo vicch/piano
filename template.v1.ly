@@ -13,7 +13,9 @@
 \markup \vspace #1.5
 
 \score {
-  \new PianoStaff <<
+  \new PianoStaff \with {
+    instrumentName = "Piano"
+  } <<
     \new Staff {
       \tempo 4 = 96
       \clef treble
