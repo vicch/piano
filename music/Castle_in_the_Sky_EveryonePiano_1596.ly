@@ -57,8 +57,8 @@ Bfive = { b,8 fs8 b2.  }
       r4 | a1:m | e1:m | f1 | c1 | d1:m | c1   | b1:5    | e1       |
          | a1:m | e1:m | f1 | c1 | d1:m | a1:m | d2:5 e2 | a2.:m r4 |
          
-         | c1    | g1 | a1:m | g1 |
-         | f2 r2 | c1 | r1   | r1 |
+         | c1    | g1 | a1:m | e1:m |
+         | f2 r2 | c1 | r1   | e1   |
          
          | a2:5 e2:m | r1 | r1        | r1   |
          | a2:5 e2:m | r1 | b2:dim r2 | a1:m |
