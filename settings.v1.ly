@@ -51,6 +51,7 @@
     \override StaffGrouper.staff-staff-spacing.padding = #2
     
     \override Stem.length-fraction = #1.15
+    \override Beam.damping = #2.0
     
     \override TimeSignature.style = #'numbered
     
