@@ -18,17 +18,19 @@ Dm = { d,8 a,8 d8 a,8 f4   }
 E  = { e,8 b,8 e8 b,8 gs4  }
 
 \score {
-  \new PianoStaff <<
+  \new PianoStaff \with {
+    instrumentName = "Piano"
+  } <<
     \new Staff {
       \tempo 4 = 96
       \clef treble
       \key c \major
       \time 3/4
       
-      e''4 e''4 e''4 | e''4  d''4 c''4 | c''4 b'4  a'4  | a'4  c''4 e''4 | \break
-      a''4 a''4 a''4 | a''4  g''4 f''4 | f''4 e''4 d''4 | d''4 e''4 f''4 | \break
-      e''4 f''4 e''4 | gs''4 f''4 e''4 | e''4 d''4 c''4 | c''4 b'4  a'4  | \break
-      b'4  b'4  b'4  | b'4   c''4 b'4  | a'4  a'4  a'4  | \acciaccatura a'8 <a' a''>2. | \bar "|."
+      e''4^5 e''4 e''4 | e''4  d''4 c''4 | c''4   b'4  a'4  | a'4  c''4 e''4 | \break
+      a''4^5 a''4 a''4 | a''4  g''4 f''4 | f''4   e''4 d''4 | d''4 e''4 f''4 | \break
+      e''4   f''4 e''4 | gs''4 f''4 e''4 | e''4^5 d''4 c''4 | c''4 b'4  a'4  | \break
+      b'4    b'4  b'4  | b'4   c''4 b'4  | a'4    a'4  a'4  | \acciaccatura a'8 <a' a''>2. | \bar "|."
     }
     \new Staff {
       \clef bass
