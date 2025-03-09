@@ -7,7 +7,7 @@
 }
 
 \paper {
-  total-page = 2
+  total-page = 3
 }
 
 \markup \vspace #1.5
@@ -26,7 +26,9 @@ Ami  = { a4  c'4 e'2 }
 Amii = { a,4 e4  c'2 }
 
 \score {
-  \new PianoStaff <<
+  \new PianoStaff \with {
+    instrumentName = "Piano"
+  } <<
     \new Staff {
       \tempo 4 = 120
       \clef treble

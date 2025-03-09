@@ -35,6 +35,12 @@ Am     = { a,8 e8  a8  c'8  a8  e8  }
       
       d''4. a''4 g''8 | a''4.~     a''8 g''8 a''8 | b''4. g''4 e''8 | g''4.~ g''4 e''8 | \break
       a''4. g''4.     | f''8 e''4~ e''8 d''8 e''8 | f''2.~          | f''4.  r4.       | \break
+      
+      e''4.~ e''8 e''8 d''8 | c''4. e''4 a''8 | g''8 d''4.~ d''4~ | d''4. r4. | \break
+      c''4.~ c''8 c''8 b'8  | a'4.  c''4 f''8 | e''2.~            | e''4. r4. | \break
+      
+      d''4.      a''4 g''8 | a''4.~     a''8 g''8 a''8 | b''4. g''4 e''8 | g''4.~ g''4 e''8 | \break
+      a''4  f''8 d''4 c''8 | b'4.       d''4.          | c''2.~          | c''4.  r4   c''8 | \break
     }
     \new Staff {
       \clef bass
@@ -46,6 +52,12 @@ Am     = { a,8 e8  a8  c'8  a8  e8  }
       
       \Dm | \Dm | \Em     | \A      |
       \Dm | \Dm | \Gseven | \Gseven |
+      
+      \C  | \C  | \G  | \G  |
+      \Am | \Am | \Em | \Em |
+      
+      \Dm | \Dm     | \Em | \A |
+      \Dm | \Gseven | \C  | \C |
     }
     \chords {
       c2.   | c2.   | g2.   | g2.   |
@@ -53,6 +65,12 @@ Am     = { a,8 e8  a8  c'8  a8  e8  }
       
       d2.:m | d2.:m | e2.:m | a2.   |
       d2.:m | d2.:m | g2.:7 | g2.:7 |
+      
+      c2.   | c2.   | g2.   | g2.   |
+      a2.:m | a2.:m | e2.:m | e2.:m |
+      
+      d2.:m | d2.:m | e2.:m | a2. |
+      d2.:m | g2.:7 | c2.   | c2. |
     }
   >>
   \layout {}

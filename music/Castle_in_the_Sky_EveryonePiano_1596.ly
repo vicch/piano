@@ -30,7 +30,7 @@ Bfive = { b,8 fs8 b2.  }
       \key c \major
       \time 4/4
       
-      \partial 4 a'8  b'8 | c''4. b'8 c''4 e''4 | b'2. e'4 | a'4. g'8 a'4 c''4 | g'2. e'8 e'8 \break | f'4. e'8  f'8  c''4. | e'2             r8 c''8 c''8 c''8 | b'4.     fs'8 fs'4 b'4  | b'2. a'8  b'8  \break
+      \partial 4 a'8^1  b'8 | c''4. b'8 c''4 e''4 | b'2. e'4^1 | a'4.^3 g'8 a'4 c''4 | g'2. e'8^1 e'8 \break | f'4. e'8  f'8  c''4.^5 | e'2             r8 c''8^5 c''8 c''8 | b'4.     fs'8^2 fs'4 b'4  | b'2. a'8  b'8  \break
                           | c''4. b'8 c''4 e''4 | b'2. e'4 | a'4. g'8 a'4 c''4 | g'2. e'8 e'8 \break | f'4  c''8 b'4. c''4  | d''4 e''8 c''8~ c''2              | c''8 b'8 a'4  b'4  gs'4 | a'2. c''8 d''8 \break
 
                           | e''4. d''8 e''4 g''4       | d''2. g'4     | c''4. b'8 c''4 e''4                                   | e''2. g'8  g'8      \break
@@ -58,7 +58,8 @@ Bfive = { b,8 fs8 b2.  }
          | a1:m | e1:m | f1 | c1 | d1:m | a1:m | d2:5 e2 | a2.:m r4 |
          
          | c1    | g1 | a1:m | e1:m |
-         | f2 r2 | c1 | r1   | e1   |
+         | f2 r2 | c1 | r1   | e1
+         |
          
          | a2:5 e2:m | r1 | r1        | r1   |
          | a2:5 e2:m | r1 | b2:dim r2 | a1:m |
