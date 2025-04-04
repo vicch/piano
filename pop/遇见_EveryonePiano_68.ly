@@ -58,7 +58,7 @@ Giii = { g,8 d8 g8 d8 }
       \Cii |
     }
     \chords {
-      
+
       r1 | c2 g2 | a1:m | f2 g2 |
       c1 | c2 g2 | a1:m | f2 g2 |
       
