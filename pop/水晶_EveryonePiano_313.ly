@@ -24,7 +24,8 @@ Gii  = { b,8 d8  g8  b8  d'4 }
 Giii = { g,8 d8  g8  a8  b4  }
 Ami  = { a,8 e8  a8  c'8 e'4 }
 
-Dii   = { d,8 a,8 f2  }
+Dm    = { d,8 a,8 f2  }
+Dii   = { d,8 a,8 fs2 }
 Emiii = { e,8 b,8 g2  }
 Fiii  = { f,8 c8  a2  }
 Giv   = { g,8 d8  b2  }
@@ -48,8 +49,15 @@ Amii  = { a,8 e8  c'2 }
       e''4 d''4 c''4 | b'4  g''2       | f''4 g''4 a''4      | g''2. | \break
       f''4 g''4 a''4 | g''4 e''4. e''8 | f''4 e''4 d''4      | c''2. | \break
       
-      a''2      b''8 c'''8 | b''2      e''8 f''8 | g''2 e''8 d''8 | c''2 r8 c''8 | \break
-      f''4 e''4 f''4       | a''4 g''4 f''4      | g''2.(         | g''2.)       | \break 
+      a''2      b''8 c'''8 | b''2      e''8 f''8 | g''2  e''8 d''8 | c''2 r8 c''8 | \break
+      f''4 e''4 f''4       | a''4 g''4 f''4      | g''2.~          | g''2.        | \break
+      a''2      b''8 c'''8 | b''2      e''8 f''8 | g''2  d'''4     | c'''2.       | \break
+      f''8 e''8 f''4 g''4  | a''4 a''4 c'''4     | d'''2 b''8 a''8 | g''2.        | \break
+      
+      e''4  g''4 g''8 e''8 | a''4 g''2            | a''4 b''4 c'''4     | g''2.             | \break
+      a''4  b''4 c'''4     | g''4 e''4  e''4      | f''4 e''4 d''8 c''8 | d''2.             | \break
+      e''4  g''4 g''8 e''8 | a''4 g''4. g''8      | a''4 b''4 c'''4     | e'''2 e'''8 e'''8 | \break
+      d'''4 c'''4.    a''8 | g''2       d''8 e''8 | d''4 c''2~          | c''2.             | c''2. | \bar "|."
     }
     \new Staff {
       \clef bass
@@ -65,7 +73,14 @@ Amii  = { a,8 e8  c'2 }
       \Fii | \Cii | \Giii | \Cii  |
       
       \Fiii | \Giv | \Emiii | \Amii |
-      \Dii  | \Giv | \Cii   | \Emii |
+      \Dm   | \Giv | \Cii   | \Emii |
+      \Fiii | \Giv | \Emiii | \Amii |
+      \Fiii | \Dm  | \Dii   | \Gi   |
+      
+      \Ci | \Emi | \Fi  | \Gi |
+      \Fi | \Ci  | \Di  | \Gi |
+      \Ci | \Emi | \Emi | \Ci |
+      \Fi | \Gi  | \Cii | \Ci | <c g c'>2. |
     }
     \chords {
 
@@ -77,8 +92,15 @@ Amii  = { a,8 e8  c'2 }
       c2. | e2.:m | f2. | g2. |
       f2. | c2.   | g2. | c2. |
       
-      f2. | g2. | e2.:m | a2.:m |
-      d2. | g2. | c2.   | e2.:m |
+      f2.   | g2.   | e2.:m | a2.:m |
+      d2.:m | g2.   | c2.   | e2.:m |
+      f2.   | g2.   | e2.:m | a2.:m |
+      f2.   | d2.:m | d2.   | g2.   |
+      
+      c2. | e2.:m | f2.   | g2. |
+      f2. | c2.   | d2.   | g2. |
+      c2. | e2.:m | e2.:m | c2. |
+      f2. | g2.   | c2.   | c2. | c2. |
     }
   >>
   \layout {}
@@ -102,8 +124,15 @@ Amii  = { a,8 e8  c'2 }
       e''4 d''4 c''4 | b'4  g''2       | f''4 g''4 a''4      | g''2. | \break
       f''4 g''4 a''4 | g''4 e''4. e''8 | f''4 e''4 d''4      | c''2. | \break
       
-      a''2      b''8 c'''8 | b''2      e''8 f''8 | g''2 e''8 f''8 | c''2 r8 c''8 | \break
-      f''4 e''4 f''4       | a''4 g''4 f''4      | g''2.(         | g''2.)       | \break 
+      a''2      b''8 c'''8 | b''2      e''8 f''8 | g''2  e''8 d''8 | c''2 r8 c''8 | \break
+      f''4 e''4 f''4       | a''4 g''4 f''4      | g''2.~            g''2.        | \break
+      a''2      b''8 c'''8 | b''2      e''8 f''8 | g''2  d'''4     | c'''2.       | \break
+      f''8 e''8 f''4 g''4  | a''4 a''4 c'''4     | d'''2 b''8 a''8 | g''2.        | \break
+      
+      e''4  g''4 g''8 e''8 | a''4 g''2            | a''4 b''4 c'''4     | g''2.             | \break
+      a''4  b''4 c'''4     | g''4 e''4  e''4      | f''4 e''4 d''8 c''8 | d''2.             | \break
+      e''4  g''4 g''8 e''8 | a''4 g''4. g''8      | a''4 b''4 c'''4     | e'''2 e'''8 e'''8 | \break
+      d'''4 c'''4.    a''8 | g''2       d''8 e''8 | d''4 c''2~            c''2.             | c''2. | \bar "|."
     }
     \new Staff {
       \clef bass
@@ -119,7 +148,14 @@ Amii  = { a,8 e8  c'2 }
       \Fii | \Cii | \Giii | \Cii  |
       
       \Fiii | \Giv | \Emiii | \Amii |
-      \Dii  | \Giv | \Cii   | \Emii |
+      \Dm   | \Giv | \Cii   | \Emii |
+      \Fiii | \Giv | \Emiii | \Amii |
+      \Fiii | \Dm  | \Dii   | \Gi   |
+      
+      \Ci | \Emi | \Fi  | \Gi |
+      \Fi | \Ci  | \Di  | \Gi |
+      \Ci | \Emi | \Emi | \Ci |
+      \Fi | \Gi  | \Cii | \Ci | <c g c'>2. |
     }
   >>
   \midi {}
