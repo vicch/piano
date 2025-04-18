@@ -7,7 +7,7 @@
 }
 
 \paper {
-  total-page = 1
+  total-page = 3
 }
 
 \markup \vspace #1.5
