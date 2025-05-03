@@ -37,16 +37,16 @@ Bsus  = { b4  f'4 b4   f'4 }
       \time 4/4
       
       \repeat volta 2 {
-        e''2^4 g'4^1  e''4   | d''4   c''4 b'4 c''4   | f''2   f''2 | f''2 g'2^1     | \break
-        e''2^5 gs'4^2 e''4   | d''4   c''4 b'4 c''4   | d''2   d''2 | d''2 ds''2^5   | \break
-        e''2^4 g'4^1  e''4   | d''4\< c''4 b'4 c''4\! | a''2^5 a''2 | a''2 g''4 f''4 | \break
+        e''2^4 g'4^1  e''4   | d''4 c''4 b'4 c''4 | f''2   f''2 | f''2 g'2^1     | \break
+        e''2^5 gs'4^2 e''4   | d''4 c''4 b'4 c''4 | d''2   d''2 | d''2 ds''2^5   | \break
+        e''2^4 g'4^1  e''4   | d''4 c''4 b'4 c''4 | a''2^5 a''2 | a''2 g''4 f''4 | \break
         e''2   d''4   c''4^3 | a'2^1       b'2        |
         \alternative {
           \volta 1 {
-            c''2 f'2^1 | fs'2^2_"rit." g'2^1 | \break
+            c''2 f'2^1 | fs'2^2 g'2^1 | \break
           }
           \volta 2 {
-            c''1~\> | c''1\! | \bar "|."
+            c''1~ | c''1 | \bar "|."
           }
         }
       }
@@ -63,10 +63,10 @@ Bsus  = { b4  f'4 b4   f'4 }
         \Em | \Fsus  |
         \alternative {
           \volta 1 {
-            \Am | d4( c'4 b4 d'4) |
+            \Am | d4 c'4 b4 d'4 |
           }
           \volta 2 {
-            c'4^1( e4^4 fs4^3 g4^2 | c1^5) |
+            c'4^1 e4^4 fs4^3 g4^2 | c1^5 |
           }
         }
       }
