@@ -12,12 +12,14 @@
 
 \markup \vspace #1.5
 
-CI  = { c8  g8  c'8 e'8 g'2  }
-EmI = { e,8 b,8 e8  g8  b2   }
-FI  = { f8  c'8 f'8 a'8 c''2 }
-FII = { f,8 c8  f8  a8  c'2  }
-GI  = { g,8 d8  g8  b8  d'2  }
-AmI = { a,8 e8  a8  c'8 e'2  }
+CI   = { c8  g8  c'8 e'8 g'2  }
+CII  = { c,8 g,8 c8  e8  g2   }
+DmI  = { d,8 a,8 d8  f8  a2   }
+EmI  = { e,8 b,8 e8  g8  b2   }
+FI   = { f8  c'8 f'8 a'8 c''2 }
+FII  = { f,8 c8  f8  a8  c'2  }
+GI   = { g,8 d8  g8  b8  d'2  }
+AmI  = { a,8 e8  a8  c'8 e'2  }
 
 \score {
   \new PianoStaff \with {
@@ -31,8 +33,12 @@ AmI = { a,8 e8  a8  c'8 e'2  }
       
       g''2~ g''8 e''8 d''8 c''8 | e''2 r8 a'8 c''8 e''8 | a''2~ a''8 f''8 d''8 c''8 | \break
       
-      b'2.  r8   g'8  | c''4. e''8 g''4. c''8 | b'4. e''8 g''4. g''8 | a''4. b''8 c'''4 a''4 | \break
-      g''2. e''8 d''8 |
+      b'2.  r8   g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break
+      g''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. c''8 a'4   e''4      | \break
+      d''2. r8   g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break
+      g''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   c''8 d''8 | \break
+      
+      c''2. g''4 |
     }
     \new Staff {
       \clef bass
@@ -41,15 +47,23 @@ AmI = { a,8 e8  a8  c'8 e'2  }
       
       \CI | \AmI | \FI |
       
-      \GI | \CI | \EmI | \FII |
-      \GI |
+      \GI | \CI  | \EmI | \FII |
+      \GI | \CII | \AmI | \DmI |
+      \GI | \CII | \EmI | \FII |
+      \GI | \CII | \AmI | \DmI |
+      
+      \CII |
     }
     \chords {
       
       c1 | a1:m | f1 |
       
-      g1 | c1 | e1:m | f1 |
-      g1 |
+      g1 | c1 | e1:m | f1   |
+      g1 | c1 | a1:m | d1:m |
+      g1 | c1 | e1:m | f1   |
+      g1 | c1 | a1:m | d1:m |
+      
+      c1 |
     }
   >>
   \layout {}
