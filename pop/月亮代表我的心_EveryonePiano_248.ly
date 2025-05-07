@@ -38,7 +38,10 @@ AmI  = { a,8 e8  a8  c'8 e'2  }
       d''2. r8   g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break
       g''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   c''8 d''8 | \break
       
-      c''2. g''4 |
+      c''2. g''4 | e''4. d''8 c''4 g''4 | b'2. a'8 b'8 | a'4.  b'8  a'4  g'4       | \break
+      e''2. g''4 | e''4. d''8 c''4 g''4 | b'2. a'8 b'8 | c''4. c''8 c''4 d''8 e''8 | \break
+      
+      d''2. r8 g'8 |
     }
     \new Staff {
       \clef bass
@@ -52,7 +55,10 @@ AmI  = { a,8 e8  a8  c'8 e'2  }
       \GI | \CII | \EmI | \FII |
       \GI | \CII | \AmI | \DmI |
       
-      \CII |
+      \CII | \CII | \EmI | \FII |
+      \AmI | \CII | \EmI | \FII |
+      
+      \GI |
     }
     \chords {
       
@@ -63,7 +69,10 @@ AmI  = { a,8 e8  a8  c'8 e'2  }
       g1 | c1 | e1:m | f1   |
       g1 | c1 | a1:m | d1:m |
       
-      c1 |
+      c1   | c1 | e1:m | f1 |
+      a1:m | c1 | e1:m | f1 |
+      
+      g1 |
     }
   >>
   \layout {}
