@@ -30,8 +30,8 @@ AmI = { a,8 e8 a8  b8  c'8 r4. }
       \key c \major
       \time 4/4
       
-      r2   r8 e'8  a'8  b'8  | c''4 d''8 e''8 d''4 b'8 g'8 | a'2           r8 e'8 a'8 b'8 | c''4     d''8 e''8 d''4 b'8 g'8 | \break
-      e''2 r8 e''8 f''8 g''8 | a''4 g''8 f''8 e''4 d''4    | e''4 c''8 b'8 a'4    a'8 b'8 | c''8 e'8 c''8 e'8  b'4  g'4     | \break
+      r2   r8 e'8^1  a'8^2 b'8^1 | c''4 d''8 e''8 d''4 b'8^2 g'8^1 | a'2^2         r8 e'8^1 a'8^2 b'8^1 | c''4       d''8 e''8 d''4 b'8^2 g'8^1 | \break
+      e''2 r8 e''8^1 f''8  g''8  | a''4 g''8 f''8 e''4 d''4^3      | e''4 c''8 b'8 a'4^3    a'8   b'8   | c''8 e'8^1 c''8 e'8  b'4  g'4         | \break
       a'2  r8 e'8  a'8  b'8  |
     }
     \new Staff {
@@ -44,6 +44,10 @@ AmI = { a,8 e8 a8  b8  c'8 r4. }
       \AmI |
     }
     \chords {
+      
+      r1   | a2 g2 | a1:m  | a2 g2 |
+      c1   | f2 g2 | a2 f2 | a2 e2 |
+      a1:m |
     }
   >>
   \layout {}
