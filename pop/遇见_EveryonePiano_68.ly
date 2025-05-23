@@ -13,18 +13,63 @@
 
 \markup \vspace #1.5
 
-Ci  = { c8  g8  c'4 }
-D   = { d8  a8  d'4 }
-Gi  = { g,8 d8  g4  }
-Gii = { g8  d'8 g'4 }
-Fi  = { f,8 c8  f4  }
-Fii = { f8  c'8 f'4 }
+CI  = { c8  g8  c'4 }
+DI  = { d8  a8  d'4 }
+GI  = { g,8 d8  g4  }
+GII = { g8  d'8 g'4 }
+FI  = { f,8 c8  f4  }
+FII = { f8  c'8 f'4 }
 
-Cii = { c8  g8 c'8 d'8 e'2 }
-Am  = { a,8 e8 a8  b8  c'2 }
+CII = { c8  g8 c'8 d'8 e'2 }
+AmI = { a,8 e8 a8  b8  c'2 }
 
-Fiii = { f,8 c8 f8 c8 }
-Giii = { g,8 d8 g8 d8 }
+FIII = { f,8 c8 f8 c8 }
+GIII = { g,8 d8 g8 d8 }
+
+\score {
+  \new PianoStaff \with {
+    instrumentName = "Piano"
+  } <<
+    \new Staff {
+      \tempo 4 = 88
+      \clef treble
+      \key c \major
+      \time 4/4
+      
+      r2 r4  g''8^5 e''8(   | e''4) g''8 d''8(    d''4)  e''8  d''8( | d''8) c''2  r8 c''8^3 b'8 | a'8 b'8 c''8 b'8( b'8) c''8 d''8 e''8( | \break
+      e''2.) g''8^2 e''8^1( | e''4) g''8 d'''8^5( d'''4) c'''8 b''8( | b''8) c'''2 r8 c''8^3 b'8 | a'8 b'8 c''8 b'8( b'8) c''8 d''4       | \break
+
+      c''2        r8 g''8^1 a''8 b''8 | c'''4 b''8   c'''8 b''8  a''8  g''8  a''8(  | a''8)  g''4.   r8 c''8^1 d''8 e''8 | f''4 e''8 f''8 g''8 c''8 d''8 e''8( | \break
+      e''8) e''4. r8 g''8^1 a''8 b''8 | c'''4 b''8^2 c'''8 d'''8 c'''8 d'''8 e'''8( | e'''8) g''4.^1 r8 c''8^2 d''8 e''8 | f''4 e''8 f''8 e''8 d''4      c''8  | \break
+      
+      b'8 c''4.( c''2) | \bar "|."
+    }
+    \new Staff {
+      \clef bass
+      \key c \major
+      \time 4/4
+      
+      r1   | \CI b,8 g8 b4 | \AmI | \FI   \GI   |
+      \CII | \CI b,8 g8 b4 | \AmI | \FIII \GIII |
+      
+      \CII | \FII \GII | \CII             | \DI \GI |
+      \CII | \FII \GII | c8 g8 b,8 g8 a,2 | \DI \GI |
+      
+      \CII |
+    }
+    \chords {
+
+      r1 | c2 g2 | a1:m | f2 g2 |
+      c1 | c2 g2 | a1:m | f2 g2 |
+      
+      c1 | f2 g2 | c1 | d2 g2 |
+      c1 | f2 g2 | r1 | d2 g2 |
+      
+      c1 |
+    }
+  >>
+  \layout {}
+}
 
 \score {
   \new PianoStaff \with {
@@ -49,25 +94,14 @@ Giii = { g,8 d8 g8 d8 }
       \key c \major
       \time 4/4
       
-      r1   | \Ci b,8 g8 b4 | \Am | \Fi   \Gi   |
-      \Cii | \Ci b,8 g8 b4 | \Am | \Fiii \Giii |
+      r1   | \CI b,8 g8 b4 | \AmI | \FI   \GI   |
+      \CII | \CI b,8 g8 b4 | \AmI | \FIII \GIII |
       
-      \Cii | \Fii \Gii | \Cii             | \D \Gi |
-      \Cii | \Fii \Gii | c8 g8 b,8 g8 a,2 | \D \Gi |
+      \CII | \FII \GII | \CII             | \DI \GI |
+      \CII | \FII \GII | c8 g8 b,8 g8 a,2 | \DI \GI |
       
-      \Cii |
-    }
-    \chords {
-
-      r1 | c2 g2 | a1:m | f2 g2 |
-      c1 | c2 g2 | a1:m | f2 g2 |
-      
-      c1 | f2 g2 | c1 | d2 g2 |
-      c1 | f2 g2 | r1 | d2 g2 |
-      
-      c1 |
+      \CII |
     }
   >>
-  \layout {}
   \midi {}
 }

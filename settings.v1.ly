@@ -74,3 +74,8 @@
     noChordSymbol = #""
   }
 }
+
+A = \sectionLabel \markup { \box "A" }
+B = \sectionLabel \markup { \box "B" }
+C = \sectionLabel \markup { \box "C" }
+D = \sectionLabel \markup { \box "D" }
