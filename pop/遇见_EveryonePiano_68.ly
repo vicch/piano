@@ -13,18 +13,19 @@
 
 \markup \vspace #1.5
 
-CI  = { c8  g8  c'4 }
-DI  = { d8  a8  d'4 }
-GI  = { g,8 d8  g4  }
-GII = { g8  d'8 g'4 }
-FI  = { f,8 c8  f4  }
-FII = { f8  c'8 f'4 }
+CI   = { c8  g8  c'4 }
+DI   = { d8  a8  d'4 }
+GI   = { b,8 g8  b4  }
+GII  = { g,8 d8  g4  }
+GIII = { g8  d'8 g'4 }
+FI   = { f,8 c8  f4  }
+FII  = { f8  c'8 f'4 }
 
 CII = { c8  g8 c'8 d'8 e'2 }
 AmI = { a,8 e8 a8  b8  c'2 }
 
 FIII = { f,8 c8 f8 c8 }
-GIII = { g,8 d8 g8 d8 }
+GIV  = { g,8 d8 g8 d8 }
 
 \score {
   \new PianoStaff \with {
@@ -49,11 +50,11 @@ GIII = { g,8 d8 g8 d8 }
       \key c \major
       \time 4/4
       
-      r1   | \CI b,8 g8 b4 | \AmI | \FI   \GI   |
-      \CII | \CI b,8 g8 b4 | \AmI | \FIII \GIII |
+      r1   | \CI \GI | \AmI | \FI   \GII |
+      \CII | \CI \GI | \AmI | \FIII \GIV |
       
-      \CII | \FII \GII | \CII             | \DI \GI |
-      \CII | \FII \GII | c8 g8 b,8 g8 a,2 | \DI \GI |
+      \CII | \FII \GIII | \CII             | \DI \GII |
+      \CII | \FII \GIII | c8 g8 b,8 g8 a,2 | \DI \GII |
       
       \CII |
     }
@@ -94,11 +95,11 @@ GIII = { g,8 d8 g8 d8 }
       \key c \major
       \time 4/4
       
-      r1   | \CI b,8 g8 b4 | \AmI | \FI   \GI   |
-      \CII | \CI b,8 g8 b4 | \AmI | \FIII \GIII |
+      r1   | \CI \GI | \AmI | \FI   \GII |
+      \CII | \CI \GI | \AmI | \FIII \GIV |
       
-      \CII | \FII \GII | \CII             | \DI \GI |
-      \CII | \FII \GII | c8 g8 b,8 g8 a,2 | \DI \GI |
+      \CII | \FII \GIII | \CII             | \DI \GII |
+      \CII | \FII \GIII | c8 g8 b,8 g8 a,2 | \DI \GII |
       
       \CII |
     }
