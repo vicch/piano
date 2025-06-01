@@ -32,19 +32,19 @@ AmI  = { a,8 e8  a8  c'8 e'2  }
       \key c \major
       \time 4/4
       
-      g''2~ g''8 e''8 d''8 c''8 | e''2 r8 a'8 c''8 e''8 | a''2~ a''8 f''8 d''8 c''8 | \break
+      g''2~^5 g''8 e''8 d''8 c''8 | e''2 r8 a'8^1 c''8^2 e''8^3 | a''2~^5 a''8 f''8 d''8 c''8^3 | \break
       
-      b'2.  r8   g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break
-      g''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. c''8 a'4   e''4      | \break
-      d''2. r8   g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break
-      g''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   c''8 d''8 | \break
+      b'2.  r8 \A  g'8^1 | c''4.^2 e''8^3 g''4.      c''8 | b'4.^1 e''8 g''4.     g''8^2 | a''4. b''8 c'''4 a''4      | \break
+      g''2. e''8^5 d''8  | c''4.   c''8   c''4  e''8 d''8 | c''4.  c''8 c''4 d''8 e''8   | d''4. c''8 a'4   e''4      | \break
+      d''2. r8     g'8   | c''4.   e''8   g''4.      c''8 | b'4.   e''8 g''4.     g''8   | a''4. b''8 c'''4 a''4      | \break
+      g''2. e''8   d''8  | c''4.   c''8   c''4  e''8 d''8 | c''4.  c''8 c''4 d''8 e''8   | d''4. a'8  b'4   c''8 d''8 | \break
       
-      c''2. g''4 | e''4. d''8 c''4 g''4 | b'2. a'8 b'8 | a'4.  b'8  a'4  g'4       | \break \noPageBreak
-      e''2. g''4 | e''4. d''8 c''4 g''4 | b'2. a'8 b'8 | c''4. c''8 c''4 d''8 e''8 | \break \noPageBreak
+      c''2. \B g''4^5 | e''4. d''8 c''4 g''4 | b'2.^1 a'8^2 b'8 | a'4.  b'8  a'4  g'4       | \break \noPageBreak
+      e''2.^5  g''4   | e''4. d''8 c''4 g''4 | b'2.   a'8^1 b'8 | c''4. c''8 c''4 d''8 e''8 | \break \noPageBreak
       
-      d''2. r8   g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break \noPageBreak
-      g''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   c''8 d''8 | \break \noPageBreak
-      c''2. e''8 d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   d''4      | \break \noPageBreak
+      d''2. r8 \A g'8  | c''4. e''8 g''4.      c''8 | b'4.  e''8 g''4.     g''8 | a''4. b''8 c'''4 a''4      | \break \noPageBreak
+      g''2. e''8  d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   c''8 d''8 | \break \noPageBreak
+      c''2. e''8  d''8 | c''4. c''8 c''4  e''8 d''8 | c''4. c''8 c''4 d''8 e''8 | d''4. a'8  b'4   d''4      | \break \noPageBreak
       
       c''1 | <c' e' g' c''>1\arpeggio | \bar "|."
     }
