@@ -13,9 +13,7 @@
 
 \markup \vspace #1.5
 
-CIII   = { e,8 c8  e8 r8 }
 EfiveI = { e,8 b,8 e8 r8 }
-EmI    = { e,8 d8  g8 r8 }
 FfiveI = { f,8 c8  f8 r8 }
 GfiveI = { g,8 d8  g8 r8 }
 AfiveI = { a,8 e8  a8 r8 }
@@ -79,7 +77,7 @@ FII   = { f,8 c8  f8 a8 }
       \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EfiveI |
       
       \AmI | \AfiveI \GfiveI | \CI             | \AfiveI \GfiveI |
-      \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \CIII   |
+      \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EfiveI  |
 
       \AmI | \AfiveI \GfiveI | \AmI            | \AfiveI \GfiveI |
       \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EfiveI |
@@ -94,7 +92,7 @@ FII   = { f,8 c8  f8 a8 }
       \CII             | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EfiveI |
       
       \AmI | \AfiveI \GfiveI | \CI             | \AfiveI \GfiveI |
-      \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EmI    |
+      \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EfiveI |
       
       \AmI | \AfiveI \GfiveI | \AmI            | \AfiveI \GfiveI |
       \CI  | \FfiveI \GfiveI | \AfiveI \FfiveI | \AfiveI \EfiveI |
@@ -109,7 +107,7 @@ FII   = { f,8 c8  f8 a8 }
       c1 | f2 g2 | a2 f2 | a2 e2 |
       
       a1:m | a2 g2 | c1    | a2 g2 |
-      c1   | f2 g2 | a2 f2 | a2 c2 |
+      c1   | f2 g2 | a2 f2 | a2 e2 |
       
       a1:m | a2 g2 | a1:m  | a2 g2 |
       c1   | f2 g2 | a2 f2 | a2 e2 |
@@ -123,8 +121,8 @@ FII   = { f,8 c8  f8 a8 }
       r1 | a2 g2 | a1:m  | a2 g2 |
       c1 | f2 g2 | a2 f2 | a2 e2 |
       
-      a1:m | a2 g2 | c1    | a2 g2   |
-      c1   | f2 g2 | a2 f2 | a2 e2:m |
+      a1:m | a2 g2 | c1    | a2 g2 |
+      c1   | f2 g2 | a2 f2 | a2 e2 |
       
       a1:m | a2 g2 | a1:m  | a2 g2 |
       c1   | f2 g2 | a2 f2 | a2 e2 |
