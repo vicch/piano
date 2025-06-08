@@ -29,6 +29,12 @@ EII  = { e,4 b,4 gs4 b,4 }
 FII  = { f,4 c4  a4  c4  } 
 GII  = { g,4 d4  b4  d4  }
 
+CIII  = { c,8 g,8 c8 d8 e4  r4 }
+DmIII = { d,8 a,8 d8 e8 f4  r4 }
+FIII  = { f,8 c8  f8 g8 a4  r4 }
+GIII  = { g,8 d8  g8 a8 b4  r4 }
+AmIII = { a,8 e8  a8 b8 c'4 r4 }
+
 \score {
   \new PianoStaff \with {
     instrumentName = "Piano"
@@ -48,6 +54,9 @@ GII  = { g,4 d4  b4  d4  }
       
       c'''8 c''8 d''8 c''8 e''8 c''8 f''8 c''8 | g''8 c''8 a''8 c''8 b''8 c''8 c'''8 c''8 | b''8 b'8 c''8  b'8   d''8 b'8 e''8 b'8  | f''8 b'8 g''8 b'8 a''8 b'8 b''8 b'8 | \break
       a''8  a'8  b'8  a'8  c''8 a'8  d''8 a'8  | e''8 a'8  f''8 a'8  g''8 a'8  a''8  a'8  | a''4     gs''8 fs''8 gs''4.        a''8 | a''1                                | \break
+      
+      c''8 c'''8 b''8 c'''8 a''8 c'''8 g''8 c'''8 | f''8 c'''8 e''8 c'''8 d''8 c'''8 c''8 c'''8 | b'8 b''8 a''8  b''8  g''8 b''8 f''8 b''8 | e''8 b''8 d''8 b''8 c''8 b''8 b'8 b''8 | \break
+      a'8  a''8  g''8 a''8  f''8 a''8  e''8 a''8  | d''8 a''8  c''8 a''8  b'8  a''8  a'8  a''8  | a''4     gs''8 fs''8 gs''4.         a''8 | a''1                                   | \break
     }
     \new Staff {
       \clef bass
@@ -63,10 +72,16 @@ GII  = { g,4 d4  b4  d4  }
       
       \AmI | \DmI  | \GII | \CII |
       \FII | \DmII | \EII | \AmI |
+      
+      \AmIII | \DmIII | \GIII | \CIII |
+      \FIII  | \DmIII | \EI   | \AmI  |
     }
     \chords {
       
       a1 | d1 | g1 | c1 | f1 | b1 | e1 | e1 |
+      
+      a1:m | d1:m | g1 | c1   |
+      f1   | d1:m | e1 | a1:m |
       
       a1:m | d1:m | g1 | c1   |
       f1   | d1:m | e1 | a1:m |
