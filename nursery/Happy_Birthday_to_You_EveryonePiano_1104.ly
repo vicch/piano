@@ -34,7 +34,7 @@ G    = { g,8 d8  g8  b8   d'4 }
       \partial 4 g'8. g'16
       
       \repeat volta 3 {
-                             | a'4  g'4  c''4 |                a'2 g'8.  g'16  | a'4  g'4  d''4 | \break
+                             | a'4  g'4  c''4 |                b'2 g'8.  g'16  | a'4  g'4  d''4 | \break
         c''2       g'8. g'16 | g''4 e''4 c''4 | \time 4/4  b'4 a'2 f''8. f''16 | \break
         
         \alternative {

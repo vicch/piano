@@ -10,8 +10,8 @@
   #(set-paper-size "letter")
   top-margin    = #15
   bottom-margin = #15
-  left-margin   = #20
-  right-margin  = #20
+  left-margin   = #15
+  right-margin  = #15
   
   system-system-spacing.basic-distance = #14
   system-system-spacing.padding = #2
@@ -52,7 +52,7 @@
     
     \override Stem.length-fraction = #1.1
     \override Stem.thickness = #1.6
-    \override Beam.damping = #2.0
+    \override Beam.damping = #1.5
     
     \override TimeSignature.style = #'numbered
     \override TimeSignature.break-visibility = #end-of-line-invisible
@@ -79,3 +79,4 @@ A = \sectionLabel \markup { \box "A" }
 B = \sectionLabel \markup { \box "B" }
 C = \sectionLabel \markup { \box "C" }
 D = \sectionLabel \markup { \box "D" }
+E = \sectionLabel \markup { \box "E" }

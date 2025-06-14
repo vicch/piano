@@ -1,0 +1,18 @@
+\version "2.24.3"
+\include "../settings.v1.ly"
+
+\paper {
+  total-page = 1
+}
+
+\score {
+  \new Staff {
+    \clef treble
+    \key c \major
+    \override Staff.TimeSignature.stencil = ##f
+    
+    \cadenzaOn g'8.[ g'16] g''4 e''4 c''4 b'4 a'2 \cadenzaOff
+  }
+  \layout {}
+  \midi {}
+}
