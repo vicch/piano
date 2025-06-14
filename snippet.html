@@ -292,12 +292,6 @@
             isPlaying: false
         };
 
-        // Debug logging function
-        function debugLog(message) {
-            console.log(message);
-            document.getElementById('debugStatus').innerHTML += '<br>' + message;
-        }
-
         // Sample data for testing (remove when you have snippet.json)
         const sampleSnippets = [
             {
@@ -628,6 +622,10 @@
                 }
             });
         });
+        
+        function debugLog(message) {
+            console.log(message);
+        }
     </script>
 </body>
 </html>
