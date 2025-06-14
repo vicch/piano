@@ -435,14 +435,12 @@
             } else {
                 // Show audio player, hide image
                 questionDisplay.innerHTML = `
-                    <h3>🎵 Listen to this musical snippet:</h3>
                     <div class="audio-player">
                         <div class="audio-controls">
                             <button class="play-btn" onclick="playAudio()" title="Play MIDI">▶</button>
                         </div>
                         <div class="audio-info">Click play to hear the melody</div>
                     </div>
-                    <p style="margin-top: 15px; color: #666;">What do you think the notation looks like?</p>
                 `;
             }
 
@@ -544,16 +542,14 @@
                         <div class="audio-controls">
                             <button class="play-btn" onclick="playAudio()" title="Play MIDI">▶</button>
                         </div>
-                        <div class="audio-info">The melody from "${appState.currentSnippet.name}"</div>
                     </div>
                 `;
                 loadMidiData();
             } else {
                 // Show image as answer
                 answerDisplay.innerHTML = `
-                    <h4>🎼 Here's the musical notation:</h4>
                     <img src="${appState.currentSnippet.png}" alt="Musical notation: ${appState.currentSnippet.name}" class="sheet-music" style="max-height: 300px;" />
-                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">"${appState.currentSnippet.name}"</p>
+                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">${appState.currentSnippet.name}</p>
                 `;
             }
 
