@@ -276,11 +276,7 @@
         </div>
     </div>
 
-    <!-- MIDI library and sound font -->
-    <script src="https://raw.githubusercontent.com/mudcube/MIDI.js/refs/heads/master/inc/jasmid/replayer.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/midi.js/0.3.0/midi.min.js"></script>
-
-    <script>
+<script>
         // Application state
         let appState = {
             mode: 'image-to-audio',
@@ -288,35 +284,20 @@
             currentSnippet: null,
             currentIndex: 0,
             revealed: false,
-            midiLoaded: false,
-            currentMidiData: null,
+            audioLoaded: false,
+            currentAudio: null,
             isPlaying: false
         };
 
-        // Initialize MIDI.js
-        function initializeMIDI() {
-            if (appState.midiLoaded) {
-                console.log('MIDI already loaded, returning.'); // DEBUG LOG
+        function initializeAudio() {
+            if (appState.audioLoaded) {
+                console.log('Audio already initialized, returning.'); // DEBUG LOG
                 return;
             }
 
-            console.log('Attempting to load MIDI plugin...'); // DEBUG LOG
-            MIDI.loadPlugin({
-                soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
-                instrument: "acoustic_grand_piano",
-                onprogress: function(state, progress) {
-                    console.log('MIDI loading progress:', state, progress);
-                },
-                onsuccess: function() {
-                    appState.midiLoaded = true;
-                    console.log('MIDI initialized successfully');
-                    resolve();
-                },
-                onerror: function(error) {
-                    console.error('MIDI initialization failed:', error);
-                    reject(error);
-                }
-            });
+            console.log('Initializing HTML5 Audio...'); // DEBUG LOG
+            appState.audioLoaded = true;
+            console.log('Audio initialized successfully');
         }
 
         // Load snippets strictly from snippets.json
@@ -332,8 +313,8 @@
                 const snippets = await response.json();
 
                 // Validate the structure of snippets loaded from JSON
-                if (!Array.isArray(snippets) || snippets.some(s => !s.name || !s.png || !s.midi)) {
-                    throw new Error('Invalid snippet.json format. Expected an array of objects with "name", "png", and "midi" properties.');
+                if (!Array.isArray(snippets) || snippets.some(s => !s.name || !s.png || !s.mp3)) {
+                    throw new Error('Invalid snippet.json format. Expected an array of objects with "name", "png", and "mp3" properties.');
                 }
 
                 return snippets;
@@ -370,6 +351,13 @@
             appState.currentSnippet = appState.snippets[appState.currentIndex];
             appState.revealed = false;
 
+            // Stop any currently playing audio
+            if (appState.currentAudio) {
+                appState.currentAudio.pause();
+                appState.currentAudio = null;
+                appState.isPlaying = false;
+            }
+
             document.getElementById('revealBtn').style.display = 'inline-block';
             document.getElementById('nextBtn').style.display = 'none';
             document.getElementById('answerDisplay').style.display = 'none';
@@ -386,82 +374,74 @@
                 questionDisplay.innerHTML = `
                     <div class="audio-player">
                         <div class="audio-controls">
-                            <button class="play-btn" onclick="playAudio()" title="Play MIDI">▶</button>
+                            <button class="play-btn" onclick="playAudio()" title="Play MP3">▶</button>
                         </div>
                     </div>
                 `;
             }
 
-            // Preload MIDI for faster playback
+            // Preload audio for faster playback
             if (appState.mode === 'audio-to-image') {
-                loadMidiData();
+                loadAudioData();
             }
         }
 
-        // Load MIDI data
-        async function loadMidiData() {
+        // Load audio data
+        async function loadAudioData() {
             try {
-                const response = await fetch(appState.currentSnippet.midi);
-                const arrayBuffer = await response.arrayBuffer();
-                appState.currentMidiData = arrayBuffer;
+                if (appState.currentAudio) {
+                    appState.currentAudio.pause();
+                }
+                
+                appState.currentAudio = new Audio(appState.currentSnippet.mp3);
+                appState.currentAudio.preload = 'auto';
+                
+                // Add event listeners
+                appState.currentAudio.addEventListener('ended', function() {
+                    appState.isPlaying = false;
+                    updatePlayButton();
+                });
+                
+                appState.currentAudio.addEventListener('error', function(e) {
+                    console.error('Error loading audio:', e);
+                });
+                
             } catch (error) {
-                console.error('Error loading MIDI data:', error);
+                console.error('Error loading audio data:', error);
             }
         }
 
-        // Play MIDI audio
+        // Play MP3 audio
         async function playAudio() {
             try {
-                if (!appState.midiLoaded) {
-                    console.log('MIDI not ready, initializing...');
-                    initializeMIDI();
+                if (!appState.audioLoaded) {
+                    console.log('Audio not ready, initializing...');
+                    initializeAudio();
                 }
 
-                if (appState.isPlaying) {
-                    MIDI.Player.stop();
+                if (appState.isPlaying && appState.currentAudio) {
+                    appState.currentAudio.pause();
+                    appState.currentAudio.currentTime = 0;
                     appState.isPlaying = false;
                     updatePlayButton();
                     return;
                 }
 
-                if (!appState.currentMidiData) {
-                    await loadMidiData();
+                if (!appState.currentAudio) {
+                    await loadAudioData();
                 }
 
-                // Convert ArrayBuffer to base64 for MIDI.js
-                const base64 = arrayBufferToBase64(appState.currentMidiData);
-                const dataUri = 'data:audio/midi;base64,' + base64;
-
-                MIDI.Player.loadFile(dataUri, function() {
+                if (appState.currentAudio) {
+                    appState.currentAudio.currentTime = 0;
+                    await appState.currentAudio.play();
                     appState.isPlaying = true;
                     updatePlayButton();
-
-                    MIDI.Player.start();
-
-                    // Reset play button when done
-                    MIDI.Player.addListener(function(data) {
-                        if (data.now === data.end) {
-                            appState.isPlaying = false;
-                            updatePlayButton();
-                        }
-                    });
-                });
+                }
 
             } catch (error) {
-                console.error('Error playing MIDI:', error);
-                alert('Error playing audio. MIDI playback may not be supported on this device or the MIDI file is invalid.');
+                console.error('Error playing audio:', error);
+                alert('Error playing audio. The MP3 file may not be supported on this device or the file is invalid.');
             }
-        }
-
-        // Convert ArrayBuffer to base64
-        function arrayBufferToBase64(buffer) {
-            let binary = '';
-            const bytes = new Uint8Array(buffer);
-            const len = bytes.byteLength;
-            for (let i = 0; i < len; i++) {
-                binary += String.fromCharCode(bytes[i]);
-            }
-            return btoa(binary);
         }
 
         // Update play button appearance
@@ -488,11 +468,11 @@
                 answerDisplay.innerHTML = `
                     <div class="audio-player">
                         <div class="audio-controls">
-                            <button class="play-btn" onclick="playAudio()" title="Play MIDI">▶</button>
+                            <button class="play-btn" onclick="playAudio()" title="Play MP3">▶</button>
                         </div>
                     </div>
                 `;
-                loadMidiData();
+                loadAudioData();
             } else {
                 // Show image as answer
                 answerDisplay.innerHTML = `
@@ -528,8 +508,8 @@
         // Initialize application
         async function initializeApp() {
             try {
-                // Start MIDI initialization early
-                initializeMIDI();
+                // Start audio initialization early
+                initializeAudio();
 
                 const snippets = await loadSnippets();
 
@@ -568,7 +548,7 @@
                         nextQuestion();
                     }
                 } else if (e.key === 'Enter') {
-                    if (appState.mode === 'audio-to-image' && appState.currentMidiData) {
+                    if (appState.mode === 'audio-to-image' && appState.currentAudio) {
                         playAudio();
                     }
                 }
