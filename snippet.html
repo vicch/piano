@@ -98,12 +98,11 @@
         
         /* Fixed container for question content to prevent width changes */
         .question-display {
-            margin-bottom: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 200px; /* Minimum height for content stability */
+            min-height: 150px;
             width: 100%;
             overflow: hidden; /* Prevent content from expanding container */
         }
@@ -179,7 +178,6 @@
         }
         
         .answer-display {
-            margin-top: 20px;
             padding: 20px;
             border-radius: 12px;
             max-width: 100%;
@@ -255,10 +253,6 @@
             .audio-controls {
                 flex-direction: column;
                 gap: 15px;
-            }
-            
-            .question-display {
-                min-height: 150px;
             }
             
             .sheet-music {
