@@ -323,7 +323,7 @@
     </div>
 
     <!-- MIDI.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/midi.js/0.4.2/MIDI.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/midi.js/0.3.0/midi.min.js"></script>
     
     <script>
         // Application state
@@ -345,7 +345,7 @@
         // Initialize MIDI.js
         function initializeMIDI() {
             if (appState.midiLoaded) return Promise.resolve();
-            
+
             return new Promise((resolve, reject) => {
                 MIDI.loadPlugin({
                     soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
@@ -366,90 +366,29 @@
             });
         }
 
-        // Get current repository information from URL
-        function getCurrentRepo() {
-            const hostname = window.location.hostname;
-            const pathname = window.location.pathname;
-            
-            if (hostname.includes('github.io')) {
-                // GitHub Pages: username.github.io/repo-name/
-                const parts = pathname.split('/').filter(p => p);
-                if (parts.length > 0) {
-                    const username = hostname.split('.')[0];
-                    const repo = parts[0];
-                    return {
-                        owner: username,
-                        repo: repo,
-                        apiUrl: `https://api.github.com/repos/${username}/${repo}/contents`
-                    };
-                }
-            }
-            
-            // Fallback: try to detect from current URL structure
-            // This works if the file is accessed via raw.githubusercontent.com or similar
-            const url = window.location.href;
-            const match = url.match(/github(?:usercontent)?\.com\/([^\/]+)\/([^\/]+)/);
-            if (match) {
-                const [, owner, repo] = match;
-                return {
-                    owner,
-                    repo,
-                    apiUrl: `https://api.github.com/repos/${owner}/${repo}/contents`
-                };
-            }
-            
-            return null;
-        }
-
-        // Fetch files from snippets directory
+        // Load snippets strictly from snippets.json
         async function loadSnippets() {
             try {
-                const repoInfo = getCurrentRepo();
-                if (!repoInfo) {
-                    throw new Error('Could not detect repository information. Make sure this file is hosted on GitHub Pages or accessed through GitHub.');
-                }
-                
-                const response = await fetch(`${repoInfo.apiUrl}/snippet`);
-                
+                const response = await fetch('snippet.json');
                 if (!response.ok) {
                     if (response.status === 404) {
-                        throw new Error('Snippets directory not found. Please create a "snippets" folder in your repository root.');
+                        throw new Error('snippets.json not found. Please ensure it exists in the same directory as the HTML file.');
                     }
-                    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+                    throw new Error(`Failed to load snippets.json: ${response.status} ${response.statusText}`);
                 }
-                
-                const files = await response.json();
-                return pairFiles(files, repoInfo);
-                
+                const snippets = await response.json();
+
+                // Validate the structure of snippets loaded from JSON
+                if (!Array.isArray(snippets) || snippets.some(s => !s.name || !s.png || !s.midi)) {
+                    throw new Error('Invalid snippets.json format. Expected an array of objects with "name", "png", and "midi" properties.');
+                }
+
+                return snippets;
+
             } catch (error) {
                 console.error('Error loading snippets:', error);
-                throw error;
+                throw error; // Re-throw to be caught by initializeApp and shown to user
             }
-        }
-
-        // Find and pair PNG and MIDI files
-        function pairFiles(files, repoInfo) {
-            const pairs = [];
-            const pngFiles = files.filter(f => f.name.toLowerCase().endsWith('.png'));
-            const midiFiles = files.filter(f => f.name.toLowerCase().endsWith('.mid') || f.name.toLowerCase().endsWith('.midi'));
-            
-            pngFiles.forEach(pngFile => {
-                const baseName = pngFile.name.replace(/\.png$/i, '');
-                const matchingMidi = midiFiles.find(midiFile => {
-                    const midiBaseName = midiFile.name.replace(/\.(mid|midi)$/i, '');
-                    return midiBaseName === baseName;
-                });
-                
-                if (matchingMidi) {
-                    pairs.push({
-                        name: baseName,
-                        png: pngFile.download_url,
-                        midi: matchingMidi.download_url
-                    });
-                }
-            });
-            
-            return pairs;
         }
 
         // Set practice mode
@@ -474,16 +413,16 @@
         // Load next question
         function loadQuestion() {
             if (appState.snippets.length === 0) return;
-            
+
             appState.currentSnippet = appState.snippets[appState.currentIndex];
             appState.revealed = false;
-            
+
             document.getElementById('revealBtn').style.display = 'inline-block';
             document.getElementById('nextBtn').style.display = 'none';
             document.getElementById('answerDisplay').style.display = 'none';
-            
+
             const questionDisplay = document.getElementById('questionDisplay');
-            
+
             if (appState.mode === 'image-to-audio') {
                 // Show image, hide audio
                 questionDisplay.innerHTML = `
@@ -504,7 +443,7 @@
                     <p style="margin-top: 15px; color: #666;">What do you think the notation looks like?</p>
                 `;
             }
-            
+
             // Preload MIDI for faster playback
             if (appState.mode === 'audio-to-image') {
                 loadMidiData();
@@ -529,28 +468,28 @@
                     console.log('MIDI not ready, initializing...');
                     await initializeMIDI();
                 }
-                
+
                 if (appState.isPlaying) {
                     MIDI.Player.stop();
                     appState.isPlaying = false;
                     updatePlayButton();
                     return;
                 }
-                
+
                 if (!appState.currentMidiData) {
                     await loadMidiData();
                 }
-                
+
                 // Convert ArrayBuffer to base64 for MIDI.js
                 const base64 = arrayBufferToBase64(appState.currentMidiData);
                 const dataUri = 'data:audio/midi;base64,' + base64;
-                
+
                 MIDI.Player.loadFile(dataUri, function() {
                     appState.isPlaying = true;
                     updatePlayButton();
-                    
+
                     MIDI.Player.start();
-                    
+
                     // Reset play button when done
                     MIDI.Player.addListener(function(data) {
                         if (data.now === data.end) {
@@ -559,10 +498,10 @@
                         }
                     });
                 });
-                
+
             } catch (error) {
-                console.error('Error playing MIDI:', error);
-                alert('Error playing audio. MIDI playback may not be supported on this device.');
+                    console.error('Error playing MIDI:', error);
+                    alert('Error playing audio. MIDI playback may not be supported on this device or the MIDI file is invalid.');
             }
         }
 
@@ -589,13 +528,13 @@
         // Reveal answer
         function revealAnswer() {
             if (appState.revealed) return;
-            
+
             appState.revealed = true;
             document.getElementById('revealBtn').style.display = 'none';
             document.getElementById('nextBtn').style.display = 'inline-block';
-            
+
             const answerDisplay = document.getElementById('answerDisplay');
-            
+
             if (appState.mode === 'image-to-audio') {
                 // Show audio player as answer
                 answerDisplay.innerHTML = `
@@ -616,7 +555,7 @@
                     <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">"${appState.currentSnippet.name}"</p>
                 `;
             }
-            
+
             answerDisplay.style.display = 'block';
             updateStats();
         }
@@ -624,12 +563,12 @@
         // Move to next question
         function nextQuestion() {
             appState.currentIndex = (appState.currentIndex + 1) % appState.snippets.length;
-            
+
             // Reshuffle if we've gone through all snippets
             if (appState.currentIndex === 0) {
                 shuffleArray(appState.snippets);
             }
-            
+
             loadQuestion();
         }
 
@@ -637,7 +576,7 @@
         function updateStats() {
             appState.stats.total++;
             appState.stats.streak++;
-            
+
             document.getElementById('totalQuestions').textContent = appState.stats.total;
             document.getElementById('currentStreak').textContent = appState.stats.streak;
         }
@@ -648,6 +587,8 @@
             errorDiv.textContent = message;
             errorDiv.style.display = 'block';
             document.getElementById('loadingIndicator').style.display = 'none';
+            document.getElementById('practiceContent').style.display = 'none'; // Hide content if error
+            document.getElementById('statsSection').style.display = 'none'; // Hide stats if error
         }
 
         // Initialize application
@@ -655,26 +596,26 @@
             try {
                 // Start MIDI initialization early
                 initializeMIDI().catch(console.error);
-                
+
                 const snippets = await loadSnippets();
-                
+
                 if (snippets.length === 0) {
-                    showError('No matching PNG/MIDI file pairs found in the snippets directory. Make sure you have files with the same base name (e.g., "melody01.png" and "melody01.mid").');
+                    showError('No musical snippets found in snippets.json. Please ensure the file is correctly formatted and contains snippet data.');
                     return;
                 }
-                
+
                 appState.snippets = snippets;
                 shuffleArray(appState.snippets);
-                
+
                 // Update UI
                 document.getElementById('loadingIndicator').style.display = 'none';
                 document.getElementById('practiceContent').style.display = 'block';
                 document.getElementById('statsSection').style.display = 'flex';
                 document.getElementById('snippetCount').textContent = snippets.length;
-                
+
                 // Load first question
                 loadQuestion();
-                
+
             } catch (error) {
                 showError(error.message);
             }
@@ -683,11 +624,12 @@
         // Initialize app on page load
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
-            
+
             // Add keyboard shortcuts
             document.addEventListener('keydown', function(e) {
                 if (e.key === ' ') {
                     e.preventDefault();
+                    // Only act if elements are visible
                     if (document.getElementById('revealBtn').style.display !== 'none') {
                         revealAnswer();
                     } else if (document.getElementById('nextBtn').style.display !== 'none') {
