@@ -409,7 +409,7 @@
                     throw new Error('Could not detect repository information. Make sure this file is hosted on GitHub Pages or accessed through GitHub.');
                 }
                 
-                const response = await fetch(`${repoInfo.apiUrl}/snippets`);
+                const response = await fetch(`${repoInfo.apiUrl}/snippet`);
                 
                 if (!response.ok) {
                     if (response.status === 404) {
