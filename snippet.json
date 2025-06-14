@@ -1,17 +1,32 @@
 [
-    {
-        "name": "C-E-D-C-D-C-A-C-G",
-        "png": "snippet/C-E-D-C-D-C-A-C-G.png",
-        "midi": "snippet/C-E-D-C-D-C-A-C-G.mid"
-    },
-    {
-        "name": "E-G-C-A-G-E-G-A-C-G",
-        "png": "snippet/E-G-C-A-G-E-G-A-C-G.png",
-        "midi": "snippet/E-G-C-A-G-E-G-A-C-G.mid"
-    },
-    {
-        "name": "F-F-E-C-D-C",
-        "png": "snippet/F-F-E-C-D-C.png",
-        "midi": "snippet/F-F-E-C-D-C.mid"
-    }
+  {
+    "name": "C-E-D-C-D-C-A-C-G",
+    "png": "snippet/C-E-D-C-D-C-A-C-G.png",
+    "mp3": "snippet/C-E-D-C-D-C-A-C-G.mp3"
+  },
+  {
+    "name": "E-G-C-A-G-E-G-A-C-G",
+    "png": "snippet/E-G-C-A-G-E-G-A-C-G.png",
+    "mp3": "snippet/E-G-C-A-G-E-G-A-C-G.mp3"
+  },
+  {
+    "name": "F-F-E-C-D-C",
+    "png": "snippet/F-F-E-C-D-C.png",
+    "mp3": "snippet/F-F-E-C-D-C.mp3"
+  },
+  {
+    "name": "G-G-A-G-C-B",
+    "png": "snippet/G-G-A-G-C-B.png",
+    "mp3": "snippet/G-G-A-G-C-B.mp3"
+  },
+  {
+    "name": "G-G-A-G-D-C",
+    "png": "snippet/G-G-A-G-D-C.png",
+    "mp3": "snippet/G-G-A-G-D-C.mp3"
+  },
+  {
+    "name": "G-G-G-E-C-B-A",
+    "png": "snippet/G-G-G-E-C-B-A.png",
+    "mp3": "snippet/G-G-G-E-C-B-A.mp3"
+  }
 ]
