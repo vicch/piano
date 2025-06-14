@@ -535,7 +535,7 @@
                 const snippets = await loadSnippets();
 
                 if (snippets.length === 0) {
-                    showError('No musical snippets found in snippets.json. Please ensure the file is correctly formatted and contains snippet data.');
+                    showError('No musical snippets found in snippet.json. Please ensure the file is correctly formatted and contains snippet data.');
                     return;
                 }
 
@@ -545,7 +545,6 @@
                 // Update UI
                 document.getElementById('loadingIndicator').style.display = 'none';
                 document.getElementById('practiceContent').style.display = 'block';
-                document.getElementById('snippetCount').textContent = snippets.length;
 
                 // Load first question
                 loadQuestion();
