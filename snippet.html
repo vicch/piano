@@ -426,9 +426,7 @@
             if (appState.mode === 'image-to-audio') {
                 // Show image, hide audio
                 questionDisplay.innerHTML = `
-                    <h3>🎼 Look at this musical notation:</h3>
                     <img src="${appState.currentSnippet.png}" alt="Musical notation: ${appState.currentSnippet.name}" class="sheet-music" />
-                    <p style="margin-top: 15px; color: #666;">What do you think this sounds like?</p>
                 `;
             } else {
                 // Show audio player, hide image
@@ -538,7 +536,6 @@
             if (appState.mode === 'image-to-audio') {
                 // Show audio player as answer
                 answerDisplay.innerHTML = `
-                    <h4>🎵 Here's how it sounds:</h4>
                     <div class="audio-player">
                         <div class="audio-controls">
                             <button class="play-btn" onclick="playAudio()" title="Play MIDI">▶</button>
