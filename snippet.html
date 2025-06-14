@@ -110,7 +110,7 @@
         
         /* Constrain sheet music to prevent layout shifts */
         .sheet-music {
-            max-width: 100%;
+            max-width: 390px;
             width: 100%;
             height: auto;
             max-height: 350px; /* Constrain maximum height */
@@ -181,9 +181,7 @@
         .answer-display {
             margin-top: 20px;
             padding: 20px;
-            background: #f0f8ff;
             border-radius: 12px;
-            border-left: 4px solid #667eea;
             max-width: 100%;
             overflow: hidden;
         }
@@ -302,10 +300,10 @@
                 <button class="reveal-btn" id="revealBtn" onclick="revealAnswer()">
                     Reveal Answer
                 </button>
+                <div id="answerDisplay" class="answer-display" style="display: none;"></div>
                 <button class="next-btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">
                     Next Question
                 </button>
-                <div id="answerDisplay" class="answer-display" style="display: none;"></div>
             </div>
             
             <div id="errorMessage" class="error-message" style="display: none;"></div>
