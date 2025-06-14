@@ -329,13 +329,13 @@
                     if (response.status === 404) {
                         throw new Error('snippets.json not found. Please ensure it exists in the same directory as the HTML file.');
                     }
-                    throw new Error(`Failed to load snippets.json: ${response.status} ${response.statusText}`);
+                    throw new Error(`Failed to load snippet.json: ${response.status} ${response.statusText}`);
                 }
                 const snippets = await response.json();
 
                 // Validate the structure of snippets loaded from JSON
                 if (!Array.isArray(snippets) || snippets.some(s => !s.name || !s.png || !s.midi)) {
-                    throw new Error('Invalid snippets.json format. Expected an array of objects with "name", "png", and "midi" properties.');
+                    throw new Error('Invalid snippet.json format. Expected an array of objects with "name", "png", and "midi" properties.');
                 }
 
                 return snippets;
