@@ -7,8 +7,11 @@
 
 \score {
   \new Staff {
+    \tempo 4 = 96
     \clef treble
     \key c \major
+    
+    \set Score.tempoHideNote = ##t
     \override Staff.TimeSignature.stencil = ##f
     
     \cadenzaOn f''8.[ f''16] e''4 c''4 d''4 c''2 \cadenzaOff
