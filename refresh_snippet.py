@@ -77,7 +77,7 @@ def generate_files(snippet):
 
   # Generate MP3 from WAV
   audio = AudioSegment.from_wav(wav)
-  audio.export(mp3, format='mp3' bitrate="128k")
+  audio.export(mp3, format='mp3', bitrate="128k")
   os.remove(wav)
 
   # Overwrite the full PNG with the cropped PNG
