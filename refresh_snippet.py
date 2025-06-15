@@ -17,7 +17,7 @@ SNIPPET_DIR = 'snippet'
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 FLUIDSYNTH_PATH = 'D:/Programs/fluidsynth-2.4.6/bin/fluidsynth.exe'
-SOUNDFONT_PATH = 'D:/Piano/Steinway_Model_D274.sf2'
+SOUNDFONT_PATH = 'D:/Piano/Clean Grand Mistral.sf2'
 
 FILE_EXTENSIONS = {
   'pdf': '.pdf',
