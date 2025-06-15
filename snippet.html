@@ -334,12 +334,23 @@
                     }
                     throw new Error(`Failed to load snippet.json: ${response.status} ${response.statusText}`);
                 }
-                const snippets = await response.json();
+                const rawSnippets = await response.json();
 
                 // Validate the structure of snippets loaded from JSON
-                if (!Array.isArray(snippets) || snippets.some(s => !s.name || !s.png || !s.mp3)) {
-                    throw new Error('Invalid snippet.json format. Expected an array of objects with "name", "png", and "mp3" properties.');
+                if (!Array.isArray(rawSnippets) || rawSnippets.some(s => !s.name || !s.snippets)) {
+                    throw new Error('Invalid snippet.json format. Expected an array of objects with "name" and "snippets" properties.');
                 }
+
+                // Convert the snippets to the format expected by the app
+                // For each element in the raw snippets and for each element in the "snippets" field,
+                // generate the expected PNG and MP3 file names.
+                const snippets = rawSnippets.flatMap(s => 
+                    s.snippets.map((_, i) => ({
+                        name: s.name,
+                        png: `snippet/${s.name} ${i+1}.png`,
+                        mp3: `snippet/${s.name} ${i+1}.mp3`
+                    }))
+                );
 
                 return snippets;
 
