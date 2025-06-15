@@ -1,7 +1,7 @@
 [
     {
         "name": "Happy Birthday to You",
-        "tempo": 96,
+        "tempo": "96",
         "key": "c \\major",
         "snippets":
         [
@@ -13,7 +13,7 @@
     },
     {
         "name": "Liang Zhi Lao Hu",
-        "tempo": 96,
+        "tempo": "96",
         "key": "c \\major",
         "snippets":
         [
@@ -23,7 +23,7 @@
     },
     {
         "name": "London Bridge Is Falling Down",
-        "tempo": 96,
+        "tempo": "96",
         "key": "c \\major",
         "snippets":
         [
@@ -33,7 +33,7 @@
     },
     {
         "name": "Xiao Tu Zi Guai Guai",
-        "tempo": 96,
+        "tempo": "96",
         "key": "c \\major",
         "snippets":
         [
@@ -45,7 +45,7 @@
     },
     {
         "name": "Xiao Yan Zi",
-        "tempo": 96,
+        "tempo": "96",
         "key": "c \\major",
         "snippets":
         [
