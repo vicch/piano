@@ -1,32 +1,42 @@
 [
   {
-    "name": "C-E-D-C-D-C-A-C-G",
-    "png": "snippet/C-E-D-C-D-C-A-C-G.png",
-    "mp3": "snippet/C-E-D-C-D-C-A-C-G.mp3"
+    "name": "Happy_Birthday_to_You_1",
+    "png": "snippet/Happy_Birthday_to_You_1.png",
+    "mp3": "snippet/Happy_Birthday_to_You_1.mp3"
   },
   {
-    "name": "E-G-C-A-G-E-G-A-C-G",
-    "png": "snippet/E-G-C-A-G-E-G-A-C-G.png",
-    "mp3": "snippet/E-G-C-A-G-E-G-A-C-G.mp3"
+    "name": "Happy_Birthday_to_You_2",
+    "png": "snippet/Happy_Birthday_to_You_2.png",
+    "mp3": "snippet/Happy_Birthday_to_You_2.mp3"
   },
   {
-    "name": "F-F-E-C-D-C",
-    "png": "snippet/F-F-E-C-D-C.png",
-    "mp3": "snippet/F-F-E-C-D-C.mp3"
+    "name": "Happy_Birthday_to_You_3",
+    "png": "snippet/Happy_Birthday_to_You_3.png",
+    "mp3": "snippet/Happy_Birthday_to_You_3.mp3"
   },
   {
-    "name": "G-G-A-G-C-B",
-    "png": "snippet/G-G-A-G-C-B.png",
-    "mp3": "snippet/G-G-A-G-C-B.mp3"
+    "name": "Happy_Birthday_to_You_4",
+    "png": "snippet/Happy_Birthday_to_You_4.png",
+    "mp3": "snippet/Happy_Birthday_to_You_4.mp3"
   },
   {
-    "name": "G-G-A-G-D-C",
-    "png": "snippet/G-G-A-G-D-C.png",
-    "mp3": "snippet/G-G-A-G-D-C.mp3"
+    "name": "小燕子_1",
+    "png": "snippet/小燕子_1.png",
+    "mp3": "snippet/小燕子_1.mp3"
   },
   {
-    "name": "G-G-G-E-C-B-A",
-    "png": "snippet/G-G-G-E-C-B-A.png",
-    "mp3": "snippet/G-G-G-E-C-B-A.mp3"
+    "name": "小燕子_2",
+    "png": "snippet/小燕子_2.png",
+    "mp3": "snippet/小燕子_2.mp3"
+  },
+  {
+    "name": "小燕子_3",
+    "png": "snippet/小燕子_3.png",
+    "mp3": "snippet/小燕子_3.mp3"
+  },
+  {
+    "name": "小燕子_4",
+    "png": "snippet/小燕子_4.png",
+    "mp3": "snippet/小燕子_4.mp3"
   }
 ]
