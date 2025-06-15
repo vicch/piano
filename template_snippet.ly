@@ -7,14 +7,14 @@
 
 \score {
   \new Staff {
-    \tempo 4 = 96
-    \clef treble
-    \key c \major
-    
     \set Score.tempoHideNote = ##t
     \override Staff.TimeSignature.stencil = ##f
+
+    \tempo 4 = {tempo}
+    \clef treble
+    \key {key}
     
-    \cadenzaOn \cadenzaOff
+    \cadenzaOn {snippet} \cadenzaOff
   }
   \layout {}
   \midi {}
