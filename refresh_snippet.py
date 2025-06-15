@@ -19,8 +19,20 @@ LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 FLUIDSYNTH_PATH = 'D:/Programs/fluidsynth-2.4.6/bin/fluidsynth.exe'
 SOUNDFONT_PATH = 'D:/Piano/Steinway_Model_D274.sf2'
 
+FILE_EXTENSIONS = {
+  'pdf': '.pdf',
+  'mid': '.mid',
+  'wav': '.wav',
+  'mp3': '.mp3',
+  'png': '.png',
+  'cropped_png': '.cropped.png'
+}
+
 def refresh():
   for snippet in read_snippets():
+    # If the snippet's .ly file is already in the dir, skip it.
+    if os.path.exists(os.path.join(SNIPPET_DIR, f'{snippet["name"]} 1.ly')):
+      continue
     refresh_snippet(snippet)
 
 def read_snippets():
@@ -41,7 +53,6 @@ def generate_ly(snippet):
   template = template.replace('{key}', snippet['key'])
 
   for i, snippet_part in enumerate(snippet['snippets']):
-    # Make a copy of the template
     template_copy = template
     template_copy = template_copy.replace('{snippet}', snippet_part)
 
@@ -52,38 +63,30 @@ def generate_ly(snippet):
 def generate_files(snippet):
   name = snippet['name']
 
-  pdf = os.path.join(SNIPPET_DIR, f'{name}.pdf')
-  mid = os.path.join(SNIPPET_DIR, f'{name}.mid')
-  wav = os.path.join(SNIPPET_DIR, f'{name}.wav')
-  mp3 = os.path.join(SNIPPET_DIR, f'{name}.mp3')
-  png = os.path.join(SNIPPET_DIR, f'{name}.png')
-  cropped_png = os.path.join(SNIPPET_DIR, f'{name}.cropped.png')
+  # The list of files related to the snippet
+  files = {ext: os.path.join(SNIPPET_DIR, f'{name}{FILE_EXTENSIONS[ext]}') for ext in FILE_EXTENSIONS}
 
   # Remove all existing files before generating new ones
-  os.path.exists(pdf) and os.remove(pdf)
-  os.path.exists(mid) and os.remove(mid)
-  os.path.exists(wav) and os.remove(wav)
-  os.path.exists(mp3) and os.remove(mp3)
-  os.path.exists(png) and os.remove(png)
-  os.path.exists(cropped_png) and os.remove(cropped_png)
+  for file in files.values():
+    os.path.exists(file) and os.remove(file)
 
   # Generate MIDI, PNG and cropped PNG
   command = f'{LILYPOND_PATH} -fpng -dresolution=500 -dcrop -s -o "{SNIPPET_DIR}" "{os.path.join(SNIPPET_DIR, name)}"'
   subprocess.run(command, shell=True)
 
   # Generate WAV from MIDI
-  command = f'{FLUIDSYNTH_PATH} -q -n -i -r 44100 -F "{wav}" "{SOUNDFONT_PATH}" "{mid}"'
+  command = f'{FLUIDSYNTH_PATH} -q -n -i -r 44100 -F "{files['wav']}" "{SOUNDFONT_PATH}" "{files['mid']}"'
   subprocess.run(command, shell=True)
 
   # Generate MP3 from WAV
-  audio = AudioSegment.from_wav(wav)
-  audio.export(mp3, format='mp3', bitrate="128k")
-  os.remove(wav)
+  audio = AudioSegment.from_wav(files['wav'])
+  audio.export(files['mp3'], format='mp3', bitrate="128k")
+  os.remove(files['wav'])
 
   # Overwrite the full PNG with the cropped PNG
-  if os.path.exists(png) and os.path.exists(cropped_png):
-      os.remove(png)
-      os.rename(cropped_png, png)
+  if os.path.exists(files['png']) and os.path.exists(files['cropped_png']):
+    os.remove(files['png'])
+    os.rename(files['cropped_png'], files['png'])
 
   print(f'Refreshed {name}')
 
