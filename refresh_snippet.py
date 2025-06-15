@@ -41,10 +41,13 @@ def read_snippets():
   return snippets
 
 def refresh_snippet(snippet):
-  generate_ly(snippet)
-  generate_files(snippet)
+  file_names = generate_lys(snippet)
+  for file_name in file_names:
+    generate_files(file_name)
 
-def generate_ly(snippet):
+def generate_lys(snippet):
+  names = []
+
   with open(SNIPPET_TEMPLATE, 'r') as f:
     template = f.read()
 
@@ -52,17 +55,21 @@ def generate_ly(snippet):
   template = template.replace('{tempo}', snippet['tempo'])
   template = template.replace('{key}', snippet['key'])
 
+  # Each snippet part in "snippets" list generates its own .ly and other files
   for i, snippet_part in enumerate(snippet['snippets']):
-    template_copy = template
-    template_copy = template_copy.replace('{snippet}', snippet_part)
+    snippet_content = template
+    snippet_content = snippet_content.replace('{snippet}', snippet_part)
 
-    file_path = os.path.join(SNIPPET_DIR, f'{snippet["name"]} {i+1}.ly')
+    file_name = f'{snippet["name"]} {i+1}'
+    file_path = os.path.join(SNIPPET_DIR, f'{file_name}.ly')
     with open(file_path, 'w') as f:
-      f.write(template_copy)
+      f.write(snippet_content)
 
-def generate_files(snippet):
-  name = snippet['name']
+    names.append(file_name)
 
+  return names
+
+def generate_files(name):
   # The list of files related to the snippet
   files = {ext: os.path.join(SNIPPET_DIR, f'{name}{FILE_EXTENSIONS[ext]}') for ext in FILE_EXTENSIONS}
 
@@ -75,7 +82,7 @@ def generate_files(snippet):
   subprocess.run(command, shell=True)
 
   # Generate WAV from MIDI
-  command = f'{FLUIDSYNTH_PATH} -q -n -i -r 44100 -F "{files['wav']}" "{SOUNDFONT_PATH}" "{files['mid']}"'
+  command = f'{FLUIDSYNTH_PATH} -q -n -i -r 44100 -F "{files["wav"]}" "{SOUNDFONT_PATH}" "{files["mid"]}"'
   subprocess.run(command, shell=True)
 
   # Generate MP3 from WAV
