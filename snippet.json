@@ -1,5 +1,17 @@
 [
     {
+        "name": "Cai Mo Gu De Xiao Gu Niang",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets":
+        [
+            "a'4 e''4 e''4 e''4 e''8[ d''8] c''4 d''4",
+            "d''4. c''8 d''4 c''4 d''8[ c''8 a'8 g'8] a'4",
+            "e'4 e'8[ g'8] g'4 g'4 a'4 a'8[ d''8] c''4",
+            "a'8[ a'8 a'8 c''8] d''4 c''8[ d''8] e''1"
+        ]
+    },
+    {
         "name": "Happy Birthday to You",
         "tempo": "96",
         "key": "c \\major",
@@ -21,6 +33,20 @@
             "c''8[ e''8] g''4 g''4 f''8[ e''8] d''2",
             "d''8[ e''8] f''4 f''4 e''8[ d''8] e''4 c''4",
             "c''8[ e''8] d''4 g'4 b'8[ d''8] c''2"
+        ]
+    },
+    {
+        "name": "Jingle Bells",
+        "tempo": "96",
+        "key": "c \\major",
+        "snippets":
+        [
+            "g'8[ e''8 d''8 c''8] g'4 r8 g'8 g'8[ e''8 d''8 c''8] a'4",
+            "a'8 a'8[ f''8 e''8 d''8] b''4 r8 b''8 g''8[ g''8 f''8 d''8] e''4",
+            "a'8 a'8[ f''8 e''8 d''8] g''8[ g''8 g''8 g''8] a''8[ g''8 f''8 d''8] c''4",
+            "e''4 e''4 e''2 e''4 e''4 e''2 e''4 g''4 c''4 d''4 e''2",
+            "f''4 f''4 f''4 f''4 f''4 e''4 e''2 e''4 d''4 d''4 c''4 d''2 g''2",
+            "f''4 f''4 f''4 f''4 f''4 e''4 e''2 g''4 g''4 f''4 d''4 c''2"
         ]
     },
     {
