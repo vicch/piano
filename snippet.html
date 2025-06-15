@@ -242,10 +242,6 @@
                 padding: 0 20px 20px 20px;
             }
             
-            .mode-selector {
-                flex-direction: column;
-            }
-            
             .mode-btn {
                 min-width: auto;
             }
@@ -291,10 +287,10 @@
             </div>
             
             <div class="answer-section">
+                <div id="answerDisplay" class="answer-display" style="display: none;"></div>
                 <button class="reveal-btn" id="revealBtn" onclick="revealAnswer()">
                     Reveal Answer
                 </button>
-                <div id="answerDisplay" class="answer-display" style="display: none;"></div>
                 <button class="next-btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">
                     Next Question
                 </button>
@@ -386,8 +382,6 @@
                 appState.isPlaying = false;
             }
 
-            document.getElementById('revealBtn').style.display = 'inline-block';
-            document.getElementById('nextBtn').style.display = 'none';
             document.getElementById('answerDisplay').style.display = 'none';
 
             const questionDisplay = document.getElementById('questionDisplay');
@@ -486,8 +480,6 @@
             if (appState.revealed) return;
 
             appState.revealed = true;
-            document.getElementById('revealBtn').style.display = 'none';
-            document.getElementById('nextBtn').style.display = 'inline-block';
 
             const answerDisplay = document.getElementById('answerDisplay');
 
@@ -505,7 +497,7 @@
                 // Show image as answer
                 answerDisplay.innerHTML = `
                     <img src="${appState.currentSnippet.png}" alt="Musical notation: ${appState.currentSnippet.name}" class="sheet-music" style="max-height: 300px;" />
-                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">${appState.currentSnippet.name}</p>
+                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem; display: none;">${appState.currentSnippet.name}</p>
                 `;
             }
 
@@ -569,12 +561,10 @@
             document.addEventListener('keydown', function(e) {
                 if (e.key === ' ') {
                     e.preventDefault();
-                    // Only act if elements are visible
-                    if (document.getElementById('revealBtn').style.display !== 'none') {
-                        revealAnswer();
-                    } else if (document.getElementById('nextBtn').style.display !== 'none') {
-                        nextQuestion();
-                    }
+                    revealAnswer();
+                } else if (e.key === "Right") {
+                    e.preventDefault();
+                    nextQuestion();
                 } else if (e.key === 'Enter') {
                     if (appState.mode === 'audio-to-image' && appState.currentAudio) {
                         playAudio();
