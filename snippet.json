@@ -1,5 +1,24 @@
 [
     {
+        "name": "",
+        "tempo": "96",
+        "key": "c \\major",
+        "snippets":
+        []
+    },
+    {
+        "name": "Bella Ciao",
+        "tempo": "96",
+        "key": "c \\major",
+        "snippets":
+        [
+            "e'8 a'8[ b'8] c''8 a'2 e'8 a'8[ b'8] c''8 a'2",
+            "e'8 a'8[ b'8] c''4 b'8[ a'8] c''4 b'8[ a'8] e''4 e''4 e''4",
+            "d''8[ e''8] f''4 f''2 a''8 g''8[ f''8] a''8 e''2",
+            "d''8[ c''8] b'4 e''4 b'4 c''4 a'2"
+        ]
+    },
+    {
         "name": "Cai Mo Gu De Xiao Gu Niang",
         "tempo": "120",
         "key": "c \\major",
