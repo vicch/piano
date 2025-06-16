@@ -14,7 +14,7 @@
     \clef treble
     \key c \major
     
-    \cadenzaOn f''8[ f''8 f''8 f''8] f''8[ e''8] e''4 g''8[ g''8 f''8 d''8] c''4 \cadenzaOff
+    \cadenzaOn g''8[ g''8 g''8] d''8[ d''8 d''8] b'8[ b'8 b'8] g'8[ g'8 g'8] \cadenzaOff
   }
   \layout {}
   \midi {}
