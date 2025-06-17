@@ -1,12 +1,5 @@
 [
     {
-        "name": "",
-        "tempo": "96",
-        "key": "c \\major",
-        "snippets":
-        []
-    },
-    {
         "name": "Bella Ciao",
         "tempo": "96",
         "key": "c \\major",
@@ -42,6 +35,17 @@
             "f''4. g''8 a''8[ a''8 g''8 f''8] a''2",
             "g''4. c''8 d''8[ e''8 f''8 g''8] a''2",
             "a''4. d''8 e''8[ fs''8 g''8 a''8] b''2"
+        ]
+    },
+    {
+        "name": "Ge Sheng Yu Wei Xiao",
+        "tempo": "96",
+        "key": "c \\major",
+        "snippets":
+        [
+            "a'8[ a'8 c''8 d''8] e''4. g''8 a''8[ a'8 c''8 d''8] e''2",
+            "d''8[ d''8 d''8 e''8] g''8[ g''8 g''8 a''8] e''2",
+            "d''8[ d''8 d''8 e''8] g''8[ g''8] r8 g'8 a'2"
         ]
     },
     {
@@ -173,6 +177,18 @@
             "d'4 d'8[ e'8] g'4 g'4 c''4 d'8[ e'8] g'2"
         ]
     },
+    {
+        "name": "Yi Fen Qian",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets":
+        [
+            "g'4 c''4 a'8[ c''8] a'4 e'8[ g'8 d'8 e'8] g'2",
+            "e'8[ g'8 a'8 c''8] g'8[ a'8 g'8 e'8] g'8 c'4 e'8 d'2",
+            "e'8[ d'8 c'8 d'8] d'2 a'8[ g'8 e'8 g'8] a'2",
+            "g'8[ c''8 a'8 g'8] e'8[ g'8] d'4 g'8[ d'8 e'8 d'8] c'2"
+        ]
+    }
     {
         "name": "Zhao Peng You",
         "tempo": "96",
