@@ -154,12 +154,7 @@
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
         
-        .answer-section {
-            padding: 0 30px 30px 30px;
-            text-align: center;
-        }
-        
-        .reveal-btn, .next-btn {
+        .next-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
@@ -172,20 +167,9 @@
             margin: 0 10px;
         }
         
-        .reveal-btn:hover, .next-btn:hover {
+        .next-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-        
-        .answer-display {
-            padding: 20px 0 40px;
-            border-radius: 12px;
-            max-width: 100%;
-            overflow: hidden;
-        }
-        
-        .answer-display .sheet-music {
-            max-height: 300px; /* Smaller height for answer display */
         }
         
         .error-message {
@@ -238,10 +222,6 @@
                 padding: 20px;
             }
             
-            .answer-section {
-                padding: 0 20px 20px 20px;
-            }
-            
             .mode-btn {
                 min-width: auto;
             }
@@ -287,10 +267,6 @@
             </div>
             
             <div class="answer-section">
-                <div id="answerDisplay" class="answer-display" style="display: none;"></div>
-                <button class="reveal-btn" id="revealBtn" onclick="revealAnswer()">
-                    Reveal
-                </button>
                 <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
                     Next
                 </button>
@@ -307,7 +283,6 @@
             snippets: [],
             currentSnippet: null,
             currentIndex: 0,
-            revealed: false,
             audioLoaded: false,
             currentAudio: null,
             isPlaying: false
@@ -384,7 +359,6 @@
             if (appState.snippets.length === 0) return;
 
             appState.currentSnippet = appState.snippets[appState.currentIndex];
-            appState.revealed = false;
 
             // Stop any currently playing audio
             if (appState.currentAudio) {
@@ -392,8 +366,6 @@
                 appState.currentAudio = null;
                 appState.isPlaying = false;
             }
-
-            document.getElementById('answerDisplay').style.display = 'none';
 
             const questionDisplay = document.getElementById('questionDisplay');
 
@@ -486,35 +458,6 @@
             });
         }
 
-        // Reveal answer
-        function revealAnswer() {
-            if (appState.revealed) return;
-
-            appState.revealed = true;
-
-            const answerDisplay = document.getElementById('answerDisplay');
-
-            if (appState.mode === 'image-to-audio') {
-                // Show audio player as answer
-                answerDisplay.innerHTML = `
-                    <div class="audio-player">
-                        <div class="audio-controls">
-                            <button class="play-btn" onclick="playAudio()" title="Play MP3">▶</button>
-                        </div>
-                    </div>
-                `;
-                loadAudioData();
-            } else {
-                // Show image as answer
-                answerDisplay.innerHTML = `
-                    <img src="${appState.currentSnippet.png}" alt="Musical notation: ${appState.currentSnippet.name}" class="sheet-music" style="max-height: 300px;" />
-                    <p style="margin-top: 10px; color: #666; font-size: 0.9rem; display: none;">${appState.currentSnippet.name}</p>
-                `;
-            }
-
-            answerDisplay.style.display = 'block';
-        }
-
         // Move to next question
         function nextQuestion() {
             appState.currentIndex = (appState.currentIndex + 1) % appState.snippets.length;
@@ -570,10 +513,7 @@
 
             // Add keyboard shortcuts
             document.addEventListener('keydown', function(e) {
-                if (e.key === ' ') {
-                    e.preventDefault();
-                    revealAnswer();
-                } else if (e.key === "Right") {
+                if (e.key === "Right") {
                     e.preventDefault();
                     nextQuestion();
                 } else if (e.key === 'Enter') {
