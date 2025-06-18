@@ -130,6 +130,22 @@
         ]
     },
     {
+        "name": "Shi Jie Xiao Xiao Xiao",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets":
+        [
+            "e'8[ f'8] g'4 e''4 c''4 d''8[ c''8] c''4 b'4 b'4",
+            "d'8[ e'8] f'4 d''4 b'4 c''8[ b'8] a'4 g'4 g'4",
+            "e'8[ f'8] g'4 c''8[ d''8] e''4 d''8[ c''8] a'4 d''8[ e''8] f''4",
+            "e''8[ d''8] g'4 f''4 e''4. d''8 c''1",
+            "c''4. c''8 e''4 c''4 d''4. d''8 d''2",
+            "d''4. d''8 f''4 d''4 e''4. e''8 e''2",
+            "e''4. e''8 g''4 e''4 f''4. f''8 f''4",
+            "e''8[ d''8] g'2 b'2 c''1"
+        ]
+    },
+    {
         "name": "Shi Shang Zhi You Ma Ma Hao",
         "tempo": "96",
         "key": "c \\major",
