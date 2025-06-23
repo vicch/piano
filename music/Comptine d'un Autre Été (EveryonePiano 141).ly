@@ -4,10 +4,14 @@
 \header {
   title = \markup \override #'((font-size . 6)) "Comptine d'un Autre Été"
   tagline = "EveryonePiano 141"
+  transcriber = "Transcribed by vicch"
 }
 
 \paper {
-  total-page = 2
+  total-page = 3
+  scoreTitleMarkup = \markup \fill-line {
+    \null { \fromproperty #'header:transcriber }
+  }
 }
 
 \markup \vspace #1.5
@@ -40,13 +44,16 @@ ADAs = { a''16[  d'''16 a'''16]  }
       r1 | r1 | r1 | r1 | \break
       
       \repeat volta 2 {
+        \A
         r8 g'16^1 fs'16^2 g'8^1 b'16^4 c''16 b'2 | r8 fs'16^2 g'16 fs'8 g'16 a'16 g'2 | r8 fs'16^2 e'16 fs'8 b'16^4 c''16 b'2 | r8 fs'16^2 e'16 fs'2. | \break
       }
       
+      \B
         e''4.          b'8~           b'2        |   d''4.          b'8~           b'2        |   fs''4.          b'8~            b'2         |   fs''4.          a'8~            a'2         | \break
       <<b'4. g''4.>> <<g'8~ e''8~>> <<g'2 e''2>> | <<b'4. g''4.>> <<g'8~ d''8~>> <<g'2 d''2>> | <<b'4. fs''4.>> <<fs'8~ d''8~>> <<fs'2 d''2>> | <<a'4. fs''4.>> <<fs'8~ d''8~>> <<fs'2 d''2>> | \break
       
       \repeat volta 2 {
+        \C
         \BEB \BEB \BEB \BEB b'16 e''16 c''16 e''16 | \BDB \BDB \BDB \BDB b'16 d''16 a'16 d''16 | \FBF \FBF \FBF \FBF fs'16 b'16 g'16 b'16 | \break
         
         \alternative {
@@ -60,15 +67,17 @@ ADAs = { a''16[  d'''16 a'''16]  }
       }
       
       \repeat volta 2 {
+        \A
         r8 g'16^1 fs'16^2 g'8^1 b'16^4 c''16 b'2 | r8 fs'16^2 g'16 fs'8 g'16 a'16 g'2 | r8 fs'16^2 e'16 fs'8 b'16^4 c''16 b'2 | r8 fs'16^2 e'16 fs'2. | \break
       }
       
+      \B
       \clef "treble^8"
-      
         e'''4.           b''8~            b''2         |   d'''4.           b''8~            b''2         |   fs'''4.           b''8~             b''2          |   fs'''4.           a''8~             a''2          | \break
       <<b''4. g'''4.>> <<g''8~ e'''8~>> <<g''2 e'''2>> | <<b''4. g'''4.>> <<g''8~ d'''8~>> <<g''2 d'''2>> | <<b''4. fs'''4.>> <<fs''8~ d'''8~>> <<fs''2 d'''2>> | <<a''4. fs'''4.>> <<fs''8~ d'''8~>> <<fs''2 d'''2>> | \break
       
       \repeat volta 2 {
+        \C
         \BEBs \BEBs \BEBs \BEBs b''16 e'''16 c'''16 e'''16 | \BDBs \BDBs \BDBs \BDBs b''16 d'''16 a''16 d'''16 | \break
         
         \alternative {

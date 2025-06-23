@@ -4,10 +4,14 @@
 \header {
   title = \markup \override #'((font-size . 6)) "Childhood Memory"
   tagline = "EveryonePiano 8"
+  transcriber = "Transcribed by vicch"
 }
 
 \paper {
   total-page = 4
+  scoreTitleMarkup = \markup \fill-line {
+    \null { \fromproperty #'header:transcriber }
+  }
   ragged-last = ##t
 }
 
