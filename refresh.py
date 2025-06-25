@@ -5,6 +5,7 @@ and execute LilyPond command to re-generate them.
 import os
 import subprocess
 import json
+from collections import defaultdict
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 
@@ -14,25 +15,27 @@ EXCLUDE_FILES = ['base.ly', 'template.ly', 'template_snippet.ly']
 SHEET_JSON = 'sheet.json'
 
 def refresh():
-    sheets = {}
-    
-    for root, dirs, files in os.walk(os.getcwd()):
-        dirs[:] = [d for d in dirs if not d.startswith('.') and not d in EXCLUDE_DIRS]  # Skip dirs starting with "."
+    sheets = defaultdict(list)
+
+    for path, dirs, files in os.walk(os.getcwd()):
+        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in EXCLUDE_DIRS]  # Skip dirs starting with "."
         for file in files:
             if file.endswith('.ly') and file not in EXCLUDE_FILES:
-                refresh_sheet(root, file)
-                if root not in sheets:
-                    sheets[root] = []
-                sheets[root].append(file)
+                refresh_sheet(path, file)
+
+                category = os.path.basename(path)
+                sheets[category].append(file)
 
     # Export the collected map to sheet.json
     with open(SHEET_JSON, 'w', encoding='utf-8') as f:
         json.dump(sheets, f, indent=2, ensure_ascii=False)
 
-def refresh_sheet(category, sheet):
-    name = os.path.splitext(sheet)[0]
-    pdf = os.path.join(category, f'{name}.pdf')
-    midi = os.path.join(category, f'{name}.mid')
+def refresh_sheet(path, file):
+    name = os.path.splitext(file)[0]
+
+    ly = os.path.join(path, file)
+    pdf = os.path.join(path, f'{name}.pdf')
+    midi = os.path.join(path, f'{name}.mid')
 
     # Remove existing files
     if os.path.exists(pdf):
@@ -41,7 +44,7 @@ def refresh_sheet(category, sheet):
         os.remove(midi)
 
     # Generate new files
-    command = f'{LILYPOND_PATH} -s -o "{category}" "{os.path.join(category, sheet)}"'
+    command = f'{LILYPOND_PATH} -s -o "{path}" "{ly}"'
     subprocess.run(command, shell=True)
 
     print(f'Refreshed {name}')
