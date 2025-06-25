@@ -216,6 +216,18 @@
         ]
     },
     {
+        "name": "Xiao Mao Lv",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'8[ c'8 c'8 e'8] g'8[ g'8 g'8 g'8]",
+            "a'8[ a'8 a'8 c''8] g'2",
+            "f'8[ f'8 f'8 a'8] e'8[ e'8 e'8 e'8]",
+            "d'8[ d'8 d'8 d'8] g'2",
+            "d'8[ d'8 d'8 e'8] c'2"
+        ]
+    },
+    {
         "name": "Xiao Tu Zi Guai Guai",
         "tempo": "96",
         "key": "c \\major",
