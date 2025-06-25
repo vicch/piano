@@ -34,19 +34,38 @@ def refresh():
 def refresh_sheet(path, name):
     ly = os.path.join(path, f'{name}.ly')
     pdf = os.path.join(path, f'{name}.pdf')
-    midi = os.path.join(path, f'{name}.mid')
+    mid = os.path.join(path, f'{name}.mid')
+
+    # Skip if files are up to date
+    if not need_refresh(ly, pdf, mid):
+        print(f'Skipped {name} (files are up to date)')
+        return
 
     # Remove existing files
     if os.path.exists(pdf):
         os.remove(pdf)
-    if os.path.exists(midi):
-        os.remove(midi)
+    if os.path.exists(mid):
+        os.remove(mid)
 
     # Generate new files
     command = f'{LILYPOND_PATH} -s -o "{path}" "{ly}"'
     subprocess.run(command, shell=True)
 
     print(f'Refreshed {name}')
+
+def need_refresh(ly_path, pdf_path, mid_path):
+    ly_mtime = os.path.getmtime(ly_path)
+    
+    # Check if .pdf or .mid files exist and are older than .ly
+    for file_path in [pdf_path, mid_path]:
+        if not os.path.exists(file_path):
+            return True
+        
+        file_mtime = os.path.getmtime(file_path)
+        if ly_mtime > file_mtime:
+            return True
+    
+    return False
 
 if __name__ == '__main__':
     refresh()
