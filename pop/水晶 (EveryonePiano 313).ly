@@ -1,14 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "水晶"
-  tagline = "EveryonePiano 313"
-}
+#(define title      "水晶")
+#(define title-font "FangSong")
+#(define sequence   "EveryonePiano 313")
+#(define total-page 3)
 
-\paper {
-  total-page = 3
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 

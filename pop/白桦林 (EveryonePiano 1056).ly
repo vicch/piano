@@ -1,13 +1,13 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "白桦林"
-  tagline = "EveryonePiano 1056"
-}
+#(define title      "白桦林")
+#(define title-font "FangSong")
+#(define sequence   "EveryonePiano 1056")
+#(define total-page 1)
 
-\paper {
-  total-page = 1
+\include "../base.ly"
+
+\page {
   ragged-last = ##t
 }
 

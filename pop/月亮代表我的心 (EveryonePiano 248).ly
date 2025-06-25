@@ -1,17 +1,13 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "月亮代表我的心"
-  tagline = "EveryonePiano 248"
-  transcriber = "Transcribed by vicch"
-}
+#(define title      "月亮代表我的心")
+#(define title-font "FangSong")
+#(define sequence   "EveryonePiano 248")
+#(define total-page 2)
 
-\paper {
-  total-page = 2
-  scoreTitleMarkup = \markup \fill-line {
-    \null { \fromproperty #'header:transcriber }
-  }
+\include "../base.ly"
+
+\page {
   ragged-last = ##t
 }
 

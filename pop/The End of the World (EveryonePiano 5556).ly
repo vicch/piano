@@ -1,14 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "The End of the World"
-  tagline = "EveryonePiano 5556"
-}
+#(define title      "The End of the World")
+#(define title-font "")
+#(define sequence   "EveryonePiano 5556")
+#(define total-page 2)
 
-\paper {
-  total-page = 2
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 
