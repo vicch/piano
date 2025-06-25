@@ -4,10 +4,14 @@
 \header {
   title = \markup \override #'((font-size . 6)) "Canon"
   tagline = "EveryonePiano 8499"
+  transcriber = "Transcribed by vicch"
 }
 
 \paper {
-  total-page = 3
+  total-page = 2
+  scoreTitleMarkup = \markup \fill-line {
+    \null { \fromproperty #'header:transcriber }
+  }
 }
 
 \markup \vspace #1.5

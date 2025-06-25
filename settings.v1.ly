@@ -50,14 +50,15 @@
     \override StaffGrouper.staff-staff-spacing.basic-distance = #11
     \override StaffGrouper.staff-staff-spacing.padding = #2
     
-    \override Stem.length-fraction = #1.1
-    \override Stem.thickness = #1.6
-    \override Beam.damping = #1.5
+    \override Stem.length-fraction = #1
+    \override Stem.thickness = #1.5
+    \override Beam.damping = #1.2
     
     \override TimeSignature.style = #'numbered
     \override TimeSignature.break-visibility = #end-of-line-invisible
     
-    \override ChordName.font-size = #-1
+    \override ChordName.font-size = #-2
+    \override SectionLabel.font-size = #-2
   }
 }
 
