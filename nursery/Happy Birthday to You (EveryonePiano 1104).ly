@@ -1,13 +1,13 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Happy Birthday to You"
-  tagline = "EveryonePiano 1104"
-}
+#(define title      "Happy Birthday to You")
+#(define title-font "")
+#(define sequence   "EveryonePiano 1104")
+#(define total-page 1)
+
+\include "../base.ly"
 
 \paper {
-  total-page = 1
   ragged-last = ##t
 }
 
