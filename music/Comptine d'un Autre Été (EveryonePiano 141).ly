@@ -1,18 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Comptine d'un Autre Été"
-  tagline = "EveryonePiano 141"
-  transcriber = "Transcribed by vicch"
-}
+#(define title      "Comptine d'un Autre Été")
+#(define title-font "")
+#(define sequence   "EveryonePiano 141")
+#(define total-page 3)
 
-\paper {
-  total-page = 3
-  scoreTitleMarkup = \markup \fill-line {
-    \null { \fromproperty #'header:transcriber }
-  }
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 

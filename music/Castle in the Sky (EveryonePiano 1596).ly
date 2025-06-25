@@ -1,14 +1,13 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Castle in the Sky"
-  tagline = "EveryonePiano 1596"
-}
+#(define title      "Castle in the Sky")
+#(define title-font "")
+#(define sequence   "EveryonePiano 1596")
+#(define total-page 2)
 
-\paper {
-  total-page = 2
-}
+\include "../base.ly"
+
+\markup \vspace #1.5
 
 C     = { c8  e8  g2.  }
 Dm    = { d8  f8  a2.  }
@@ -17,8 +16,6 @@ F     = { f8  a8  c'2. }
 AmI   = { a8  c'8 e'2. }
 AmII  = { a,8 c8  e2.  }
 Bfive = { b,8 fs8 b2.  }
-
-\markup \vspace #1.5
 
 \score {
   \new PianoStaff \with {

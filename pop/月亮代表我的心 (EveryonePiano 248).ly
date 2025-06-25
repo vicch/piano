@@ -4,10 +4,14 @@
 \header {
   title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "月亮代表我的心"
   tagline = "EveryonePiano 248"
+  transcriber = "Transcribed by vicch"
 }
 
 \paper {
   total-page = 2
+  scoreTitleMarkup = \markup \fill-line {
+    \null { \fromproperty #'header:transcriber }
+  }
   ragged-last = ##t
 }
 

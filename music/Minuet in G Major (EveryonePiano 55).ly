@@ -1,14 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Minuet in G Major"
-  tagline = "EveryonePiano 55"
-}
+#(define title      "Minuet in G Major")
+#(define title-font "")
+#(define sequence   "EveryonePiano 55")
+#(define total-page 1)
 
-\paper {
-  total-page = 1
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 

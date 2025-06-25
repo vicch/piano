@@ -1,13 +1,23 @@
 \language "english"
 
-#(define-markup-command (total-page layout props) ()
-   (interpret-markup layout props 
-     (number->string (ly:output-def-lookup layout 'total-page))))
+#(define (title-font-override)
+   (let ((base `((font-size . 6))))
+     (if (or (not title-font) (string=? title-font ""))
+         base ; fallback to default font if title-font is #f or ""
+         (cons (cons 'font-name title-font) base))))
+
+#(define total-page-markup (markup (number->string total-page)))
 
 #(set-global-staff-size 20)
 
+\header {
+  title = \markup \override #(title-font-override) #title
+  tagline = #sequence
+}
+
 \paper {
   #(set-paper-size "letter")
+
   top-margin    = #15
   bottom-margin = #15
   left-margin   = #15
@@ -21,6 +31,10 @@
   
   % indent = #0
   
+  scoreTitleMarkup = \markup \fill-line {
+    \null "Transcribed by vicch"
+  }
+
   print-page-number = ##t
   
   oddHeaderMarkup = \markup \null
@@ -34,7 +48,7 @@
       \concat {
         \fromproperty #'page:page-number-string
         "/"
-        \total-page
+        #total-page-markup
       }
     }
   }

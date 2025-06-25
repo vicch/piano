@@ -1,18 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "Title"
-  tagline = "Sequence"
-  transcriber = "Transcribed by vicch"
-}
+#(define title      "")
+#(define title-font "")
+#(define sequence   "")
+#(define total-page 1)
 
-\paper {
-  total-page = 1
-  scoreTitleMarkup = \markup \fill-line {
-    \null { \fromproperty #'header:transcriber }
-  }
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 

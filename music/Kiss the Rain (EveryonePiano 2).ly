@@ -1,18 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Kiss the Rain"
-  tagline = "EveryonePiano 2"
-  transcriber = "Transcribed by vicch"
-}
+#(define title      "Kiss the Rain")
+#(define title-font "")
+#(define sequence   "EveryonePiano 2")
+#(define total-page 2)
 
-\paper {
-  total-page = 2
-  scoreTitleMarkup = \markup \fill-line {
-    \null { \fromproperty #'header:transcriber }
-  }
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 

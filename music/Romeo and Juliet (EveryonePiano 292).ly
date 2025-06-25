@@ -1,14 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Romeo and Juliet"
-  tagline = "EveryonePiano 292"
-}
+#(define title      "Romeo and Juliet")
+#(define title-font "")
+#(define sequence   "EveryonePiano 292")
+#(define total-page 1)
 
-\paper {
-  total-page = 1
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 

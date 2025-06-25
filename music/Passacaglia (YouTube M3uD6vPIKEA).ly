@@ -1,18 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Passacaglia"
-  tagline = "YouTube M3uD6vPIKEA"
-  transcriber = "Transcribed by vicch"
-}
+#(define title      "Passacaglia")
+#(define title-font "")
+#(define sequence   "YouTube M3uD6vPIKEA")
+#(define total-page 2)
 
-\paper {
-  total-page = 1
-  scoreTitleMarkup = \markup \fill-line {
-    \null { \fromproperty #'header:transcriber }
-  }
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 
