@@ -8,7 +8,7 @@ import subprocess
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 
 EXCLUDE_DIRS = ['snippet']
-EXCLUDE_FILES = ['settings.v1.ly', 'template.v1.ly', 'template_snippet.ly']
+EXCLUDE_FILES = ['base.ly', 'template.ly', 'template_snippet.ly']
 
 def refresh():
     for root, dirs, files in os.walk(os.getcwd()):

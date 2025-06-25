@@ -7,7 +7,7 @@
 
 \include "../base.ly"
 
-\page {
+\paper {
   ragged-last = ##t
 }
 
