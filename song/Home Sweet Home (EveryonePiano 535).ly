@@ -1,13 +1,13 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-size . 6)) "Home! Sweet Home!"
-  tagline = "EveryonePiano 535"
-}
+#(define title      "Home Sweet Home")
+#(define title-font "")
+#(define sequence   "EveryonePiano 535")
+#(define total-page 1)
 
-\paper {
-  total-page = 1
+\include "../base.ly"
+
+\page {
   ragged-last = ##t
 }
 

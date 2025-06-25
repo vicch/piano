@@ -1,14 +1,11 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
 
-\header {
-  title = \markup \override #'((font-name . "FangSong")(font-size . 6)) "看见"
-  tagline = "YouTube 7I34903vez8"
-}
+#(define title      "看见")
+#(define title-font "FangSong")
+#(define sequence   "YouTube 7I34903vez8")
+#(define total-page 1)
 
-\paper {
-  total-page = 1
-}
+\include "../base.ly"
 
 \markup \vspace #1.5
 
