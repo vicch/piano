@@ -12,33 +12,33 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
             color: #333;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
             text-align: center;
+            margin-bottom: 20px;
+            color: white;
         }
 
         .header h1 {
             font-size: 2.5rem;
-            font-weight: 300;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .header p {
@@ -46,8 +46,22 @@
             opacity: 0.9;
         }
 
+        .sheets-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            min-height: auto;
+        }
+
         .content {
             padding: 30px;
+            flex: 1;
         }
 
         .category {
@@ -56,6 +70,7 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            background: white;
         }
 
         .category:hover {
@@ -143,17 +158,41 @@
             border-top: 1px solid #e9ecef;
         }
 
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+            min-height: 200px;
+        }
 
-            .header {
-                padding: 30px 20px;
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
             }
 
             .header h1 {
                 font-size: 2rem;
+            }
+
+            .sheets-card {
+                max-width: 100%;
             }
 
             .content {
@@ -201,15 +240,17 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Piano Sheets</h1>
+            <h1>🎼 Piano Sheets</h1>
+            <p>Browse and download piano sheet music</p>
         </div>
         
-        <div class="content" id="content">
-            <!-- Content will be loaded here -->
-        </div>
-        
-        <div class="footer">
-            <p></p>
+        <div class="sheets-card">
+            <div class="content" id="content">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading sheet music...
+                </div>
+            </div>
         </div>
     </div>
 
