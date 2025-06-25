@@ -4,29 +4,44 @@ and execute LilyPond command to re-generate them.
 """
 import os
 import subprocess
+import json
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 
 EXCLUDE_DIRS = ['snippet']
 EXCLUDE_FILES = ['base.ly', 'template.ly', 'template_snippet.ly']
 
+SHEET_JSON = 'sheet.json'
+
 def refresh():
+    sheets = {}
+    
     for root, dirs, files in os.walk(os.getcwd()):
         dirs[:] = [d for d in dirs if not d.startswith('.') and not d in EXCLUDE_DIRS]  # Skip dirs starting with "."
         for file in files:
             if file.endswith('.ly') and file not in EXCLUDE_FILES:
-                refresh_file(root, file)
+                refresh_sheet(root, file)
+                if root not in sheets:
+                    sheets[root] = []
+                sheets[root].append(file)
 
-def refresh_file(dir, file):
-    name = os.path.splitext(file)[0]
-    pdf = os.path.join(dir, f'{name}.pdf')
-    midi = os.path.join(dir, f'{name}.mid')
+    # Export the collected map to sheet.json
+    with open(SHEET_JSON, 'w', encoding='utf-8') as f:
+        json.dump(sheets, f, indent=2, ensure_ascii=False)
+
+def refresh_sheet(category, sheet):
+    name = os.path.splitext(sheet)[0]
+    pdf = os.path.join(category, f'{name}.pdf')
+    midi = os.path.join(category, f'{name}.mid')
+
+    # Remove existing files
     if os.path.exists(pdf):
         os.remove(pdf)
     if os.path.exists(midi):
         os.remove(midi)
 
-    command = f'{LILYPOND_PATH} -s -o "{dir}" "{os.path.join(dir, file)}"'
+    # Generate new files
+    command = f'{LILYPOND_PATH} -s -o "{category}" "{os.path.join(category, sheet)}"'
     subprocess.run(command, shell=True)
 
     print(f'Refreshed {name}')
