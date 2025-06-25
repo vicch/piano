@@ -64,6 +64,90 @@
             flex: 1;
         }
 
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+        }
+
+        .search-box::placeholder {
+            color: #6c757d;
+        }
+
+        .search-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .search-dropdown.show {
+            display: block;
+        }
+
+        .search-result {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #f8f9fa;
+            transition: background-color 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-result:hover {
+            background: #f8f9fa;
+        }
+
+        .search-result:last-child {
+            border-bottom: none;
+        }
+
+        .search-result .sheet-name {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .search-result .category-name {
+            font-size: 0.85rem;
+            color: #6c757d;
+            background: #e9ecef;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+
         .category {
             margin-bottom: 20px;
             border-radius: 12px;
@@ -199,6 +283,19 @@
                 padding: 20px;
             }
 
+            .search-container {
+                margin-bottom: 20px;
+            }
+
+            .search-box {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+
+            .search-result {
+                padding: 10px 15px;
+            }
+
             .category-header {
                 padding: 15px;
             }
@@ -226,6 +323,18 @@
                 font-size: 1rem;
             }
 
+            .search-box {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+
+            .search-result {
+                padding: 8px 12px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
             .category-title {
                 font-size: 1rem;
             }
@@ -246,6 +355,10 @@
         
         <div class="sheets-card">
             <div class="content" id="content">
+                <div class="search-container">
+                    <input type="text" class="search-box" id="searchBox" placeholder="Search for sheet music..." autocomplete="off">
+                    <div class="search-dropdown" id="searchDropdown"></div>
+                </div>
                 <div class="loading">
                     <div class="spinner"></div>
                     Loading sheet music...
@@ -255,12 +368,29 @@
     </div>
 
     <script>
+        let allSheets = [];
+        let searchTimeout;
+
         // Load and display the sheet data
         async function loadSheets() {
             try {
                 const response = await fetch('sheet.json');
                 const data = await response.json();
+                
+                // Prepare all sheets for search
+                allSheets = [];
+                for (const [category, sheets] of Object.entries(data)) {
+                    sheets.forEach(sheet => {
+                        allSheets.push({
+                            name: sheet,
+                            category: category,
+                            url: `${category}/${sheet}.pdf`
+                        });
+                    });
+                }
+                
                 displaySheets(data);
+                setupSearch();
             } catch (error) {
                 console.error('Error loading sheet data:', error);
                 document.getElementById('content').innerHTML = '<p style="text-align: center; color: #6c757d; padding: 40px;">Error loading sheet data. Please try again later.</p>';
@@ -269,6 +399,7 @@
 
         function displaySheets(data) {
             const content = document.getElementById('content');
+            const searchContainer = content.querySelector('.search-container');
             let html = '';
 
             for (const [category, sheets] of Object.entries(data)) {
@@ -291,7 +422,101 @@
                 `;
             }
 
-            content.innerHTML = html;
+            content.innerHTML = searchContainer.outerHTML + html;
+        }
+
+        function setupSearch() {
+            const searchBox = document.getElementById('searchBox');
+            const searchDropdown = document.getElementById('searchDropdown');
+
+            searchBox.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                const query = this.value.trim().toLowerCase();
+                
+                if (query.length === 0) {
+                    searchDropdown.classList.remove('show');
+                    return;
+                }
+
+                searchTimeout = setTimeout(() => {
+                    performSearch(query);
+                }, 150);
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target) && !searchDropdown.contains(e.target)) {
+                    searchDropdown.classList.remove('show');
+                }
+            });
+
+            // Handle keyboard navigation
+            searchBox.addEventListener('keydown', function(e) {
+                const results = searchDropdown.querySelectorAll('.search-result');
+                const activeResult = searchDropdown.querySelector('.search-result.active');
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (!activeResult) {
+                        results[0]?.classList.add('active');
+                    } else {
+                        const nextIndex = Array.from(results).indexOf(activeResult) + 1;
+                        if (nextIndex < results.length) {
+                            activeResult.classList.remove('active');
+                            results[nextIndex].classList.add('active');
+                        }
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (activeResult) {
+                        const prevIndex = Array.from(results).indexOf(activeResult) - 1;
+                        if (prevIndex >= 0) {
+                            activeResult.classList.remove('active');
+                            results[prevIndex].classList.add('active');
+                        } else {
+                            activeResult.classList.remove('active');
+                        }
+                    }
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (activeResult) {
+                        activeResult.click();
+                    }
+                } else if (e.key === 'Escape') {
+                    searchDropdown.classList.remove('show');
+                    searchBox.blur();
+                }
+            });
+        }
+
+        function performSearch(query) {
+            const searchDropdown = document.getElementById('searchDropdown');
+            const results = allSheets.filter(sheet => 
+                sheet.name.toLowerCase().includes(query) || 
+                sheet.category.toLowerCase().includes(query)
+            );
+
+            if (results.length === 0) {
+                searchDropdown.innerHTML = '<div class="no-results">No matching sheets found</div>';
+                searchDropdown.classList.add('show');
+                return;
+            }
+
+            const html = results.slice(0, 10).map(sheet => `
+                <div class="search-result" onclick="openSheet('${sheet.url}')">
+                    <span class="sheet-name">${sheet.name}</span>
+                    <span class="category-name">${sheet.category}</span>
+                </div>
+            `).join('');
+
+            searchDropdown.innerHTML = html;
+            searchDropdown.classList.add('show');
+        }
+
+        function openSheet(url) {
+            window.open(url, '_blank');
+            document.getElementById('searchDropdown').classList.remove('show');
+            document.getElementById('searchBox').value = '';
         }
 
         function toggleCategory(header) {
