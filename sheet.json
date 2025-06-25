@@ -1,50 +1,46 @@
 {
-    "D:\\GitHub\\piano\\music":
-    [
-        "Brahms' Lullaby (EveryonePiano 544).ly",
-        "Canon (EveryonePiano 8499).ly",
-        "Castle in the Sky (EveryonePiano 1596).ly",
-        "Childhood Memory (EveryonePiano 8).ly",
-        "Comptine d'un Autre Été (EveryonePiano 141).ly",
-        "Kiss the Rain (EveryonePiano 2).ly",
-        "Minuet in G Major (EveryonePiano 55).ly",
-        "Passacaglia (YouTube M3uD6vPIKEA).ly",
-        "Romance d'Amour (EveryonePiano 1704).ly",
-        "Romeo and Juliet (EveryonePiano 292).ly",
-        "Salut d'Amour (EveryonePiano 1100).ly",
-        "The Blue Danube (EveryonePiano 1681).ly"
-    ],
-    "D:\\GitHub\\piano\\nursery":
-    [
-        "Happy Birthday to You (EveryonePiano 1104).ly",
-        "It's A Small World (EveryonePiano 516).ly",
-        "Twinkle Twinkle Little Star (EveryonePiano 1656).ly",
-        "小红帽 (EveryonePiano 14).ly",
-        "春天在哪里 (EveryonePiano 556).ly",
-        "洋娃娃和小熊跳舞 (EveryonePiano 505).ly",
-        "粉刷匠 (EveryonePiano 656).ly"
-    ],
-    "D:\\GitHub\\piano\\pop":
-    [
-        "The End of the World (EveryonePiano 5556).ly",
-        "同桌的你 (EveryonePiano 5506).ly",
-        "月亮代表我的心 (EveryonePiano 248).ly",
-        "水晶 (EveryonePiano 313).ly",
-        "白桦林 (EveryonePiano 1056).ly",
-        "遇见 (EveryonePiano 68).ly"
-    ],
-    "D:\\GitHub\\piano\\song":
-    [
-        "Click Go the Shears (EveryonePiano 525).ly",
-        "Edelweiss (EveryonePiano 1288).ly",
-        "Home Sweet Home (EveryonePiano 535).ly",
-        "Oh My Darling Clementine (EveryonePiano 979).ly",
-        "Silent Night (EveryonePiano 484).ly",
-        "いつも何度でも (EveryonePiano 11774).ly",
-        "四季の歌 (EveryonePiano 500).ly",
-        "看见 (YouTube 7I34903vez8)",
-        "茉莉花 (EveryonePiano 518).ly",
-        "虫儿飞 (EveryonePiano 14625).ly",
-        "送别 (EveryonePiano 519).ly"
-    ]
+  "music": [
+    "Brahms' Lullaby (EveryonePiano 544)",
+    "Canon (EveryonePiano 8499)",
+    "Castle in the Sky (EveryonePiano 1596)",
+    "Childhood Memory (EveryonePiano 8)",
+    "Comptine d'un Autre Été (EveryonePiano 141)",
+    "Kiss the Rain (EveryonePiano 2)",
+    "Minuet in G Major (EveryonePiano 55)",
+    "Passacaglia (YouTube M3uD6vPIKEA)",
+    "Romance d'Amour (EveryonePiano 1704)",
+    "Romeo and Juliet (EveryonePiano 292)",
+    "Salut d'Amour (EveryonePiano 1100)",
+    "The Blue Danube (EveryonePiano 1681)"
+  ],
+  "nursery": [
+    "Happy Birthday to You (EveryonePiano 1104)",
+    "It's A Small World (EveryonePiano 516)",
+    "Twinkle Twinkle Little Star (EveryonePiano 1656)",
+    "小红帽 (EveryonePiano 14)",
+    "春天在哪里 (EveryonePiano 556)",
+    "洋娃娃和小熊跳舞 (EveryonePiano 505)",
+    "粉刷匠 (EveryonePiano 656)"
+  ],
+  "pop": [
+    "The End of the World (EveryonePiano 5556)",
+    "同桌的你 (EveryonePiano 5506)",
+    "月亮代表我的心 (EveryonePiano 248)",
+    "水晶 (EveryonePiano 313)",
+    "白桦林 (EveryonePiano 1056)",
+    "遇见 (EveryonePiano 68)"
+  ],
+  "song": [
+    "Click Go the Shears (EveryonePiano 525)",
+    "Edelweiss (EveryonePiano 1288)",
+    "Home Sweet Home (EveryonePiano 535)",
+    "Oh My Darling Clementine (EveryonePiano 979)",
+    "Silent Night (EveryonePiano 484)",
+    "いつも何度でも (EveryonePiano 11774)",
+    "四季の歌 (EveryonePiano 500)",
+    "看见 (YouTube 7I34903vez8)",
+    "茉莉花 (EveryonePiano 518)",
+    "虫儿飞 (EveryonePiano 14625)",
+    "送别 (EveryonePiano 519)"
+  ]
 }

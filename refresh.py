@@ -21,19 +21,18 @@ def refresh():
         dirs[:] = [d for d in dirs if not d.startswith('.') and d not in EXCLUDE_DIRS]  # Skip dirs starting with "."
         for file in files:
             if file.endswith('.ly') and file not in EXCLUDE_FILES:
-                refresh_sheet(path, file)
+                name = os.path.splitext(file)[0]
+                refresh_sheet(path, name)
 
                 category = os.path.basename(path)
-                sheets[category].append(file)
+                sheets[category].append(name)
 
     # Export the collected map to sheet.json
     with open(SHEET_JSON, 'w', encoding='utf-8') as f:
         json.dump(sheets, f, indent=2, ensure_ascii=False)
 
-def refresh_sheet(path, file):
-    name = os.path.splitext(file)[0]
-
-    ly = os.path.join(path, file)
+def refresh_sheet(path, name):
+    ly = os.path.join(path, f'{name}.ly')
     pdf = os.path.join(path, f'{name}.pdf')
     midi = os.path.join(path, f'{name}.mid')
 
