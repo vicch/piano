@@ -95,3 +95,5 @@ B = \sectionLabel \markup { \box "B" }
 C = \sectionLabel \markup { \box "C" }
 D = \sectionLabel \markup { \box "D" }
 E = \sectionLabel \markup { \box "E" }
+
+VAR = _\markup { "*" }
