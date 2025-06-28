@@ -9,8 +9,8 @@ from collections import defaultdict
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 
-EXCLUDE_DIRS = ['snippet']
-EXCLUDE_FILES = ['base.ly', 'template.ly', 'template_snippet.ly']
+EXCLUDE_DIRS = ['piano', 'snippet']
+EXCLUDE_FILES = ['base.ly', 'base_snippet.ly', 'template.ly', 'template_snippet.ly']
 
 SHEET_JSON = 'sheet.json'
 
