@@ -32,7 +32,7 @@
   % indent = #0
   
   scoreTitleMarkup = \markup \fill-line {
-    \null "Transcribed by vicch"
+    \null "Engraved by vicch"
   }
 
   print-page-number = ##t

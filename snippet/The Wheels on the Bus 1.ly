@@ -1,16 +1,12 @@
 \version "2.24.3"
-\include "../settings.v1.ly"
-
-\paper {
-  total-page = 1
-}
+\include "../base_snippet.ly"
 
 \score {
   \new Staff {
     \set Score.tempoHideNote = ##t
     \override Staff.TimeSignature.stencil = ##f
 
-    \tempo 4 = 96
+    \tempo 4 = 72
     \clef treble
     \key c \major
     
