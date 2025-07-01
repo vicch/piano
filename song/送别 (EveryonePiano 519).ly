@@ -46,7 +46,6 @@ GIII = { g8  b8 d'8 g8 }
       \CI \CII | \FI \CII | \GI \GII | c8 g8 c'8 e'8 g'2 |
     }
     \chords {
-      
       c2 c2 | f2 c2 | c2 c2 | g2 g2 |
       c2 c2 | f2 c2 | g2 g2 | c2 r2 |
       
