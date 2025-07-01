@@ -49,7 +49,7 @@ GIII = { g8  b8 d'8 g8 }
       c2 c2 | f2 c2 | c2 c2 | g2 g2 |
       c2 c2 | f2 c2 | g2 g2 | c2 r2 |
       
-      f2 f2 | g2 c2 | g2 c2 | g2 g2 |
+      f2 f2 | g2 c2 | f2 c2 | g2 g2 |
       
       c2 c2 | f2 c2 | g2 g2 | c1 |
     }
