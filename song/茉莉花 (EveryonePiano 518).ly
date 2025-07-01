@@ -50,5 +50,10 @@ Afive   = { a,8 e8  a8  e8  }
     }
   >>
   \layout {}
-  \midi {}
+  \midi {
+    \context {
+      \ChordNames
+      \remove "Note_performer"
+    }
+  }
 }
