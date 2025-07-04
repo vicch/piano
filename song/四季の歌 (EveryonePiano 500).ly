@@ -9,10 +9,11 @@
 
 \markup \vspace #1.25
 
-Aseven = { cs8 g8 a4    }
-Dmi    = { d8  f8 a4    }
-Dmii   = { d8  f8 a8 f8 }
-Gm     = { d8  g8 bf4   }
+DmI = { d8  f8 a4  }
+GmI = { d8  g8 bf4 }
+AI  = { cs8 g8 a4  }
+
+DmII = { d8 f8 a8 f8 }
 
 \score {
   \new PianoStaff \with {
@@ -32,8 +33,8 @@ Gm     = { d8  g8 bf4   }
       \key f \major
       \time 4/4
       
-      \Dmi \Dmi | \Dmii d8 f8 g8 a8 | \Gm     \Gm     | \Dmii d8 e8 f8 a8 |
-      \Gm  \Gm  | \Dmi  \Dmii       | \Aseven \Aseven | \Dmii d2          |
+      \DmI \DmI | \DmII d8 f8 g8 a8 | \GmI \GmI | \DmII d8 e8 f8 a8 |
+      \GmI \GmI | \DmI  \DmII       | \AI  \AI  | \DmII d2          |
     }
     \chords {
       d1:m | d1:m | g1:m | d1:m |
@@ -41,5 +42,10 @@ Gm     = { d8  g8 bf4   }
     }
   >>
   \layout {}
-  \midi {}
+  \midi {
+    \context {
+      \ChordNames
+      \remove "Note_performer"
+    }
+  }
 }
