@@ -9,10 +9,10 @@
 
 \markup \vspace #1.5
 
-C      = { c4  e4 g4 }
-F      = { c4  f4 a4 }
-G      = { b,4 d4 g4 }
-Gseven = { b,4 f4 g4 }
+CI  = { c4  e4 g4 }
+FI  = { c4  f4 a4 }
+GI  = { b,4 d4 g4 }
+GII = { b,4 f4 g4 }
 
 \score {
   \new PianoStaff \with {
@@ -38,14 +38,14 @@ Gseven = { b,4 f4 g4 }
       \key c \major
       \time 3/4
       
-      \C | \C | \C | \C |
-      \G | \G | \C | \C |
+      \CI | \CI | \CI | \CI |
+      \GI | \GI | \CI | \CI |
       
-      \F | \F | \C | \C |
-      \F | \F | \C | \C |
-      \G | \G | \C | \C |
+      \FI | \FI | \CI | \CI |
+      \FI | \FI | \CI | \CI |
+      \GI | \GI | \CI | \CI |
       
-      \C | \Gseven | \C | c2. |
+      \CI | \GII | \CI | c2. |
     }
     \chords {
       c2. | c2. | c2. | c2. |
@@ -59,5 +59,10 @@ Gseven = { b,4 f4 g4 }
     }
   >>
   \layout {}
-  \midi {}
+  \midi {
+    \context {
+      \ChordNames
+      \remove "Note_performer"
+    }
+  }
 }
