@@ -59,10 +59,5 @@ GII = { b,4 f4 g4 }
     }
   >>
   \layout {}
-  \midi {
-    \context {
-      \ChordNames
-      \remove "Note_performer"
-    }
-  }
+  \midi {}
 }

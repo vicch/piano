@@ -42,10 +42,5 @@ DmII = { d8 f8 a8 f8 }
     }
   >>
   \layout {}
-  \midi {
-    \context {
-      \ChordNames
-      \remove "Note_performer"
-    }
-  }
+  \midi {}
 }

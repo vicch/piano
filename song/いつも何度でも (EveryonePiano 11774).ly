@@ -86,10 +86,5 @@ AI = { a,4 e4  a4  }
     }
   >>
   \layout {}
-  \midi {
-    \context {
-      \ChordNames
-      \remove "Note_performer"
-    }
-  }
+  \midi {}
 }
