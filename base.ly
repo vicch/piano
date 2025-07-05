@@ -90,6 +90,13 @@
   }
 }
 
+\midi {
+  \context {
+    \ChordNames
+    \remove "Note_performer"
+  }
+}
+
 A = \sectionLabel \markup { \box "A" }
 B = \sectionLabel \markup { \box "B" }
 C = \sectionLabel \markup { \box "C" }

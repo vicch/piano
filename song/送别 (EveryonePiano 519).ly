@@ -55,10 +55,5 @@ GIII = { g8  b8 d'8 g8 }
     }
   >>
   \layout {}
-  \midi {
-    \context {
-      \ChordNames
-      \remove "Note_performer"
-    }
-  }
+  \midi {}
 }
