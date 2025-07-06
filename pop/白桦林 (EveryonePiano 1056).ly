@@ -13,12 +13,14 @@
 
 \markup \vspace #1.5
 
-C  = { c4  <<e4  g4>>  <<e4  g4>>  }
-Dm = { d4  <<f4  a4>>  <<f4  a4>>  }
-E  = { e4  <<gs4 b4>>  <<gs4 b4>>  }
-Em = { e,4 <<g,4 b,4>> <<g,4 b,4>> }
-G  = { g,4 <<b,4 d4>>  <<b,4 d4>>  }
-Am = { a,4 <<c4  e4>>  <<c4  e4>>  }
+CI  = { c4  <<e4  g4>>  <<e4  g4>>  }
+DmI = { d4  <<f4  a4>>  <<f4  a4>>  }
+EI  = { e4  <<gs4 b4>>  <<gs4 b4>>  }
+EmI = { e,4 <<g,4 b,4>> <<g,4 b,4>> }
+GI  = { g,4 <<b,4 d4>>  <<b,4 d4>>  }
+AmI = { a,4 <<c4  e4>>  <<c4  e4>>  }
+
+AmII = { <a, c e>2.\arpeggio }
 
 \score {
   \new PianoStaff <<
@@ -28,29 +30,35 @@ Am = { a,4 <<c4  e4>>  <<c4  e4>>  }
       \key c \major
       \time 3/4
       
-      e'4.^1  f'8^2  e'4^1          | c''2^5         a'4^3        | b'4.^4         c''8^5 b'8^4  a'8^3  | e'2.^1  | d'4.^1  e'8^2  d'4^1         | b'4^5  a'4^4         d'4^1       | e'4^2     gs'4^3     b'4^5         | a'2.^4  | \break
-      a'4^1   bf'4^2 a'4^1          | a''2^5         e''4^2       | f''4.^3        g''8^4 f''8^3 d''8^1 | e''2.^2 | e''4.^3 c''8^1 d''8^2 e''8^3 | d''2^2               c''4^1      | b'4^2     e'4^1      e''8^5 d''8^4 | a'2.^1  | \break
-      a''4.^5 e''8^2 e''8^2  f''8^3 | f''4.^3 d''8^2 a'8^1 d''8^2 | g''4^4  g''8^4 a''8^5 g''8^4 a''8^5 | e''2.^2 | e''4.^5 d''8^4 c''8^3 b'8^2  | e'4^1  d''8^5 c''8^4 b'8^3 a'8^2 | b'8^1 b'8 b'8 e''8^3 e''8   d''8^2 | e''2.^3 | \break
-      a''4.^3 b''8^4 c'''8^5 b''8^4 | f''4.^1 d''8^2 a'8^1 d''8^2 | g''4^3  a''4^4        b''4^5        | e''2.^1 | e''4.^3 c''8^1 d''8^2 e''8^3 | d''2^2               c''4^1      | b'4^2     e'4^1      e''8^5 d''8^4 | a'2.^1~ | \break
-      a'2.~                         | a'2.                        | \bar "|."
+      e'4.^1 f'8  e'4 | c''2^5 a'4    | b'4.  c''8 b'8  a'8  | e'2.  | d'4.^1  e'8  d'4       | b'4^5  a'4  d'4  | e'4   gs'4  b'4         | a'2.   | \break
+      a'4^1  bf'4 a'4 | a''2^5 e''4^2 | f''4. g''8 f''8 d''8 | e''2. | e''4.^3 c''8 d''8 e''8 | d''2        c''4 | b'4^2 e'4^1 e''8^5 d''8 | a'2.^1 | \break
+      
+      a''4.^5 e''8 e''8  f''8 | f''4. d''8^2 a'8^1 d''8 | g''4^4  g''8 a''8 g''8 a''8 | e''2.^2 | e''4.^5 d''8 c''8 b'8  | e'4^1 d''8^5 c''8 b'8 a'8 | b'8^1 b'8 b'8 e''8^3 e''8   d''8^2 | e''2.   | \break
+      a''4.^3 b''8 c'''8 b''8 | f''4. d''8^2 a'8^1 d''8 | g''4^3  a''4      b''4      | e''2.^1 | e''4.^3 c''8 d''8 e''8 | d''2              c''4    | b'4^2     e'4^1      e''8^5 d''8   | a'2.^1~ | \break
+      
+      a'2.~ | a'2. | \bar "|."
     }
     \new Staff {
       \clef bass
       \key c \major
       \time 3/4
       
-      \E  | \Am        | \E  | \E | \Dm | \Dm | \E | \Am |
-      \Am | \Am        | \Dm | \E | \Am | \E  | \E | \Am |
-      \Am | \Dm        | \G  | \C | \E  | \E  | \E | \E  |
-      \Am | \Dm        | \G  | \C | \C  | \E  | \E | \Am |
-      \Em | <a, c e>2. |
+      \EI  | \AmI | \EI  | \EI | \DmI | \DmI | \EI | \AmI |
+      \AmI | \AmI | \DmI | \EI | \AmI | \EI  | \EI | \AmI |
+      
+      \AmI | \DmI | \GI | \CI | \EI | \EI | \EI | \EI  |
+      \AmI | \DmI | \GI | \CI | \CI | \EI | \EI | \AmI |
+      
+      \EmI | \AmII |
     }
     \chords {
-      e   | a:m | e   | e | d:m | d:m | e | a:m |
-      a:m | a:m | d:m | e | a:m | e   | e | a:m |
-      a:m | d:m | g   | c | e   | e   | e | e   |
-      a:m | d:m | g   | c | c   | e   | e | a:m |
-      e:m | a:m |
+      e2.   | a2.:m | e2.   | e2. | d2.:m | d2.:m | e2. | a2.:m |
+      a2.:m | a2.:m | d2.:m | e2. | a2.:m | e2.   | e2. | a2.:m |
+      
+      a2.:m | d2.:m | g2. | c2. | e2. | e2. | e2. | e2.   |
+      a2.:m | d2.:m | g2. | c2. | c2. | e2. | e2. | a2.:m |
+      
+      e2.:m | a2.:m |
     }
   >>
   \layout {}
