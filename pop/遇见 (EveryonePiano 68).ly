@@ -37,13 +37,13 @@ GIV  = { g,8 d8 g8 d8 }
       \key c \major
       \time 4/4
       
-      r2 r4  g''8^5 e''8(   | e''4) g''8 d''8(    d''4)  e''8  d''8( | d''8) c''2  r8 c''8^3 b'8 | a'8 b'8 c''8 b'8( b'8) c''8 d''8 e''8( | \break
-      e''2.) g''8^2 e''8^1( | e''4) g''8 d'''8^5( d'''4) c'''8 b''8( | b''8) c'''2 r8 c''8^3 b'8 | a'8 b'8 c''8 b'8( b'8) c''8 d''4       | \break
+      r2 r4 g''8^5 e''8~   | e''4 g''8 d''8~    d''4  e''8  d''8~ | d''8 c''2  r8 c''8^3 b'8 | a'8 b'8 c''8 b'8~ b'8 c''8 d''8 e''8~ | \break
+      e''2. g''8^2 e''8^1~ | e''4 g''8 d'''8^5~ d'''4 c'''8 b''8~ | b''8 c'''2 r8 c''8^3 b'8 | a'8 b'8 c''8 b'8~ b'8 c''8 d''4       | \break
 
-      c''2        r8 g''8^1 a''8 b''8 | c'''4 b''8   c'''8 b''8  a''8  g''8  a''8(  | a''8)  g''4.   r8 c''8^1 d''8 e''8 | f''4 e''8 f''8 g''8 c''8 d''8 e''8( | \break
-      e''8) e''4. r8 g''8^1 a''8 b''8 | c'''4 b''8^2 c'''8 d'''8 c'''8 d'''8 e'''8( | e'''8) g''4.^1 r8 c''8^2 d''8 e''8 | f''4 e''8 f''8 e''8 d''4      c''8  | \break
+      c''2       r8 g''8^1 a''8 b''8 | c'''4 b''8   c'''8 b''8  a''8  g''8  a''8~  | a''8  g''4.   r8 c''8^1 d''8 e''8 | f''4 e''8 f''8 g''8 c''8 d''8 e''8~ | \break
+      e''8 e''4. r8 g''8^1 a''8 b''8 | c'''4 b''8^2 c'''8 d'''8 c'''8 d'''8 e'''8~ | e'''8 g''4.^1 r8 c''8^2 d''8 e''8 | f''4 e''8 f''8 e''8 d''4      c''8  | \break
       
-      b'8 c''4.( c''2) | \bar "|."
+      b'8 c''4.~ c''2~ | \bar "|."
     }
     \new Staff {
       \clef bass
@@ -69,39 +69,5 @@ GIV  = { g,8 d8 g8 d8 }
     }
   >>
   \layout {}
-}
-
-\score {
-  \new PianoStaff \with {
-    instrumentName = "Piano"
-  } <<
-    \new Staff {
-      \tempo 4 = 88
-      \clef treble
-      \key c \major
-      \time 4/4
-      
-      r2 r4  g''8 e''8( | e''4) g''8 d''8(  d''4)  e''8  d''8( | d''8) c''2  r8 c''8 b'8 | a'8 b'8 c''8 b'8( b'8) c''8 d''8 e''8( | \break
-      e''2.) g''8 e''8( | e''4) g''8 d'''8( d'''4) c'''8 b''8( | b''8) c'''2 r8 c''8 b'8 | a'8 b'8 c''8 b'8( b'8) c''8 d''4       | \break
-
-      c''2        r8 g''8 a''8 b''8 | c'''4 b''8 c'''8 b''8  a''8  g''8  a''8(  | a''8)  g''4. r8 c''8 d''8 e''8 | f''4 e''8 f''8 g''8 c''8 d''8 e''8( | \break
-      e''8) e''4. r8 g''8 a''8 b''8 | c'''4 b''8 c'''8 d'''8 c'''8 d'''8 e'''8( | e'''8) g''4. r8 c''8 d''8 e''8 | f''4 e''8 f''8 e''8 d''4      c''8  | \break
-      
-      b'8 c''4.( c''2) | \bar "|."
-    }
-    \new Staff {
-      \clef bass
-      \key c \major
-      \time 4/4
-      
-      r1   | \CI \GI | \AmI | \FI   \GII |
-      \CII | \CI \GI | \AmI | \FIII \GIV |
-      
-      \CII | \FII \GIII | \CII             | \DI \GII |
-      \CII | \FII \GIII | c8 g8 b,8 g8 a,2 | \DI \GII |
-      
-      \CII |
-    }
-  >>
   \midi {}
 }
