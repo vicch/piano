@@ -86,59 +86,5 @@ Am     = { a,8 e8  a8  c'8  a8  e8  }
     }
   >>
   \layout {}
-}
-
-\score {
-  \new PianoStaff \with {
-    instrumentName = "Piano"
-  } <<
-    \new Staff {
-      \tempo 4 = 96
-      \clef treble
-      \key c \major
-      \time 6/8
-      
-      e''2 e''8 d''8 | c''4. e''4 a''8 | g''8 d''4.~ d''4~ | d''4. r4. | \break
-      c''2 c''8 b'8  | a'4.  c''4 f''8 | e''2.~            | e''4. r4. | \break
-      
-      d''4. a''4 g''8 | a''2       g''8 a''8 | b''4. g''4 e''8 | g''4.~ g''4 e''8 | \break
-      a''4. g''4.     | f''8 e''4. d''8 e''8 | f''2.~          | f''4.  r4.       | \break
-      
-      e''2 e''8 d''8 | c''4. e''4 a''8 | g''8 d''4.~ d''4~ | d''4. r4. | \break
-      c''2 c''8 b'8  | a'4.  c''4 f''8 | e''2.~            | e''4. r4. | \break
-      
-      d''4.     a''4 g''8 | a''2 g''8 a''8 | b''4. g''4 e''8 | g''4.~ g''4 e''8 | \break
-      a''4 f''8 d''4 c''8 | b'4. d''4.     | c''2.~          | c''4.  r4  c''8  | \bar "|." \break
-      
-      a'4 a'8 c''4 c''8 | f''4 f''8 a''4 a''8 | g''8 e''4~ e''4.~   e''4.  r4   c''8 | \break
-      b'4 b'8 d''4 d''8 | f''4.     a''4 a''8 | g''2.~              g''4.~ g''4 a''8 | \break
-      
-      b''4. g''4 e''8 | g''2       g''8 a''8 | b''4. g''4 e''8 | g''4.~ g''4 e''8 | \break
-      a''4. g''4.     | f''8 e''4. d''8 e''8 | f''2.~          | f''4.  r4.       | \break
-    }
-    \new Staff {
-      \clef bass
-      \key c \major
-      \time 6/8
-      
-      \C  | \C  | \G  | \G  |
-      \Am | \Am | \Em | \Em |
-      
-      \Dm | \Dm | \Em     | \A      |
-      \Dm | \Dm | \Gseven | \Gseven |
-      
-      \C  | \C  | \G  | \G  |
-      \Am | \Am | \Em | \Em |
-      
-      \Dm | \Dm     | \Em | \A |
-      \Dm | \Gseven | \C  | \C |
-      
-      \F | \F | \C | \C |
-      \G | \G | \C | \C |
-      
-      \Em | \Em | \A      | \A      |
-      \Dm | \Dm | \Gseven | \Gseven |
-    }
-  >>
   \midi {}
 }
