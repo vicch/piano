@@ -13,14 +13,15 @@
 
 \markup \vspace #1.5
 
-CI   = { c8  g8  c'8 e'8 g'2  }
-CII  = { c,8 g,8 c8  e8  g2   }
-DmI  = { d,8 a,8 d8  f8  a2   }
-EmI  = { e,8 b,8 e8  g8  b2   }
-FI   = { f8  c'8 f'8 a'8 c''2 }
-FII  = { f,8 c8  f8  a8  c'2  }
-GI   = { g,8 d8  g8  b8  d'2  }
-AmI  = { a,8 e8  a8  c'8 e'2  }
+"C58ac"  = { c8  g8  c'8 e'8 g'2  }
+"Dm58ac" = { d,8 a,8 d8  f8  a2   }
+"Em58ac" = { e,8 b,8 e8  g8  b2   }
+"F58ac"  = { f8  c'8 f'8 a'8 c''2 }
+"G58ac"  = { g,8 d8  g8  b8  d'2  }
+"Am58ac" = { a,8 e8  a8  c'8 e'2  }
+
+"C58ac," = { c,8 g,8 c8  e8  g2  }
+"F58ac," = { f,8 c8  f8  a8  c'2 }
 
 \score {
   \new PianoStaff \with {
@@ -53,24 +54,23 @@ AmI  = { a,8 e8  a8  c'8 e'2  }
       \key c \major
       \time 4/4
       
-      \CI | \AmI | \FI |
+      \"C58ac" | \"Am58ac" | \"F58ac" |
       
-      \GI | \CI  | \EmI | \FII |
-      \GI | \CII | \AmI | \DmI |
-      \GI | \CII | \EmI | \FII |
-      \GI | \CII | \AmI | \DmI |
+      \"G58ac" | \"C58ac"  | \"Em58ac" | \"F58ac," |
+      \"G58ac" | \"C58ac," | \"Am58ac" | \"Dm58ac" |
+      \"G58ac" | \"C58ac," | \"Em58ac" | \"F58ac," |
+      \"G58ac" | \"C58ac," | \"Am58ac" | \"Dm58ac" |
       
-      \CII | \CII | \EmI | \FII |
-      \AmI | \CII | \EmI | \FII |
+      \"C58ac," | \"C58ac," | \"Em58ac" | \"F58ac," |
+      \"Am58ac" | \"C58ac," | \"Em58ac" | \"F58ac," |
       
-      \GI  | \CII | \EmI | \FII |
-      \GI  | \CII | \AmI | \DmI |
-      \CII | \CI  | \AmI | \DmI |
+      \"G58ac"  | \"C58ac," | \"Em58ac" | \"F58ac," |
+      \"G58ac"  | \"C58ac," | \"Am58ac" | \"Dm58ac" |
+      \"C58ac," | \"C58ac"  | \"Am58ac" | \"Dm58ac" |
       
       c,8 g,8 c8 e8 g8 c'8 e'8 g'8 | <c, c>1 |
     }
     \chords {
-      
       c1 | a1:m | f1 |
       
       g1 | c1 | e1:m | f1   |
