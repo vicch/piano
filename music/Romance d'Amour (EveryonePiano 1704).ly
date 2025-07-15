@@ -9,10 +9,11 @@
 
 \markup \vspace #1.5
 
-A  = { a,8 e8  a8 e8  cs'4 }
-Am = { a,8 e8  a8 e8  c'4  }
-Dm = { d,8 a,8 d8 a,8 f4   }
-E  = { e,8 b,8 e8 b,8 gs4  }
+"E15850" = { e,8 b,8 e8 b,8 gs4  }
+"A15850" = { a,8 e8  a8 e8  cs'4 }
+
+"D1585b0" = { d,8 a,8 d8 a,8 f4  }
+"A1585b0" = { a,8 e8  a8 e8  c'4 }
 
 \score {
   \new PianoStaff \with {
@@ -35,10 +36,10 @@ E  = { e,8 b,8 e8 b,8 gs4  }
       \time 3/4
       
       \magnifyMusic 1 {
-        \Am | \Am | \Am | \Am |
-        \A  | \A  | \Dm | \Dm |
-        \E  | \E  | \Am | \Am |
-        \E  | \E  | \Am | <a, e a>2. |
+        \"A1585b0" | \"A1585b0" | \"A1585b0" | \"A1585b0" |
+        \"A15850"  | \"A15850"  | \"D1585b0" | \"D1585b0" |
+        \"E15850"  | \"E15850"  | \"A1585b0" | \"A1585b0" |
+        \"E15850"  | \"E15850"  | \"A1585b0" | <a, e a>2. |
       }
     }
     \chords {
