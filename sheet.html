@@ -502,7 +502,7 @@
             }
 
             const html = results.slice(0, 10).map(sheet => `
-                <div class="search-result" onclick="openSheet('${sheet.url}')">
+                <div class="search-result" onclick="openSheet('${encodeURIComponent(sheet.url)}')">
                     <span class="sheet-name">${sheet.name}</span>
                     <span class="category-name">${sheet.category}</span>
                 </div>
