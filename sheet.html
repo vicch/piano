@@ -502,7 +502,7 @@
             }
 
             const html = results.slice(0, 10).map(sheet => `
-                <div class="search-result" onclick="openSheet('${encodeURIComponent(sheet.url)}')">
+                <div class="search-result" data-url="${sheet.url}">
                     <span class="sheet-name">${sheet.name}</span>
                     <span class="category-name">${sheet.category}</span>
                 </div>
@@ -510,6 +510,12 @@
 
             searchDropdown.innerHTML = html;
             searchDropdown.classList.add('show');
+
+            document.querySelectorAll('.search-result').forEach(el => {
+                el.addEventListener('click', () => {
+                    openSheet(el.dataset.url);
+                });
+            });
         }
 
         function openSheet(url) {
