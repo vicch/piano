@@ -38,12 +38,12 @@ GIII = { g8  b8 d'8 g8 }
       \key c \major
       \time 4/4
       
-      \"C51'5" \CII | \FI \CII | \"C51'5" \CII | \GI \GII        |
-      \"C51'5" \CII | \FI \CII | \GI \GII | \"C51'5" c8 d8 e8 g8 |
+      \CI \CII | \FI \CII | \CI \CII | \GI \GII        |
+      \CI \CII | \FI \CII | \GI \GII | \CI c8 d8 e8 g8 |
       
-      \FI \FI | \GIII \"C51'5" | \FI \CII | \GI \GII |
+      \FI \FI | \GIII \CI | \FI \CII | \GI \GII |
       
-      \"C51'5" \CII | \FI \CII | \GI \GII | c8 g8 c'8 e'8 g'2 |
+      \CI \CII | \FI \CII | \GI \GII | c8 g8 c'8 e'8 g'2 |
     }
     \chords {
       c2 c2 | f2 c2 | c2 c2 | g2 g2 |
