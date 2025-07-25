@@ -14,6 +14,10 @@
 "FBG"  = { \tuplet 3/2 { fs'8 b8  g8  } }
 "GBG"  = { \tuplet 3/2 { g'8  b8  g8  } }
 
+"EBGs"  = { \tuplet 3/2 { e'8   b8  gs8 } }
+"FsBGs" = { \tuplet 3/2 { fs'8  b8  gs8 } }
+"GsBGs" = { \tuplet 3/2 { gs'8  b8  gs8 } }
+
 "GEB" = { \tuplet 3/2 { g'8 e'8 b8 } }
 "AEB" = { \tuplet 3/2 { a'8 e'8 b8 } }
 "BEB" = { \tuplet 3/2 { b'8 e'8 b8 } }
@@ -33,13 +37,19 @@
 "FBA" = { \tuplet 3/2 { fs'8 b8 a8 } }
 "GBA" = { \tuplet 3/2 { g'8  b8 a8 } }
 
+"DAFs"  = { \tuplet 3/2 { d'8  a8 fs8 } }
+"DsAFs" = { \tuplet 3/2 { ds'8 a8 fs8 } }
+"EAFs"  = { \tuplet 3/2 { e'8  a8 fs8 } }
+
 "E158"  = { e,4  b,4 e4 }
 "A158"  = { a,4  e4  a4 }
-"B158"  = { b,4  fs4 b4 }
-"B,158" = { b,,4 fs4 b4 }
+"B158-1" = { b,4  fs4  b4  }
+"B158-2" = { b,,4 fs4  b4  }
+"B158-3" = { b,,4 fs,4 b,4 }
 
 "B135"  = { b,4  ds4 fs4 }
 "B,135" = { b,,4 ds4 fs4 }
+"B513"  = { fs,4 b,4 ds4 }
 
 "Eb351" = { g,4 b,4 e4  }
 "E15b3" = { e4  b,4 g,4 }
@@ -61,22 +71,33 @@
         \"BFD"  \"CFD"  \"BFD"  | \"DFD"  \"CFD" \"BFD" | \"BEB"  \"AEB"  \"GEB"  | \"GBG"  \"FBG" \"EBG4" | \break
         \"FBA"  \"FBA"  \"FBA"  | \"FBA"  \"GBA" \"FBA" | \"EBG4" \"EBG4" \"EBG4" | e'2.                   | \break
       }
+      
+      \repeat volta 2 {
+        \key e \major
+        
+        \"GsBGs" \"GsBGs" \"GsBGs" | \"GsBGs" \"FsBGs" \"EBGs" | \"EAFs" \"DsAFs" \"DsAFs" | \"DsAFs" \"DAFs" \"DsAFs" | \break
+      }
     }
     \new Staff {
       \clef bass
       \key g \major
       \time 3/4
       
-      \"E158" | \"E158"  | \"E158"  | \"E158"  |
-      \"E158" | \"E158"  | \"A158"  | \"Ab351" |
-      \"B158" | \"B,158" | \"E158"  | \"Eb351" |
-      \"B135" | \"B,135" | \"E15b3" | e,2.     |
+      \"E158"   | \"E158"   | \"E158"  | \"E158"  |
+      \"E158"   | \"E158"   | \"A158"  | \"Ab351" |
+      \"B158-1" | \"B158-2" | \"E158"  | \"Eb351" |
+      \"B135"   | \"B,135"  | \"E15b3" | e,2.     |
+      
+      \key e \major
+      \"E158" | \"E158" | \"B513" | \"B158-3" |
     }
     \chords {
       e2. | e2. | e2.   | e2.   |
       e2. | e2. | a2.   | a2.:m |
       b2. | b2. | e2.   | e2.:m |
       b2. | b2. | e2.:m | r2.   |
+      
+      e2. | e2. | b2. | b2. |
     }
   >>
   \layout {}

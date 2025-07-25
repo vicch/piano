@@ -80,6 +80,7 @@
   \context {
     \Staff
     ottavationMarkups = #ottavation-ordinals
+    explicitKeySignatureVisibility = #end-of-line-invisible
   }
 }
 
