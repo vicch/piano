@@ -9,37 +9,37 @@
 
 \markup \vspace #1.5
 
-"EBG4" = { \tuplet 3/2 { e'8  b8  g8  } }
-"EBG5" = { \tuplet 3/2 { e''8 b'8 g'8 } }
-"FBG"  = { \tuplet 3/2 { fs'8 b8  g8  } }
-"GBG"  = { \tuplet 3/2 { g'8  b8  g8  } }
+"EBG4" = { \tuplet 3/2 { e'8  b  g  } }
+"EBG5" = { \tuplet 3/2 { e'' b' g' } }
+"FBG"  = { \tuplet 3/2 { fs' b  g  } }
+"GBG"  = { \tuplet 3/2 { g'  b  g  } }
 
-"EBGs"  = { \tuplet 3/2 { e'8   b8  gs8 } }
-"FsBGs" = { \tuplet 3/2 { fs'8  b8  gs8 } }
-"GsBGs" = { \tuplet 3/2 { gs'8  b8  gs8 } }
+"EBGs"  = { \tuplet 3/2 { e'   b  gs } }
+"FsBGs" = { \tuplet 3/2 { fs'  b  gs } }
+"GsBGs" = { \tuplet 3/2 { gs'  b  gs } }
 
-"GEB" = { \tuplet 3/2 { g'8 e'8 b8 } }
-"AEB" = { \tuplet 3/2 { a'8 e'8 b8 } }
-"BEB" = { \tuplet 3/2 { b'8 e'8 b8 } }
+"GEB" = { \tuplet 3/2 { g' e' b } }
+"AEB" = { \tuplet 3/2 { a' e' b } }
+"BEB" = { \tuplet 3/2 { b' e' b } }
 
-"CGE" = { \tuplet 3/2 { c''8 g'8 e'8 } }
-"DGE" = { \tuplet 3/2 { d''8 g'8 e'8 } }
-"BGE" = { \tuplet 3/2 { b'8  g'8 e'8 } }
+"CGE" = { \tuplet 3/2 { c'' g' e' } }
+"DGE" = { \tuplet 3/2 { d'' g' e' } }
+"BGE" = { \tuplet 3/2 { b'  g' e' } }
 
-"CEC" = { \tuplet 3/2 { c''8 e'8 c'8 } }
-"AEC" = { \tuplet 3/2 { a'8  e'8 c'8 } }
-"BEC" = { \tuplet 3/2 { b'8  e'8 c'8 } }
+"CEC" = { \tuplet 3/2 { c'' e' c' } }
+"AEC" = { \tuplet 3/2 { a'  e' c' } }
+"BEC" = { \tuplet 3/2 { b'  e' c' } }
 
-"CFD" = { \tuplet 3/2 { c''8  fs'8 ds'8 } }
-"DFD" = { \tuplet 3/2 { ds''8 fs'8 ds'8 } }
-"BFD" = { \tuplet 3/2 { b'8   fs'8 ds'8 } }
+"CFD" = { \tuplet 3/2 { c''  fs' ds' } }
+"DFD" = { \tuplet 3/2 { ds'' fs' ds' } }
+"BFD" = { \tuplet 3/2 { b'   fs' ds' } }
 
-"FBA" = { \tuplet 3/2 { fs'8 b8 a8 } }
-"GBA" = { \tuplet 3/2 { g'8  b8 a8 } }
+"FBA" = { \tuplet 3/2 { fs' b a } }
+"GBA" = { \tuplet 3/2 { g'  b a } }
 
-"DAFs"  = { \tuplet 3/2 { d'8  a8 fs8 } }
-"DsAFs" = { \tuplet 3/2 { ds'8 a8 fs8 } }
-"EAFs"  = { \tuplet 3/2 { e'8  a8 fs8 } }
+"DAFs"  = { \tuplet 3/2 { d'  a fs } }
+"DsAFs" = { \tuplet 3/2 { ds' a fs } }
+"EAFs"  = { \tuplet 3/2 { e'  a fs } }
 
 "E158"  = { e,4  b,4 e4 }
 "A158"  = { a,4  e4  a4 }
