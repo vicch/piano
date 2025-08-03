@@ -30,11 +30,11 @@
       \key c \major
       \time 3/4
       
-      \partial 4 a'4 | c''2     d''4 | e''4.       f''8 e''4       | d''2 b'4 | g'4. a'8 b'4                      | c''2           a'4 | a'4.  gs'8 a'4  | b'2 gs'4 |        \break
-      e'2        a'4 | <a'c''>2 d''4 | <c'' e''>4. f''8 <e'' g''>4 | d''2 b'4 | g'4. r8  \tuplet 3/2 { g' a' b' } | <a' c''>4. b'8 a'4 | gs'4. fs'8 gs'4 | a'2.~    | a'2. | \break
+      \partial 4 a'4^1 | c''2^2        d''4 | e''4.           f''8 e''4       | d''2   b'4^2 | g'4. a'8^3 b'4                      | c''2           a'4   | a'4.    gs'8 a'4  | b'2 gs'4 |        \break
+      e'2        a'4   | <a'^1 c''^2>2 d''4 | <c''^1 e''^2>4. f''8 <e'' g''>4 | d''2^1 b'4^3 | g'4. r8    \tuplet 3/2 { g' a' b' } | <a' c''>4. b'8 a'4^3 | gs'4.^3 fs'8 gs'4 | a'2.~    | a'2. | \break
       
-      g''2.      | g''4.        fs''8 e''4 | d''2 b'4 | g'4. a'8 b'4                      | c''2            a'4 | a'4.       gs'8 a'4  | b'2 gs'4 | e'2. | \break
-      <c''g''>2. | <e'' g''> 4. fs''8 e''4 | d''2 b'4 | g'4. r8  \tuplet 3/2 { g' a' b' } | <a' c''> 4. b'8 a'4 | <e' gs'>4. fs'8 gs'4 | a'2.~    | a'2. | \bar "|."
+      g''2.^5    | g''4.        fs''8 e''4 | d''2   b'4^1 | g'4.^2 a'8 b'4                      | c''2            a'4 | a'4.           gs'8 a'4  | b'2 gs'4 | e'2. | \break
+      <c''g''>2. | <e'' g''> 4. fs''8 e''4 | d''2^2 b'4^1 | g'4.^2 r8  \tuplet 3/2 { g' a' b' } | <a' c''> 4. b'8 a'4 | <e'^1 gs'^3>4. fs'8 gs'4 | a'2.~    | a'2. | \bar "|."
     }
     \new Staff {
       \clef bass
