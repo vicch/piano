@@ -7,17 +7,23 @@
 
 \include "../base.ly"
 
+\paper {
+  ragged-last = ##t
+}
+
 \markup \vspace #1.5
 
-CI  = { c8  g8  c'8 d'8 e'8 r8 }
-DmI = { d8  a8  d'8 e'8 f'8 r8 }
-EmI = { e,8 b,8 e8  g8  b8  r8 }
-FI  = { f,8 c8  f8  g8  a8  r8 }
-GI  = { g,8 d8  g8  a8  b8  r8 }
-AmI = { a,8 e8  a8  b8  c'8 r8 }
+"C1589a" = { c8  g8 c'8 d'8 e'8 r8 }
+"D1589a" = { d8  a8 d'8 e'8 f'8 r8 }
+"F1589a" = { f,8 c8 f8  g8  a8  r8 }
+"G1589a" = { g,8 d8 g8  a8  b8  r8 }
+"A1589a" = { a,8 e8 a8  b8  c'8 r8 }
 
-DmII = { d8  a8 d'8 r8 }
-GII  = { g,8 d8 g8  r8 }
+"E158ac" = { e,8 b,8 e8 g8 b8 r8 }
+
+"D158-2" = { d,8 a,8 d8  r8 }
+"D158-3" = { d8  a8  d'8 r8 }
+"G158"   = { g,8 d8  g8  r8 }
 
 \score {
   \new PianoStaff \with {
@@ -41,26 +47,32 @@ GII  = { g,8 d8 g8  r8 }
       d''2.      \A r16 g'16 c''16 d''16 | d''8 e''8 e''2 r16 c''16 d''16 e''16 | d''8 g''8 g''2 r16 g''16 a''16 b''16 | b''8 c'''8 c'''4. d'''8 \tuplet 3/2 { e''' d''' c'''} | \break
       b''2 r8 c'''8 b''8     g''8        | g''8 a''8 a''2 r8        g''16 f''16 | f''8 g''8 g''2 c''8      d''8        | e''8 f''8  f''2         g''8 f''8                     | \break
       
-      e''2.      \A d''16 a'16 c''16 d''16 |
+      e''2.      \A d''16 a'16 c''16 d''16 | d''8 e''8 e''2 r16 c''16 d''16 e''16 | d''8 g''8 g''2 r16 g''16 a''16 b''16 | b''8 c'''8 c'''4. d'''8 \tuplet 3/2 { e''' d''' c'''} | \break
+      b''2 r8 c'''8 b''8       g''8        | g''8 a''8 a''2 r8        g''16 f''16 | f''8 g''8 g''2 c''8      d''8        | e''8 f''4 a'8 c''4      b'4                           | \break
+      
+      c''1 | r1 | \bar "|."
     }
     \new Staff {
       \clef bass
       \key c \major
       \time 4/4
       
-          r4 | \CI r4 | \EmI r4 | \AmI r4 |
-      \GI r4 | \FI r4 | \CI  r4 | \DmI r4 |
+                r4 | \"C1589a" r4 | \"E158ac" r4 | \"A1589a" r4 |
+      \"G1589a" r4 | \"F1589a" r4 | \"C1589a" r4 | \"D1589a" r4 |
       
-      \EmI <g b d'>4 | \CI r4 | \EmI r4 | \AmI r4    |
-      \GI  r4        | \FI r4 | \CI  r4 | \DmII \GII |
+      \"E158ac" <g b d'>4 | \"C1589a" r4 | \"E158ac" r4 | \"A1589a" r4      |
+      \"G1589a" r4        | \"F1589a" r4 | \"C1589a" r4 | \"D158-3" \"G158" |
       
-      \CI r4 | \FI r4 | \CI  r4 | \DmI r4                  |
-      \CI r4 | \FI r4 | \EmI r4 | c8 g8 c'8 d'8 <g c' e'>2 |
+      \"C1589a" r4 | \"F1589a" r4 | \"C1589a" r4 | \"D1589a" r4             |
+      \"C1589a" r4 | \"F1589a" r4 | \"E158ac" r4 | c8 g8 c'8 d'8 <g c' e'>2 |
       
-      \GI r4 | \CI r4 | \EmI r4 | \AmI r4 |
-      \GI r4 | \FI r4 | \CI  r4 | \DmI r4 |
+      \"G1589a" r4 | \"C1589a" r4 | \"E158ac" r4 | \"A1589a" r4 |
+      \"G1589a" r4 | \"F1589a" r4 | \"C1589a" r4 | \"D1589a" r4 |
       
-      \EmI <g b d'>4 |
+      \"E158ac" <g b d'>4 | \"C1589a" r4 | \"E158ac" r4      | \"A1589a" r4           |
+      \"G1589a" r4        | \"F1589a" r4 | \var \"E158ac" r4 | \var \"D158-2" \"G158" |
+      
+      c8 g8 c'8 d'8 e'8 g'8 a'8 b'8 | c''1 |
     }
     \chords {
       
@@ -76,7 +88,10 @@ GII  = { g,8 d8 g8  r8 }
       g2. r4 | c2. r4 | e2.:m r4 | a2.:m r4 |
       g2. r4 | f2. r4 | c2.   r4 | d2.:m r4 |
       
-      e2.:m g4 |
+      e2.:m g4 | c2. r4 | e2.:m r4 | a2.:m r4 |
+      g2.   r4 | f2. r4 | e2.:m r4 | d2:m g2  |
+      
+      r1 | r1 |
     }
   >>
   \layout {}

@@ -104,4 +104,4 @@ C = \sectionLabel \markup { \box "C" }
 D = \sectionLabel \markup { \box "D" }
 E = \sectionLabel \markup { \box "E" }
 
-VAR = _\markup { "*" }
+var = _\markup { "*" }

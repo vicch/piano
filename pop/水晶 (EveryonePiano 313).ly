@@ -64,7 +64,7 @@ AmII  = { a,8 e8  c'2 }
       \key c \major
       \time 3/4
       
-      \CI | \VAR \GII | \AmI | \EmI |
+      \CI | \var \GII | \AmI | \EmI |
       \FI | \CI       | \GI  | \CI  |
       
       \CI  | \EmI | \FI   | \GI   |
