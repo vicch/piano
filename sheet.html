@@ -552,8 +552,9 @@
                         const randomIndex = Math.floor(Math.random() * allSheets.length);
                         const randomSheet = allSheets[randomIndex];
                         
-                        // Populate the search box with the random sheet name
-                        searchBox.value = randomSheet.name;
+                        // Populate the search box with the random sheet name (only text before parenthesis)
+                        const nameBeforeParenthesis = randomSheet.name.split('(')[0].trim();
+                        searchBox.value = nameBeforeParenthesis;
                         
                         // Trigger search to show the result
                         const event = new Event('input', { bubbles: true });
