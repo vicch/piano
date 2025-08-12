@@ -48,7 +48,7 @@
 
         .sheets-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 8px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
             width: 100%;
@@ -67,17 +67,52 @@
         .search-container {
             margin-bottom: 30px;
             position: relative;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
         }
 
         .search-box {
             width: 100%;
             padding: 15px 20px;
             border: 2px solid #e9ecef;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 1rem;
             background: white;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .random-button {
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+            white-space: nowrap;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .random-button:hover {
+            background: #5a67d8;
+            border-color: #5a67d8;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .random-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
         }
 
         .search-box:focus {
@@ -150,7 +185,7 @@
 
         .category {
             margin-bottom: 20px;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
@@ -163,7 +198,7 @@
 
         .category-header {
             background: #f8f9fa;
-            padding: 20px;
+            padding: 15px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -177,7 +212,7 @@
         }
 
         .category-title {
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #495057;
             text-transform: capitalize;
@@ -225,7 +260,6 @@
         .sheet-link:hover {
             background: #e9ecef;
             color: #212529;
-            transform: translateX(5px);
             border-color: #667eea;
         }
 
@@ -284,11 +318,16 @@
 
             .search-container {
                 margin-bottom: 20px;
+                gap: 10px;
             }
 
             .search-box {
                 padding: 12px 15px;
-                font-size: 0.95rem;
+            }
+
+            .random-button {
+                padding: 9px 15px;
+                min-width: 50px;
             }
 
             .search-result {
@@ -312,37 +351,6 @@
                 font-size: 0.95rem;
             }
         }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .header p {
-                font-size: 1rem;
-            }
-
-            .search-box {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-
-            .search-result {
-                padding: 8px 12px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-            }
-
-            .category-title {
-                font-size: 1rem;
-            }
-
-            .sheet-link {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -355,8 +363,11 @@
         <div class="sheets-card">
             <div class="content" id="content">
                 <div class="search-container">
-                    <input type="text" class="search-box" id="searchBox" placeholder="Search for sheet music..." autocomplete="off">
-                    <div class="search-dropdown" id="searchDropdown"></div>
+                    <div class="search-input-wrapper">
+                        <input type="text" class="search-box" id="searchBox" placeholder="Search for sheet music..." autocomplete="off">
+                        <div class="search-dropdown" id="searchDropdown"></div>
+                    </div>
+                    <button class="random-button" id="randomButton">🎲</button>
                 </div>
                 <div class="loading">
                     <div class="spinner"></div>
@@ -390,6 +401,7 @@
                 
                 displaySheets(data);
                 setupSearch();
+                setupRandomButton();
             } catch (error) {
                 console.error('Error loading sheet data:', error);
                 document.getElementById('content').innerHTML = '<p style="text-align: center; color: #6c757d; padding: 40px;">Error loading sheet data. Please try again later.</p>';
@@ -422,6 +434,7 @@
             }
 
             content.innerHTML = searchContainer.outerHTML + html;
+            setupRandomButton(); // Re-setup the random button after DOM update
         }
 
         function setupSearch() {
@@ -486,6 +499,32 @@
                     searchBox.blur();
                 }
             });
+        }
+
+        function setupRandomButton() {
+            const randomButton = document.getElementById('randomButton');
+            const searchBox = document.getElementById('searchBox');
+            
+            if (randomButton && searchBox) {
+                randomButton.addEventListener('click', function() {
+                    if (allSheets.length > 0) {
+                        // Get a random sheet
+                        const randomIndex = Math.floor(Math.random() * allSheets.length);
+                        const randomSheet = allSheets[randomIndex];
+                        
+                        // Populate the search box with the random sheet name (only text before parenthesis)
+                        const nameBeforeParenthesis = randomSheet.name.split('(')[0].trim();
+                        searchBox.value = nameBeforeParenthesis;
+                        
+                        // Trigger search to show the result
+                        const event = new Event('input', { bubbles: true });
+                        searchBox.dispatchEvent(event);
+                        
+                        // Focus the search box to show the dropdown
+                        searchBox.focus();
+                    }
+                });
+            }
         }
 
         function performSearch(query) {
