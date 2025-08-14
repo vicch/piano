@@ -39,7 +39,7 @@
       \key c \major
       \time 4/4
       
-      c2 g,2 | a,2 e,2 | f,2 g,2 | f,2 g,2 | c2 g,2 | a,2 e,2 | f,2 c2 | f,2 g,2 |
+      c2 g,2 | a,2 e,2 | f,2 c2 | f,2 g,2 | c2 g,2 | a,2 e,2 | f,2 c2 | f,2 g,2 |
       
       \"C58a" \"G368" | \"Am58a" \"Em8ac" | \"F58a" \"C358" | \"F58a" \"G58a" |
     }
