@@ -6,11 +6,11 @@
     \set Score.tempoHideNote = ##t
     \override Staff.TimeSignature.stencil = ##f
 
-    \tempo 4 = 96
+    \tempo 4 = 60
     \clef treble
     \key c \major
     
-    \cadenzaOn g'16[ a'16 g'16 f'16] e'8[ c'8] c'8[ g8] c'4 \cadenzaOff
+    \cadenzaOn a'8.[ a'16] c''8[ a'8] g'16[ g'8] e'16[ g'8] \cadenzaOff
   }
   \layout {}
   \midi {}
