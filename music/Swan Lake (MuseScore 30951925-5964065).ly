@@ -37,8 +37,11 @@
       fs''2 b'8 cs''8 d''8 e''8 | fs''4. d''8 fs''4. d''8 | fs''4. b'8 d''8 b'8 fs'8 d''8 | b'2    r8 e''8 d''8 cs''8 | \break
       fs''2 b'8 cs''8 d''8 e''8 | fs''4. d''8 fs''4. d''8 | fs''4. b'8 d''8 b'8 fs'8 d''8 | b'4 r4 r4      b'4        | \break
       
-      cs''4 d''4 e''4 fs''8 g''8 | a''4. g''8 fs''4 g''8 a''8 | b''4. a''8 g''4 a''8 b''8 | cs'''4. b''8 fs''8 d''8 cs''8 b'8   | \break
-      cs''4 d''4 e''4 fs''8 g''8 | a''4. g''8 fs''4 g''8 a''8 | b''4. a''8 g''4 a''8 b''8 | c'''4. g''8  e''4       g''8  c'''8 | \break
+      cs''4 d''4 e''4 fs''8 g''8 | a''4. g''8 fs''4 g''8 a''8 | b''4. a''8 g''4 a''8 b''8                               | cs'''4. b''8  fs''8 d''8 cs''8 b'8  | \break
+      cs''4 d''4 e''4 fs''8 g''8 | a''4. g''8 fs''4 g''8 a''8 | b''4. a''8 g''4 a''8 b''8 | c'''4. g''8 e''4 g''8 c'''8 | cs'''4. gs''8 cs'''4.         fs''8 | \break
+      
+      fs''2 b'8 cs''8 d''8 e''8 | fs''4. d''8 fs''4. d''8 | fs''4. b'8 d''8 b'8 fs'8 d''8 | b'2 r8 e''8 d''8 cs''8 | \break
+      fs''2 b'8 cs''8 d''8 e''8 | fs''4. d''8 fs''4. d''8 | fs''4. b'8 d''8 b'8 fs'8 d''8 | b'2 r2                 | \bar "|."
     }
     \new Staff {
       \clef bass
@@ -50,8 +53,11 @@
       \"B1m35" \"E51m3" | \"B1m35" \"B1m35" | \"B1m35" g8 b8 fs8 as8 | \"B1m35" \"E51m3" |
       \"B1m35" \"E51m3" | \"B1m35" \"B1m35" | \"B1m35" g8 b8 fs8 as8 | \"B1m35" g4 r4    |
       
-      \"A135" \"Em361" | \"Fs1m35" \"Fs1m35" | \"E1m35" \"E1m35" | \"Cs135" \"Fs135" |
-      \"A135" \"Em361" | \"Fs1m35" \"Fs1m35" | \"E1m35" \"E1m35" | \"C135"  \"C135"  |
+      \"A135" \"Em361" | \"Fs1m35" \"Fs1m35" | \"E1m35" \"E1m35"                     | \"Cs135" \"Fs135" |
+      \"A135" \"Em361" | \"Fs1m35" \"Fs1m35" | \"E1m35" \"E1m35" | \"C135"  \"C135"  | \"Cs135" \"Fs135" |
+      
+      \"B1m35" \"E51m3" | \"B1m35" \"B1m35" | \"B1m35" g8 b8 fs8 as8 | \"B1m35" \"E51m3" |
+      \"B1m35" \"E51m3" | \"B1m35" \"B1m35" | \"B1m35" g8 b8 fs8 as8 | \"B1m35" b2       |
     }
     \chords {
       r1 | r1 | b2:m b2:m | b2:m b2:m |
@@ -59,8 +65,11 @@
       b2:m e2:m | b2:m b2:m | b2:m r2 | b2:m e2:m |
       b2:m e2:m | b2:m b2:m | b2:m r2 | b2:m r2   |
       
-      a2 e2:m6 | fs2:m fs2:m | e2:m e2:m | cs2 fs2 |
-      a2 e2:m6 | fs2:m fs2:m | e2:m e2:m | c2  c2  |
+      a2 e2:m6 | fs2:m fs2:m | e2:m e2:m           | cs2 fs2 |
+      a2 e2:m6 | fs2:m fs2:m | e2:m e2:m | c2  c2  | cs2 fs2 |
+      
+      b2:m e2:m | b2:m b2:m | b2:m r2 | b2:m e2:m |
+      b2:m e2:m | b2:m b2:m | b2:m r2 | b2:m r2   |
     }
   >>
   \layout {}
