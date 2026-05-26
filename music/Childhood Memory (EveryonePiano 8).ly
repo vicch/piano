@@ -5,7 +5,7 @@
 #(define sequence   "EveryonePiano 8")
 #(define total-page 4)
 
-\include "../base.ly"
+\include "../template/base.ly"
 
 \paper {
   ragged-last = ##t

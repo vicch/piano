@@ -5,7 +5,7 @@
 #(define sequence   "YouTube M3uD6vPIKEA")
 #(define total-page 2)
 
-\include "../base.ly"
+\include "../template/base.ly"
 
 \markup \vspace #1.5
 

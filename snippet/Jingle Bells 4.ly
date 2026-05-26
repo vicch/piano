@@ -1,5 +1,5 @@
 \version "2.24.3"
-\include "../base_snippet.ly"
+\include "../template/base_snippet.ly"
 
 \score {
   \new Staff {

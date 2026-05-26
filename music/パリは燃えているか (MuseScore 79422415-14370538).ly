@@ -5,7 +5,7 @@
 #(define sequence   "MuseScore 79422415-14370538")
 #(define total-page 1)
 
-\include "../base.ly"
+\include "../template/base.ly"
 
 \markup \vspace #1.5
 

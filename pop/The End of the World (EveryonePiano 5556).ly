@@ -5,7 +5,7 @@
 #(define sequence   "EveryonePiano 5556")
 #(define total-page 3)
 
-\include "../base.ly"
+\include "../template/base.ly"
 
 \markup \vspace #1.5
 

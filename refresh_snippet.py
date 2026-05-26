@@ -1,6 +1,6 @@
 """
 1. Reads snippet config from snippet.json
-2. For each snippet, generate the ./snippet/name.ly file based on template_snippet.ly
+2. For each snippet, generate the ./snippet/name.ly file based on template/template_snippet.ly
 3. Generate the PNG and MP3 files via LilyPond and FluidSynth commands
 4. Clean up intermediate files
 """
@@ -12,7 +12,7 @@ import subprocess
 from pydub import AudioSegment
 
 SNIPPET_CONFIG = 'snippet.json'
-SNIPPET_TEMPLATE = 'template_snippet.ly'
+SNIPPET_TEMPLATE = 'template/template_snippet.ly'
 SNIPPET_DIR = 'snippet'
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'

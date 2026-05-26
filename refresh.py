@@ -9,8 +9,7 @@ from collections import defaultdict
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 
-EXCLUDE_DIRS = ['piano', 'snippet']
-EXCLUDE_FILES = ['base.ly', 'base_snippet.ly', 'template.ly', 'template_snippet.ly']
+EXCLUDE_DIRS = ['piano', 'snippet', 'template']
 
 SHEET_JSON = 'sheet.json'
 
@@ -20,7 +19,7 @@ def refresh():
     for path, dirs, files in os.walk(os.getcwd()):
         dirs[:] = [d for d in dirs if not d.startswith('.') and d not in EXCLUDE_DIRS]  # Skip dirs starting with "."
         for file in files:
-            if file.endswith('.ly') and file not in EXCLUDE_FILES:
+            if file.endswith('.ly'):
                 name = os.path.splitext(file)[0]
                 refresh_sheet(path, name)
 
