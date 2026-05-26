@@ -10,7 +10,7 @@ src/*.egg-info/
 dist/
 build/
 
-work/
+output/
 *.wav
 *.mp3
 *.mid

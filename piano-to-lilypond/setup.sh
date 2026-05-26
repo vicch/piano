@@ -32,4 +32,4 @@ fi
 echo ""
 echo "Setup complete."
 echo "  1. Edit .env and set GOOGLE_API_KEY"
-echo "  2. Run: uv run piano-to-lilypond \"https://youtube.com/watch?v=...\" --output score.ly"
+echo "  2. Run: uv run piano-to-lilypond \"https://youtube.com/watch?v=...\" --title \"Song Title\""

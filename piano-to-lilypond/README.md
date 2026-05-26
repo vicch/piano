@@ -32,27 +32,28 @@ Edit `.env` and set `GOOGLE_API_KEY`.
 
 ## Usage
 
-Full pipeline:
+Full pipeline (`--title` uses `output/<title>/` for all artifacts and the `.ly` file):
 
 ```bash
 uv run piano-to-lilypond "https://www.youtube.com/watch?v=VIDEO_ID" \
-  --output out/score.ly \
-  --work-dir work/run1
-```
-
-Run individual steps:
-
-```bash
-uv run piano-to-lilypond "URL" --steps extract
-uv run piano-to-lilypond "URL" --steps transcribe --work-dir work/run1
-uv run piano-to-lilypond "URL" --steps musicxml --work-dir work/run1
-uv run piano-to-lilypond "URL" --steps lilypond --work-dir work/run1 --output out/score.ly
+  --title "My Song Title"
 ```
 
 Resume after interruption (skip existing artifacts):
 
 ```bash
-uv run piano-to-lilypond "URL" --work-dir work/run1 --output out/score.ly --resume
+uv run piano-to-lilypond "https://www.youtube.com/watch?v=VIDEO_ID" \
+  --title "My Song Title" \
+  --resume
+```
+
+Run individual steps (same `--title` for paths):
+
+```bash
+uv run piano-to-lilypond "URL" --title "My Song Title" --steps extract
+uv run piano-to-lilypond "URL" --title "My Song Title" --steps transcribe
+uv run piano-to-lilypond "URL" --title "My Song Title" --steps musicxml
+uv run piano-to-lilypond "URL" --title "My Song Title" --steps lilypond
 ```
 
 Options:
@@ -65,7 +66,7 @@ Options:
 Compile output (requires LilyPond installed):
 
 ```bash
-lilypond out/score.ly
+lilypond output/My-Song-Title/My-Song-Title.ly
 ```
 
 ## First run: model download
@@ -82,9 +83,8 @@ Use a short solo piano clip (under 2 minutes):
 
 ```bash
 uv run piano-to-lilypond "https://www.youtube.com/watch?v=SHORT_PIANO_CLIP" \
-  --output out/test.ly \
-  --work-dir work/smoke
-lilypond out/test.ly   # optional
+  --title "Smoke Test"
+lilypond output/Smoke-Test/Smoke-Test.ly   # optional
 ```
 
 ## Tests

@@ -25,17 +25,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("url", help="YouTube video URL")
     parser.add_argument(
-        "--output",
-        "-o",
-        type=Path,
-        default=Path("score.ly"),
-        help="Output LilyPond file path (default: score.ly)",
-    )
-    parser.add_argument(
-        "--work-dir",
-        type=Path,
-        default=Path("work/default"),
-        help="Directory for intermediate artifacts (default: work/default)",
+        "--title",
+        "-t",
+        required=True,
+        help="Song title; artifacts and score go under output/<title>/",
     )
     parser.add_argument(
         "--quantize",
@@ -93,7 +86,11 @@ def main(argv: list[str] | None = None) -> int:
         gemini_model=args.gemini_model,
     )
 
-    paths = PipelinePaths.from_work_dir(args.work_dir.resolve(), args.output.resolve())
+    paths = PipelinePaths.from_title(args.title)
+    paths = PipelinePaths.from_project_dir(
+        paths.work_dir.resolve(),
+        paths.output_path.resolve(),
+    )
 
     try:
         run_pipeline(
