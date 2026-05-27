@@ -34,6 +34,8 @@ class PipelinePaths:
     work_dir: Path
     audio_path: Path
     midi_path: Path
+    quantized_midi_path: Path
+    quantize_meta_path: Path
     musicxml_path: Path
     chunks_dir: Path
     lilypond_chunks_dir: Path
@@ -60,6 +62,8 @@ class PipelinePaths:
             work_dir=project_dir,
             audio_path=project_dir / "audio.wav",
             midi_path=project_dir / "transcription.mid",
+            quantized_midi_path=project_dir / "transcription.quantized.mid",
+            quantize_meta_path=project_dir / "transcription.quantized.meta.json",
             musicxml_path=project_dir / "structured.musicxml",
             chunks_dir=chunks_dir,
             lilypond_chunks_dir=lilypond_chunks_dir,

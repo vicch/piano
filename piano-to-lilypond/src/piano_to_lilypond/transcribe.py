@@ -17,21 +17,35 @@ class TranscriptionBackend(Protocol):
 class PianoTranscriptionBackend:
     name = "piano"
 
-    def __init__(self, device: str | None = None) -> None:
+    def __init__(
+        self,
+        device: str | None = None,
+        *,
+        onset_threshold: float | None = None,
+        frame_threshold: float | None = None,
+    ) -> None:
         self.device = device or resolve_torch_device()
+        self.onset_threshold = onset_threshold
+        self.frame_threshold = frame_threshold
+
+    def _make_transcriptor(self, checkpoint_path: str):
+        from piano_transcription_inference import PianoTranscription
+
+        t = PianoTranscription(device=self.device, checkpoint_path=checkpoint_path)
+        if self.onset_threshold is not None:
+            t.onset_threshold = float(self.onset_threshold)
+        if self.frame_threshold is not None:
+            t.frame_threshold = float(self.frame_threshold)
+        return t
 
     def transcribe(self, audio_path: Path, midi_path: Path) -> dict:
         import librosa
-        import torch
-        from piano_transcription_inference import PianoTranscription, sample_rate
+        from piano_transcription_inference import sample_rate
 
         audio, _ = librosa.load(str(audio_path), sr=sample_rate, mono=True)
         checkpoint_path = str(ensure_piano_checkpoint())
         try:
-            transcriptor = PianoTranscription(
-                device=self.device,
-                checkpoint_path=checkpoint_path,
-            )
+            transcriptor = self._make_transcriptor(checkpoint_path)
             result = transcriptor.transcribe(audio, str(midi_path))
         except RuntimeError as exc:
             # Some PyTorch ops can be unsupported on MPS depending on version/model.
@@ -40,10 +54,7 @@ class PianoTranscriptionBackend:
                 "mps" in str(exc).lower() or "not implemented" in str(exc).lower()
             ):
                 self.device = "cpu"
-                transcriptor = PianoTranscription(
-                    device=self.device,
-                    checkpoint_path=checkpoint_path,
-                )
+                transcriptor = self._make_transcriptor(checkpoint_path)
                 result = transcriptor.transcribe(audio, str(midi_path))
             else:
                 raise
@@ -88,9 +99,19 @@ class BasicPitchBackend:
         }
 
 
-def get_backend(name: str, device: str | None = None) -> TranscriptionBackend:
+def get_backend(
+    name: str,
+    device: str | None = None,
+    *,
+    onset_threshold: float | None = None,
+    frame_threshold: float | None = None,
+) -> TranscriptionBackend:
     if name == "piano":
-        return PianoTranscriptionBackend(device=device)
+        return PianoTranscriptionBackend(
+            device=device,
+            onset_threshold=onset_threshold,
+            frame_threshold=frame_threshold,
+        )
     if name == "basic-pitch":
         return BasicPitchBackend()
     raise ValueError(f"Unknown transcription backend: {name!r}. Use 'piano' or 'basic-pitch'.")
@@ -101,9 +122,20 @@ def transcribe_audio(
     midi_path: Path,
     meta_path: Path,
     backend_name: str = "piano",
+    *,
+    onset_threshold: float | None = None,
+    frame_threshold: float | None = None,
 ) -> dict:
-    backend = get_backend(backend_name)
+    backend = get_backend(
+        backend_name,
+        onset_threshold=onset_threshold,
+        frame_threshold=frame_threshold,
+    )
     meta = backend.transcribe(audio_path, midi_path)
+    if onset_threshold is not None:
+        meta["onset_threshold"] = onset_threshold
+    if frame_threshold is not None:
+        meta["frame_threshold"] = frame_threshold
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     meta_path.write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     return meta
