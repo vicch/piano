@@ -54,11 +54,14 @@ def run_pipeline(
                 backend_name=config.transcription_backend,
                 onset_threshold=config.onset_threshold,
                 frame_threshold=config.frame_threshold,
+                desustain_window=config.desustain_window,
             )
             print(
                 f"  → {paths.midi_path} (backend={meta['backend']}, device={meta['device']}, "
                 f"sensitivity={config.sensitivity}: "
-                f"onset={config.onset_threshold}, frame={config.frame_threshold})",
+                f"onset={config.onset_threshold}, frame={config.frame_threshold}, "
+                f"desustain={config.desustain_window}st, "
+                f"truncated={meta.get('notes_truncated', 0)})",
                 file=sys.stderr,
             )
 

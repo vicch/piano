@@ -9,12 +9,16 @@ from dotenv import load_dotenv
 DEFAULT_CHUNK_SECONDS = 20
 DEFAULT_QUANTIZE_SUBDIV = 4  # subdivisions per beat for tempo-snap (4 = 1/16)
 
-# Transcription sensitivity presets. Each level bundles four knobs that
-# together control how aggressively the model captures notes from the audio:
+# Transcription sensitivity presets. Each level bundles knobs that together
+# control how aggressively the model captures notes from the audio:
 #   - onset_threshold:  note-onset confidence (library default 0.3)
 #   - frame_threshold:  per-frame note-active probability (library default 0.1)
 #   - min_velocity:     drop quantized notes below this MIDI velocity
 #   - min_note_ms:      drop quantized notes shorter than this many ms
+#   - desustain_window: clip an over-sustained note's offset to the onset of
+#                       the next note within N semitones (hand-reach). 0=off.
+#                       Reduces accumulating-chord artifact (C → CE → CEG) at
+#                       the cost of detail. Tune manually per preset to enable.
 # Lower sensitivity = stricter thresholds = fewer (more confident) notes,
 # better for YouTube clips with sound effects, voiceovers, or reverb.
 SENSITIVITY_PRESETS: dict[str, dict[str, float | int]] = {
@@ -23,18 +27,21 @@ SENSITIVITY_PRESETS: dict[str, dict[str, float | int]] = {
         "frame_threshold": 0.4,
         "min_velocity": 30,
         "min_note_ms": 60,
+        "desustain_window": 0,
     },
     "medium": {
         "onset_threshold": 0.5,
         "frame_threshold": 0.3,
         "min_velocity": 20,
         "min_note_ms": 40,
+        "desustain_window": 0,
     },
     "high": {
         "onset_threshold": 0.35,
         "frame_threshold": 0.15,
         "min_velocity": 5,
         "min_note_ms": 20,
+        "desustain_window": 0,
     },
 }
 DEFAULT_SENSITIVITY = "medium"
@@ -71,6 +78,10 @@ class Config:
     @property
     def min_note_ms(self) -> int:
         return int(SENSITIVITY_PRESETS[self.sensitivity]["min_note_ms"])
+
+    @property
+    def desustain_window(self) -> int:
+        return int(SENSITIVITY_PRESETS[self.sensitivity]["desustain_window"])
 
     @classmethod
     def load(
