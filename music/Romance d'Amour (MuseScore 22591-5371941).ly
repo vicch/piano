@@ -34,6 +34,14 @@
 "DFD" = { \tuplet 3/2 { ds'' fs' ds' } }
 "BFD" = { \tuplet 3/2 { b'   fs' ds' } }
 
+"CsFD" = { \tuplet 3/2 { cs'' fs' ds' } }
+"DsFD" = { \tuplet 3/2 { ds'' fs' ds' } }
+
+"CsGsE" = { \tuplet 3/2 { cs'' gs' e' } }
+"DsGsE" = { \tuplet 3/2 { ds'' gs' e' } }
+"AsGeE" = { \tuplet 3/2 { as'  gs' e' } }
+"BGsE"  = { \tuplet 3/2 { b'   gs' e' } }
+
 "FBA" = { \tuplet 3/2 { fs' b a } }
 "GBA" = { \tuplet 3/2 { g'  b a } }
 
@@ -49,11 +57,18 @@
 
 "B135"  = { b,4  ds4 fs4 }
 "B,135" = { b,,4 ds4 fs4 }
-"B513"  = { fs,4 b,4 ds4 }
 
-"Eb351" = { g,4 b,4 e4  }
-"E15b3" = { e4  b,4 g,4 }
-"Ab351" = { c4  e4  a4  }
+"B313" = { ds,4 b,4 ds4 }
+
+"B513" = { fs,4 b,4 ds4 }
+
+"E151" = { e,4 b,4 e4 }
+
+"Em351" = { gs,4 b,4 e4 }
+"Eb351" = { g,4  b,4 e4 }
+"Ab351" = { c4   e4  a4 }
+
+"E15m3" = { e4  b,4 g,4 }
 
 \score {
   \new PianoStaff \with {
@@ -75,7 +90,8 @@
       \repeat volta 2 {
         \key e \major
         
-        \"GsBGs" \"GsBGs" \"GsBGs" | \"GsBGs" \"FsBGs" \"EBGs" | \"EAFs" \"DsAFs" \"DsAFs" | \"DsAFs" \"DAFs" \"DsAFs" | \break
+        \"GsBGs" \"GsBGs" \"GsBGs" | \"GsBGs" \"FsBGs" \"EBGs" | \"EAFs"  \"DsAFs" \"DsAFs" | \"DsAFs" \"DAFs"  \"DsAFs" | \break
+        \"CsFD"  \"CsFD"  \"CsFD"  | \"CsFD"  \"DsFD"  \"CsFD" | \"CsGsE" \"BGsE"  \"AsGeE" | \"BGsE"  \"CsGsE" \"DsGsE" | \break
       }
     }
     \new Staff {
@@ -86,10 +102,11 @@
       \"E158"   | \"E158"   | \"E158"  | \"E158"  |
       \"E158"   | \"E158"   | \"A158"  | \"Ab351" |
       \"B158-1" | \"B158-2" | \"E158"  | \"Eb351" |
-      \"B135"   | \"B,135"  | \"E15b3" | e,2.     |
+      \"B135"   | \"B,135"  | \"E15m3" | e,2.     |
       
       \key e \major
       \"E158" | \"E158" | \"B513" | \"B158-3" |
+      \"B513" | \"B313" | \"E151" | \"Em351"  |
     }
     \chords {
       e2. | e2. | e2.   | e2.   |
@@ -97,7 +114,8 @@
       b2. | b2. | e2.   | e2.:m |
       b2. | b2. | e2.:m | r2.   |
       
-      e2. | e2. | b2. | b2. |
+      e2. | e2. | b2. | b2.   |
+      b2. | b2. | e2. | e2.:m |
     }
   >>
   \layout {}
