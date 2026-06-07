@@ -4,7 +4,7 @@ from pathlib import Path
 
 import yt_dlp
 
-from piano_to_lilypond.deps import check_ffmpeg
+from video2ly.deps import check_ffmpeg
 
 
 def extract_audio(youtube_url: str, output_path: Path) -> Path:

@@ -4,9 +4,9 @@ import argparse
 import sys
 from pathlib import Path
 
-from piano_to_lilypond.config import Config
-from piano_to_lilypond.models import PipelinePaths
-from piano_to_lilypond.pipeline import ALL_STEPS, run_pipeline
+from video2ly.config import Config
+from video2ly.models import PipelinePaths
+from video2ly.pipeline import ALL_STEPS, run_pipeline
 
 
 def parse_steps(raw: str) -> set[str]:

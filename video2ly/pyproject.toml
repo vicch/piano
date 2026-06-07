@@ -1,5 +1,5 @@
 [project]
-name = "piano-to-lilypond"
+name = "video2ly"
 version = "0.1.0"
 description = "YouTube piano performance to LilyPond sheet music pipeline"
 readme = "README.md"
@@ -24,7 +24,7 @@ dev = [
 ]
 
 [project.scripts]
-piano-to-lilypond = "piano_to_lilypond.cli:main"
+video2ly = "video2ly.cli:main"
 
 [build-system]
 requires = ["setuptools>=61"]
@@ -34,7 +34,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-piano_to_lilypond = ["prompts/*.txt"]
+video2ly = ["prompts/*.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

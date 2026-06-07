@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Protocol
 
-from piano_to_lilypond.deps import ensure_piano_checkpoint, resolve_torch_device
+from video2ly.deps import ensure_piano_checkpoint, resolve_torch_device
 
 
 def desustain_midi(midi_path: Path, window_semitones: int) -> int:

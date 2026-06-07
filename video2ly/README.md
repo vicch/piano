@@ -1,4 +1,4 @@
-# Piano-to-LilyPond Pipeline
+# video2ly Pipeline
 
 Local Python CLI that downloads a YouTube piano performance, transcribes it to MIDI, structures it as MusicXML, and uses Gemini to generate LilyPond sheet music.
 
@@ -23,7 +23,7 @@ Local Python CLI that downloads a YouTube piano performance, transcribes it to M
 ## Setup
 
 ```bash
-cd piano-to-lilypond
+cd video2ly
 chmod +x setup.sh
 ./setup.sh
 ```
@@ -35,14 +35,14 @@ Edit `.env` and set `GOOGLE_API_KEY`.
 Full pipeline (`--title` uses `output/<title>/` for all artifacts and the `.ly` file):
 
 ```bash
-uv run piano-to-lilypond "https://www.youtube.com/watch?v=VIDEO_ID" \
+uv run video2ly "https://www.youtube.com/watch?v=VIDEO_ID" \
   --title "My Song Title"
 ```
 
 Resume after interruption (skip existing artifacts):
 
 ```bash
-uv run piano-to-lilypond "https://www.youtube.com/watch?v=VIDEO_ID" \
+uv run video2ly "https://www.youtube.com/watch?v=VIDEO_ID" \
   --title "My Song Title" \
   --resume
 ```
@@ -50,10 +50,10 @@ uv run piano-to-lilypond "https://www.youtube.com/watch?v=VIDEO_ID" \
 Run individual steps (same `--title` for paths):
 
 ```bash
-uv run piano-to-lilypond "URL" --title "My Song Title" --steps extract
-uv run piano-to-lilypond "URL" --title "My Song Title" --steps transcribe
-uv run piano-to-lilypond "URL" --title "My Song Title" --steps musicxml
-uv run piano-to-lilypond "URL" --title "My Song Title" --steps lilypond
+uv run video2ly "URL" --title "My Song Title" --steps extract
+uv run video2ly "URL" --title "My Song Title" --steps transcribe
+uv run video2ly "URL" --title "My Song Title" --steps musicxml
+uv run video2ly "URL" --title "My Song Title" --steps lilypond
 ```
 
 Options:
@@ -82,7 +82,7 @@ The pipeline uses Python’s built-in downloader (no `wget` required on macOS).
 Use a short solo piano clip (under 2 minutes):
 
 ```bash
-uv run piano-to-lilypond "https://www.youtube.com/watch?v=SHORT_PIANO_CLIP" \
+uv run video2ly "https://www.youtube.com/watch?v=SHORT_PIANO_CLIP" \
   --title "Smoke Test"
 lilypond output/Smoke-Test/Smoke-Test.ly   # optional
 ```
@@ -103,7 +103,7 @@ Lighter install without sustain-pedal detection. **Not included in `./setup.sh`*
 
 ```bash
 uv sync --extra transcribe-basic   # may fail on macOS + Python 3.12
-uv run piano-to-lilypond "URL" --transcription-backend basic-pitch
+uv run video2ly "URL" --transcription-backend basic-pitch
 ```
 
 The default `piano` backend (PyTorch) works on Python 3.12 and includes sustain-pedal transcription.

@@ -1,6 +1,6 @@
 import pytest
 
-from piano_to_lilypond.models import PipelinePaths, slugify_title
+from video2ly.models import PipelinePaths, slugify_title
 
 
 def test_slugify_title():

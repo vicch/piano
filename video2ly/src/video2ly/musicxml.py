@@ -7,7 +7,7 @@ from pathlib import Path
 
 from music21 import stream
 
-from piano_to_lilypond.models import ChunkInfo
+from video2ly.models import ChunkInfo
 
 
 # MusicXML elements/attrs that are pure engraving cruft for our LLM translation.

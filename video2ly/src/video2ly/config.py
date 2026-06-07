@@ -140,7 +140,7 @@ class Config:
 
 
 def project_root() -> Path:
-    """App root when developing from the repo (piano-to-lilypond/)."""
+    """App root when developing from the repo (video2ly/)."""
     return Path(__file__).resolve().parents[2]
 
 

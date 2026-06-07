@@ -1545,7 +1545,7 @@ wheels = [
 ]
 
 [[package]]
-name = "piano-to-lilypond"
+name = "video2ly"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
