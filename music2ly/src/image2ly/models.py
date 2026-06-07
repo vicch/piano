@@ -28,6 +28,9 @@ class ImagePaths:
         basename = slugify_title(title)
         project_dir = output_root / basename
         project_dir.mkdir(parents=True, exist_ok=True)
+        # Absolute so artifacts resolve correctly when subprocesses (OMR engines)
+        # run with a different working directory.
+        project_dir = project_dir.resolve()
         suffix = image_path.suffix.lower() or ".png"
         return cls(
             work_dir=project_dir,

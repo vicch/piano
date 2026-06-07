@@ -73,11 +73,16 @@ def recognize(
     (oemer); we run with the image's directory as the workspace, detect the
     newly created MusicXML, and move it to ``out_musicxml``.
     """
+    # Resolve to absolute paths: the engine runs with cwd set to the work dir,
+    # so any relative path passed through would no longer resolve.
+    image_path = image_path.resolve()
+    out_musicxml = out_musicxml.resolve()
     if not image_path.exists():
         raise FileNotFoundError(f"Image not found: {image_path}")
 
     base = _resolve_command(backend)
     work_dir = image_path.parent
+    work_dir.mkdir(parents=True, exist_ok=True)
     out_musicxml.parent.mkdir(parents=True, exist_ok=True)
 
     before = _existing_xml(work_dir)
