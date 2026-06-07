@@ -10,11 +10,11 @@ d''1
 ```
 
 ```lilypond-bass
-<cs' a>4 <e a,>4 <cs' a>4 <e a,>4 |
-<cs' a>4 <e a,>4 <cs' a>4 <e a,>4 |
-<fs' a>4 <d a,>4 <fs' a>4 <d a,>4 |
-<fs' a>4 <d a,>4 <fs' a>4 <d a,>4 \break |
-<g' b>4 <d b,>4 <g' b>4 <d b,>4 |
+<cs' a>4 e4 <cs' a>4 e4 |
+<cs' a>4 e4 <cs' a>4 e4 |
+<fs a>4 d4 <fs a>4 d4 |
+<fs a>4 d4 <fs a>4 d4 \break |
+<g b>4 d4 <g b>4 d4 |
 <e cs' a>2 <g cs' a>2 |
 d'8 a8 fs8 a8 d2
 ```

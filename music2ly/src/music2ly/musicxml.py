@@ -82,17 +82,127 @@ def _estimate_seconds_per_measure(part: stream.Part) -> float:
     return (60.0 / tempo) * quarter_beats
 
 
+def _attributes_for_staff(attributes: ET.Element, staff: str) -> ET.Element:
+    """Copy an <attributes> block keeping shared keys plus only this staff's clef.
+
+    A grand-staff <attributes> carries one <clef number="N"> per staff. When we
+    fan the part out into one part per staff, each staff must keep only its own
+    clef (with the now-redundant ``number`` attribute dropped) and shed the
+    <staves> count, while retaining shared <divisions>/<key>/<time>.
+    """
+    out = ET.Element("attributes")
+    for child in attributes:
+        if child.tag == "staves":
+            continue
+        if child.tag == "clef":
+            if child.get("number") not in (None, staff):
+                continue
+            clef_copy = copy.deepcopy(child)
+            clef_copy.attrib.pop("number", None)
+            out.append(clef_copy)
+            continue
+        out.append(copy.deepcopy(child))
+    return out
+
+
+def split_grand_staff_xml(xml_text: str) -> str | None:
+    """Split a single multi-staff <part> into one <part> per staff.
+
+    OMR engines (e.g. homr) emit a piano grand staff as a single <part> whose
+    hands share <voice>1</voice> and are told apart only by <staff>1/2</staff>,
+    interleaved with per-note <backup>. music21 merges equal-numbered voices and
+    discards the <staff> tag, collapsing both hands into one overlapping stream.
+    Rewriting to one <part> per staff (the staff tag is the only reliable hand
+    signal) makes music21 yield separate treble/bass Parts.
+
+    Returns rewritten MusicXML, or None when the split does not apply: anything
+    other than exactly one part, or a part with fewer than two staves, is left
+    untouched for music21's normal path.
+    """
+    xml_text = re.sub(r"<!DOCTYPE[^>]*>", "", xml_text)
+    root = ET.fromstring(xml_text)
+    parts = root.findall("part")
+    if len(parts) != 1:
+        return None
+    src_part = parts[0]
+
+    staff_nums = sorted(
+        {s.text for s in src_part.iter("staff") if s.text},
+        key=int,
+    )
+    if len(staff_nums) < 2:
+        return None
+
+    new_parts = {
+        staff: ET.Element("part", {"id": f"P{i + 1}"})
+        for i, staff in enumerate(staff_nums)
+    }
+
+    for measure in src_part.findall("measure"):
+        new_measures = {
+            staff: ET.SubElement(new_parts[staff], "measure", dict(measure.attrib))
+            for staff in staff_nums
+        }
+        # Each staff is its own sequential timeline once split, so <backup>/
+        # <forward> (which only exist to interleave staves) are dropped. A note
+        # without its own <staff> (e.g. a chord member) inherits the previous
+        # note's staff.
+        last_staff = staff_nums[0]
+        for child in list(measure):
+            if child.tag in ("backup", "forward"):
+                continue
+            if child.tag == "attributes":
+                for staff in staff_nums:
+                    new_measures[staff].append(_attributes_for_staff(child, staff))
+                continue
+            if child.tag == "note":
+                staff_el = child.find("staff")
+                if staff_el is not None and staff_el.text:
+                    last_staff = staff_el.text
+                note_copy = copy.deepcopy(child)
+                inner_staff = note_copy.find("staff")
+                if inner_staff is not None:
+                    note_copy.remove(inner_staff)
+                new_measures[last_staff].append(note_copy)
+                continue
+            # Barlines, directions, etc. apply to the system: copy to every staff.
+            for staff in staff_nums:
+                new_measures[staff].append(copy.deepcopy(child))
+
+    part_list = root.find("part-list")
+    insert_at = list(root).index(part_list) if part_list is not None else len(list(root))
+    if part_list is not None:
+        root.remove(part_list)
+    root.remove(src_part)
+
+    new_part_list = ET.Element("part-list")
+    for i in range(len(staff_nums)):
+        score_part = ET.SubElement(new_part_list, "score-part", {"id": f"P{i + 1}"})
+        ET.SubElement(score_part, "part-name").text = "Piano"
+    root.insert(insert_at, new_part_list)
+    for part in new_parts.values():
+        root.append(part)
+
+    return ET.tostring(root, encoding="unicode")
+
+
 def load_grand_staff(musicxml_path: Path) -> tuple[stream.Part, stream.Part, int]:
     """Parse a MusicXML file into (treble, bass, measure_count).
 
     Source-agnostic: works for MuseScore output (video2ly) and OMR output
-    (image2ly). A piano grand staff is exported as one <score-part> with two
-    <staff> elements, which music21 splits into two Parts on read. Falls back to
-    duplicating the sole part when only one is present.
+    (image2ly). A piano grand staff that music21 already splits into two Parts is
+    used as-is; a single multi-staff part (common from OMR) is first fanned out
+    by staff via ``split_grand_staff_xml``. Falls back to duplicating the sole
+    part only when there is genuinely one single-staff part.
     """
     from music21 import converter
 
-    score = converter.parse(str(musicxml_path))
+    raw = Path(musicxml_path).read_text(encoding="utf-8")
+    rewritten = split_grand_staff_xml(raw)
+    if rewritten is not None:
+        score = converter.parse(rewritten, format="musicxml")
+    else:
+        score = converter.parse(str(musicxml_path))
     parts = list(score.parts)
     if not parts:
         raise ValueError(f"MusicXML has no parts: {musicxml_path}")
