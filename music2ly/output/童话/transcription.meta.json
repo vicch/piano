@@ -1,8 +1,0 @@
-{
-  "backend": "piano",
-  "device": "mps",
-  "duration_seconds": 247.0826875,
-  "pedal_events": 166,
-  "onset_threshold": 0.5,
-  "frame_threshold": 0.3
-}
