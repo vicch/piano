@@ -82,6 +82,7 @@ def run_pipeline(
                 bass,
                 paths.chunks_dir,
                 chunk_seconds=config.chunk_seconds,
+                make_notation=False,
             )
             print(
                 f"  → {measure_count} measures, {len(chunks)} chunk(s)",

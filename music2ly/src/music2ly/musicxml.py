@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import re
 import xml.etree.ElementTree as ET
@@ -114,7 +115,15 @@ def chunk_musicxml(
     chunks_dir: Path,
     *,
     chunk_seconds: float = 90.0,
+    make_notation: bool = True,
 ) -> list[ChunkInfo]:
+    """Split treble/bass parts into per-chunk MusicXML files.
+
+    ``make_notation`` controls music21's re-notation on export. Keep it True for
+    MIDI-derived parts (video2ly) that need rest/tie/beam derivation. Set it
+    False for OMR output (image2ly): those measures are already segmented, and
+    re-deriving ties trips music21 on irregular OMR measures.
+    """
     chunks_dir.mkdir(parents=True, exist_ok=True)
 
     treble_measures = list(treble.getElementsByClass("Measure"))
@@ -137,15 +146,18 @@ def chunk_musicxml(
         measure_end = min(measure_start + measures_per_chunk - 1, measure_count)
         chunk_index += 1
 
-        treble_slice = treble.measures(measure_start, measure_end)
-        bass_slice = bass.measures(measure_start, measure_end)
+        # deepcopy the slices: measures() returns elements that retain site
+        # references to the source part, which music21's export deepcopy can
+        # trip over (KeyError in sortTuple) for some OMR-produced scores.
+        treble_slice = copy.deepcopy(treble.measures(measure_start, measure_end))
+        bass_slice = copy.deepcopy(bass.measures(measure_start, measure_end))
 
         chunk_score = stream.Score()
         chunk_score.insert(0, treble_slice)
         chunk_score.insert(0, bass_slice)
 
         musicxml_file = chunks_dir / f"chunk_{chunk_index:03d}.musicxml"
-        chunk_score.write("musicxml", fp=str(musicxml_file))
+        chunk_score.write("musicxml", fp=str(musicxml_file), makeNotation=make_notation)
 
         duration_est = (measure_end - measure_start + 1) * seconds_per_measure
         info = ChunkInfo(
