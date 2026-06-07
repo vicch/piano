@@ -20,7 +20,13 @@ Both blocks must span the same number of measures. Pad silence with rests.
 
 ## Music syntax (LilyPond 2.24, `english` language)
 
-- **Pitches** — English names: naturals `c d e f g a b`; flats `cf df ef ff gf af bf`; sharps `cs ds es fs gs as bs`. Octaves: middle C is `c'`; each `'` raises an octave, each `,` lowers it (`c''`, `a,`, `g,,`).
+- **Pitches** — English names: naturals `c d e f g a b`; flats `cf df ef ff gf af bf`; sharps `cs ds es fs gs as bs`.
+- **Octaves (critical, no guessing)** — The MusicXML `<octave>` integer is absolute and is the only source of truth; convert it mechanically, do not infer register from the clef. Apostrophes/commas relative to the MusicXML octave number `O`:
+  - `O = 3` → bare name, no mark: `c` `g` `b`.
+  - `O = 4` (the octave starting at middle C) → one `'`: `c'` `g'` `b'`.
+  - `O = 5` → `''`; `O = 6` → `'''`; and so on (apostrophe count = `O - 3`).
+  - `O = 2` → one `,`: `c,` `g,` `b,`; `O = 1` → `,,` (comma count = `3 - O`).
+  - Worked example: MusicXML pitches G(octave 3), D(octave 4), B(octave 3) become `g`, `d'`, `b` (chord `<g d' b>`), NOT `g,`, `d`, `b,`. Bass-clef notes are commonly octave 2-3 and right-hand notes octave 4-5; still read the number, never assume.
 - **Durations** — `1 2 4 8 16 32` for whole/half/quarter/eighth/16th/32nd. Dotted: `4.` `8.`. Same duration carries to the next note if omitted: `c'8 d' e' f'`.
 - **Measures** — Separate with ` | ` (space-pipe-space). One measure of music between every two pipes.
 - **Chords** — Simultaneous pitches in one hand: `<c' e' g'>4`, `<bf' df''>1`. Duration goes once after `>`.
