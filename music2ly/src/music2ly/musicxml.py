@@ -81,6 +81,33 @@ def _estimate_seconds_per_measure(part: stream.Part) -> float:
     return (60.0 / tempo) * quarter_beats
 
 
+def load_grand_staff(musicxml_path: Path) -> tuple[stream.Part, stream.Part, int]:
+    """Parse a MusicXML file into (treble, bass, measure_count).
+
+    Source-agnostic: works for MuseScore output (video2ly) and OMR output
+    (image2ly). A piano grand staff is exported as one <score-part> with two
+    <staff> elements, which music21 splits into two Parts on read. Falls back to
+    duplicating the sole part when only one is present.
+    """
+    from music21 import converter
+
+    score = converter.parse(str(musicxml_path))
+    parts = list(score.parts)
+    if not parts:
+        raise ValueError(f"MusicXML has no parts: {musicxml_path}")
+
+    if len(parts) >= 2:
+        treble, bass = parts[0], parts[1]
+    else:
+        treble = bass = parts[0]
+
+    measure_count = max(
+        len(list(treble.getElementsByClass("Measure"))),
+        len(list(bass.getElementsByClass("Measure"))),
+    )
+    return treble, bass, measure_count
+
+
 def chunk_musicxml(
     treble: stream.Part,
     bass: stream.Part,

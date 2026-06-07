@@ -98,6 +98,29 @@ uv run video2ly "https://www.youtube.com/watch?v=SHORT_PIANO_CLIP" \
 lilypond output/Smoke-Test/Smoke-Test.ly   # optional
 ```
 
+## image2ly usage
+
+Converts an image of sheet music to LilyPond: OMR recognizes the image to
+MusicXML, then the shared LLM step (same as video2ly) emits the `.ly`.
+
+```bash
+uv sync --extra image                      # installs oemer
+uv run image2ly path/to/score.png --title "My Song Title"
+```
+
+Pipeline steps: `recognize` (OMR image to MusicXML), `musicxml` (parse + chunk),
+`lilypond` (LLM translate + merge). Run a subset with `--steps` and `--resume`
+just like video2ly.
+
+OMR backend (`--omr-backend`, default `homr`):
+
+- `homr` — transformer OMR, run externally via `uvx homr` (no Python dep; AGPL).
+  Best recognition for typeset piano/grand-staff. Requires `uv` on PATH.
+- `oemer` — installed by `--extra image` (MIT). Fallback.
+
+Both are typeset-only; handwritten scores are not supported. `GOOGLE_API_KEY`
+(or a local LM-Studio server) is needed for the `lilypond` step, same as video2ly.
+
 ## Tests
 
 ```bash

@@ -272,7 +272,8 @@ def translate_all_chunks(
     output_path: Path,
     *,
     title: str,
-    youtube_url: str,
+    source: str,
+    sequence: str | None = None,
 ) -> Path:
     if config.llm_backend == "gemini" and not config.google_api_key:
         raise ValueError(
@@ -289,7 +290,7 @@ def translate_all_chunks(
         bodies.append(body)
 
     metadata = _extract_score_metadata(chunks[0].musicxml_path)
-    sequence = _derive_sequence(youtube_url)
+    sequence = sequence or _derive_sequence(source)
     include_path = _relative_template_include(output_path)
 
     merged = merge_lilypond_chunks(

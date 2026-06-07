@@ -174,7 +174,7 @@ def run_pipeline(
                 paths.lilypond_chunks_dir,
                 paths.output_path,
                 title=title,
-                youtube_url=youtube_url,
+                source=youtube_url,
             )
             print(f"  → {paths.output_path}", file=sys.stderr)
 
