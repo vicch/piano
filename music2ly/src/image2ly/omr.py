@@ -29,7 +29,17 @@ def _resolve_command(backend: str) -> list[str]:
         if shutil.which("homr"):
             return ["homr"]
         if shutil.which("uvx"):
-            return ["uvx", "homr"]
+            # uvx runs outside this project, so it does not inherit our PyPI
+            # index pin. Force the public PyPI as the default index and ignore
+            # user-level uv config so an inherited private default registry
+            # (and its auth) is bypassed.
+            return [
+                "uvx",
+                "--no-config",
+                "--default-index",
+                "https://pypi.org/simple",
+                "homr",
+            ]
         raise OMRError(
             "homr backend needs `homr` or `uvx` on PATH. Install uv "
             "(https://docs.astral.sh/uv/) so `uvx homr` works, or pick --omr-backend oemer."
