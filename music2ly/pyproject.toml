@@ -22,8 +22,11 @@ video = [
 ]
 # image2ly: sheet image -> MusicXML (OMR). homr is run as an external CLI
 # (uvx homr, AGPL) and is intentionally not a Python dependency here.
+# oemer's PyPI wheel is Linux-built and hardcodes onnxruntime-gpu (no macOS
+# wheel, and no sdist published), so it is uninstallable on macOS from PyPI.
+# Install from git instead: its setup.py picks the CPU onnxruntime on darwin.
 image = [
-    "oemer>=0.1.8",
+    "oemer @ git+https://github.com/BreezeWhite/oemer@v0.1.8",
 ]
 # Optional transcription backend; basic-pitch may require Python 3.10-3.11 on
 # macOS (tensorflow-macos wheels). Default video "piano" backend works on 3.10-3.12.
@@ -44,6 +47,14 @@ image2ly = "image2ly.cli:main"
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
+
+# Pin the public PyPI as this project's default index. Overrides any private
+# default index inherited from user-level uv config (~/.config/uv/uv.toml).
+# All deps here are public; no private registry is required.
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
