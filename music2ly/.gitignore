@@ -10,4 +10,10 @@ src/*.egg-info/
 dist/
 build/
 !tests/fixtures/**
-output/
+# Track intermediate pipeline artifacts under output/, but not raw audio.
+output/**/*.wav
+output/**/*.mp3
+output/**/*.m4a
+output/**/*.flac
+output/**/*.ogg
+.DS_Store
