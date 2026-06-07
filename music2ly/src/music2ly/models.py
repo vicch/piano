@@ -16,14 +16,18 @@ class ChunkInfo:
 
 
 def slugify_title(title: str) -> str:
-    """Filesystem-safe directory and .ly basename from a human title."""
+    """Directory and .ly basename from a human title.
+
+    Preserves the title as typed (spaces, apostrophes, case) so output paths
+    read naturally, e.g. "It's A Small World". Only strips characters that are
+    illegal in filesystem paths.
+    """
     name = title.strip()
     if not name:
         raise ValueError("Title must not be empty")
-    name = re.sub(r"[/\\:\0]", "-", name)
-    name = re.sub(r'[<>:"|?*]', "", name)
-    name = re.sub(r"\s+", "-", name)
-    name = name.strip("-._")
+    # Drop path separators, null, and Windows-reserved characters; keep spaces.
+    name = re.sub(r'[/\\:\0<>"|?*]', "", name)
+    name = name.strip(". ")
     if not name:
         raise ValueError("Title must contain at least one usable character")
     return name
