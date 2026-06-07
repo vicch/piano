@@ -1,7 +1,7 @@
 import pytest
 
-from video2ly.lilypond import merge_lilypond_chunks, parse_lilypond_block
-from video2ly.musicxml import extract_variable_body
+from music2ly.lilypond import merge_lilypond_chunks, parse_lilypond_block
+from music2ly.musicxml import extract_variable_body
 
 
 SAMPLE_CHUNK = """

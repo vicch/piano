@@ -11,9 +11,9 @@ from google import genai
 from google.genai import types
 from music21 import converter
 
-from video2ly.config import Config, project_root, system_prompt_path
-from video2ly.models import ChunkInfo
-from video2ly.musicxml import slim_musicxml
+from music2ly.config import Config, project_root, system_prompt_path
+from music2ly.models import ChunkInfo
+from music2ly.musicxml import slim_musicxml
 
 
 TREBLE_FENCE_RE = re.compile(

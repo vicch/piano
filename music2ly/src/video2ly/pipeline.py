@@ -3,11 +3,11 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-from video2ly.config import Config
+from music2ly.config import Config
 from video2ly.extract import extract_audio
-from video2ly.lilypond import translate_all_chunks
-from video2ly.models import PipelinePaths
-from video2ly.musicxml import chunk_musicxml
+from music2ly.lilypond import translate_all_chunks
+from music2ly.models import PipelinePaths
+from music2ly.musicxml import chunk_musicxml
 from video2ly.quantize import quantize_midi
 from video2ly.structure import midi_to_musicxml
 from video2ly.transcribe import transcribe_audio
@@ -107,7 +107,7 @@ def run_pipeline(
             existing = sorted(paths.chunks_dir.glob("chunk_*.musicxml"))
             if existing:
                 print(f"Skipping musicxml (exists): {paths.musicxml_path}", file=sys.stderr)
-                from video2ly.models import ChunkInfo
+                from music2ly.models import ChunkInfo
                 import json
 
                 for xml_path in existing:
@@ -145,7 +145,7 @@ def run_pipeline(
     if _should_run("lilypond", steps):
         if not chunks:
             if paths.chunks_dir.exists():
-                from video2ly.models import ChunkInfo
+                from music2ly.models import ChunkInfo
                 import json
 
                 for xml_path in sorted(paths.chunks_dir.glob("chunk_*.musicxml")):

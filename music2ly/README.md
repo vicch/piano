@@ -1,8 +1,19 @@
-# video2ly Pipeline
+# music2ly
 
-Local Python CLI that downloads a YouTube piano performance, transcribes it to MIDI, structures it as MusicXML, and uses Gemini to generate LilyPond sheet music.
+Local Python project that turns music into LilyPond sheet music. It ships two CLIs over a shared core (`src/music2ly`, the MusicXML chunking + LLM MusicXML-to-LilyPond translation):
 
-## Pipeline
+- **video2ly** — YouTube piano performance to LilyPond (audio path). Working.
+- **image2ly** — image of sheet music to LilyPond via OMR (image path). Placeholder, not yet implemented.
+
+Install only what a tool needs; heavy deps are isolated in extras and imported lazily:
+
+```bash
+uv sync --extra video    # video2ly stack (yt-dlp, torch, piano-transcription)
+uv sync --extra image    # image2ly stack (oemer); homr runs externally via `uvx homr`
+uv sync --extra all      # both
+```
+
+## video2ly pipeline
 
 1. **Extract** — `yt-dlp` + `ffmpeg` → WAV
 2. **Transcribe** — `piano-transcription-inference` (default) or `basic-pitch` → MIDI
@@ -23,7 +34,7 @@ Local Python CLI that downloads a YouTube piano performance, transcribes it to M
 ## Setup
 
 ```bash
-cd video2ly
+cd music2ly
 chmod +x setup.sh
 ./setup.sh
 ```

@@ -2,12 +2,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import yt_dlp
-
 from video2ly.deps import check_ffmpeg
 
 
 def extract_audio(youtube_url: str, output_path: Path) -> Path:
+    import yt_dlp
+
     check_ffmpeg()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     stem = output_path.with_suffix("")

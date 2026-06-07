@@ -4,8 +4,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from video2ly.config import Config
-from video2ly.models import PipelinePaths
+from music2ly.config import Config
+from music2ly.models import PipelinePaths
 from video2ly.pipeline import ALL_STEPS, run_pipeline
 
 

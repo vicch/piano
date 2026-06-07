@@ -20,9 +20,10 @@ if ! command -v uv >/dev/null 2>&1; then
   fi
 fi
 
-# Core deps only (piano backend). basic-pitch optional extra pulls tensorflow-macos
-# which does not support Python 3.12 on Apple Silicon — install separately if needed.
-uv sync --extra dev
+# video2ly stack (piano backend) + dev. basic-pitch optional extra pulls
+# tensorflow-macos which does not support Python 3.12 on Apple Silicon; install
+# separately if needed. For image2ly use: uv sync --extra image
+uv sync --extra video --extra dev
 
 if [[ ! -f .env ]]; then
   cp .env.example .env
