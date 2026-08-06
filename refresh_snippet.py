@@ -56,11 +56,14 @@ def generate_lys(snippet):
   template = template.replace('{key}', snippet['key'])
 
   # Each snippet part in "snippets" list generates its own .ly and other files
+  with_suffix = (len(snippet['snippets']) > 1)
   for i, snippet_part in enumerate(snippet['snippets']):
     snippet_content = template
     snippet_content = snippet_content.replace('{snippet}', snippet_part)
 
-    file_name = f'{snippet["name"]} {i+1}'
+    file_name = f'{snippet["name"]}'
+    if with_suffix:
+      file_name += f' {i+1}'
     file_path = os.path.join(SNIPPET_DIR, f'{file_name}.ly')
     with open(file_path, 'w') as f:
       f.write(snippet_content)
@@ -95,7 +98,8 @@ def generate_files(name):
     os.remove(files['png'])
     os.rename(files['cropped_png'], files['png'])
 
-  print(f'Refreshed {name}')
+  # print(f'Refreshed {name}')
+  print(f'[sound:{name}.mp3],<img src="{name}.png">')
 
 if __name__ == '__main__':
   refresh()
