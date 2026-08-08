@@ -1,6 +1,6 @@
 [
     {
-        "name": "1-1-2 c'",
+        "name": "c'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -8,31 +8,7 @@
         ]
     },
     {
-        "name": "1-1-2 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "d'4 d'4 e'4"
-        ]
-    },
-    {
-        "name": "1-1-2 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 e'4 f'4"
-        ]
-    },
-    {
-        "name": "1-1-2 f'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 f'4 g'4"
-        ]
-    },
-    {
-        "name": "1-1-3 c'",
+        "name": "c'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -40,23 +16,23 @@
         ]
     },
     {
-        "name": "1-1-3 d'",
+        "name": "c'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 d'4 f'4"
+            "c'4 c'4 f'4"
         ]
     },
     {
-        "name": "1-1-3 e'",
+        "name": "c'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 e'4 g'4"
+            "c'4 c'4 g'4"
         ]
     },
     {
-        "name": "1-2-1 c'",
+        "name": "c'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -64,31 +40,7 @@
         ]
     },
     {
-        "name": "1-2-1 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "d'4 e'4 d'4"
-        ]
-    },
-    {
-        "name": "1-2-1 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 f'4 e'4"
-        ]
-    },
-    {
-        "name": "1-2-1 f'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 g'4 f'4"
-        ]
-    },
-    {
-        "name": "1-2-2 c'",
+        "name": "c'-d'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -96,31 +48,7 @@
         ]
     },
     {
-        "name": "1-2-2 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "d'4 e'4 e'4"
-        ]
-    },
-    {
-        "name": "1-2-2 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 f'4 f'4"
-        ]
-    },
-    {
-        "name": "1-2-2 f'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 g'4 g'4"
-        ]
-    },
-    {
-        "name": "1-2-3 c'",
+        "name": "c'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -128,23 +56,23 @@
         ]
     },
     {
-        "name": "1-2-3 d'",
+        "name": "c'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 e'4 f'4"
+            "c'4 d'4 f'4"
         ]
     },
     {
-        "name": "1-2-3 e'",
+        "name": "c'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 g'4"
+            "c'4 d'4 g'4"
         ]
     },
     {
-        "name": "1-3-1 c'",
+        "name": "c'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -152,23 +80,7 @@
         ]
     },
     {
-        "name": "1-3-1 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "d'4 f'4 d'4"
-        ]
-    },
-    {
-        "name": "1-3-1 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 g'4 e'4"
-        ]
-    },
-    {
-        "name": "1-3-2 c'",
+        "name": "c'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -176,23 +88,7 @@
         ]
     },
     {
-        "name": "1-3-2 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "d'4 f'4 e'4"
-        ]
-    },
-    {
-        "name": "1-3-2 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 g'4 f'4"
-        ]
-    },
-    {
-        "name": "1-3-3 c'",
+        "name": "c'-e'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -200,23 +96,103 @@
         ]
     },
     {
-        "name": "1-3-3 d'",
+        "name": "c'-e'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 f'4 f'4"
+            "c'4 e'4 f'4"
         ]
     },
     {
-        "name": "1-3-3 e'",
+        "name": "c'-e'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 g'4 g'4"
+            "c'4 e'4 g'4"
         ]
     },
     {
-        "name": "2-1-1 c'",
+        "name": "c'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "c'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "c'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "c'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "c'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "c'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "c'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "c'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "c'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "c'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "c'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-c'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -224,31 +200,7 @@
         ]
     },
     {
-        "name": "2-1-1 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 d'4 d'4"
-        ]
-    },
-    {
-        "name": "2-1-1 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 e'4 e'4"
-        ]
-    },
-    {
-        "name": "2-1-1 f'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "g'4 f'4 f'4"
-        ]
-    },
-    {
-        "name": "2-1-2 c'",
+        "name": "d'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -256,31 +208,7 @@
         ]
     },
     {
-        "name": "2-1-2 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "e'4 d'4 e'4"
-        ]
-    },
-    {
-        "name": "2-1-2 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 e'4 f'4"
-        ]
-    },
-    {
-        "name": "2-1-2 f'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "g'4 f'4 g'4"
-        ]
-    },
-    {
-        "name": "2-1-3 c'",
+        "name": "d'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -288,23 +216,23 @@
         ]
     },
     {
-        "name": "2-1-3 d'",
+        "name": "d'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 d'4 f'4"
+            "d'4 c'4 f'4"
         ]
     },
     {
-        "name": "2-1-3 e'",
+        "name": "d'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 g'4"
+            "d'4 c'4 g'4"
         ]
     },
     {
-        "name": "2-2-1 c'",
+        "name": "d'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -312,31 +240,31 @@
         ]
     },
     {
-        "name": "2-2-1 d'",
+        "name": "d'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 e'4 d'4"
+            "d'4 d'4 e'4"
         ]
     },
     {
-        "name": "2-2-1 e'",
+        "name": "d'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 f'4 e'4"
+            "d'4 d'4 f'4"
         ]
     },
     {
-        "name": "2-2-1 f'",
+        "name": "d'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 g'4 f'4"
+            "d'4 d'4 g'4"
         ]
     },
     {
-        "name": "2-3-1 c'",
+        "name": "d'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -344,23 +272,119 @@
         ]
     },
     {
-        "name": "2-3-1 d'",
+        "name": "d'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 d'4"
+            "d'4 e'4 d'4"
         ]
     },
     {
-        "name": "2-3-1 e'",
+        "name": "d'-e'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 g'4 e'4"
+            "d'4 e'4 e'4"
         ]
     },
     {
-        "name": "3-1-1 c'",
+        "name": "d'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-c'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -368,23 +392,7 @@
         ]
     },
     {
-        "name": "3-1-1 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 d'4 d'4"
-        ]
-    },
-    {
-        "name": "3-1-1 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "g'4 e'4 e'4"
-        ]
-    },
-    {
-        "name": "3-1-2 c'",
+        "name": "e'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -392,23 +400,7 @@
         ]
     },
     {
-        "name": "3-1-2 d'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "f'4 d'4 e'4"
-        ]
-    },
-    {
-        "name": "3-1-2 e'",
-        "tempo": "120",
-        "key": "c \\major",
-        "snippets": [
-            "g'4 e'4 f'4"
-        ]
-    },
-    {
-        "name": "3-1-3 c'",
+        "name": "e'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -416,23 +408,23 @@
         ]
     },
     {
-        "name": "3-1-3 d'",
+        "name": "e'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 d'4 f'4"
+            "e'4 c'4 f'4"
         ]
     },
     {
-        "name": "3-1-3 e'",
+        "name": "e'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 e'4 g'4"
+            "e'4 c'4 g'4"
         ]
     },
     {
-        "name": "3-2-1 c'",
+        "name": "e'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -440,23 +432,39 @@
         ]
     },
     {
-        "name": "3-2-1 d'",
+        "name": "e'-d'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 d'4"
+            "e'4 d'4 d'4"
         ]
     },
     {
-        "name": "3-2-1 e'",
+        "name": "e'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 f'4 e'4"
+            "e'4 d'4 e'4"
         ]
     },
     {
-        "name": "3-3-1 c'",
+        "name": "e'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -464,7 +472,239 @@
         ]
     },
     {
-        "name": "3-3-1 d'",
+        "name": "e'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-f'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
@@ -472,11 +712,251 @@
         ]
     },
     {
-        "name": "3-3-1 e'",
+        "name": "f'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-g'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
             "g'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 f'4"
         ]
     }
 ]
