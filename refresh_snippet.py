@@ -10,6 +10,7 @@ import json
 import subprocess
 
 from pydub import AudioSegment
+from pydub.silence import detect_nonsilent
 
 SNIPPET_CONFIG = 'snippet.json'
 SNIPPET_TEMPLATE = 'template/template_snippet.ly'
@@ -88,8 +89,21 @@ def generate_files(name):
   command = f'{FLUIDSYNTH_PATH} -q -n -i -r 44100 -F "{files["wav"]}" "{SOUNDFONT_PATH}" "{files["mid"]}"'
   subprocess.run(command, shell=True)
 
-  # Generate MP3 from WAV
+  # Generate MP3 from WAV, trimming trailing silence
+  if not os.path.exists(files['wav']):
+    print(f'Warning: WAV file not generated for {name}, skipping MP3')
+    return
+
   audio = AudioSegment.from_wav(files['wav'])
+
+  # Detect actual audio content and trim trailing silence
+  # Keep a 100ms buffer after the last sound to preserve natural decay
+  nonsilent_ranges = detect_nonsilent(audio, min_silence_len=100, silence_thresh=-50)
+  if nonsilent_ranges:
+    end_ms = nonsilent_ranges[-1][1] + 100
+    end_ms = min(end_ms, len(audio))
+    audio = audio[:end_ms]
+
   audio.export(files['mp3'], format='mp3', bitrate="128k")
   os.remove(files['wav'])
 

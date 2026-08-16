@@ -2,8 +2,9 @@
 Music Snippet Generator
 
 This script generates musical note snippets from all permutations (with repetition)
-of a given list of notes, for a specified length. It excludes permutations where
-all notes are identical. The final output is saved as a JSON array in 'snippet.json'.
+of a given list of notes, for a specified length. It excludes permutations that
+have 3 or more consecutive identical notes. The final output is saved as a JSON
+array in 'snippet.json'.
 """
 
 import json
@@ -16,21 +17,21 @@ OUTPUT = 'snippet.json'
 NOTES = ["c'", "d'", "e'", "f'", "g'"]
 
 # Length of each snippet (number of notes)
-LENGTH = 3
+LENGTH = 4
 
 
 def generate_permutation_snippets(notes: list[str], length: int) -> list:
     """
     Generates a list of configuration dictionaries for all permutations
     (with repetition) of the given notes with the specified length.
-    Permutations where all notes are identical are excluded.
+    Permutations with 3 or more consecutive identical notes are excluded.
     """
     configs = []
 
     # Generate all combinations with repetition (Cartesian product)
     for permutation in product(notes, repeat=length):
-        # Skip permutations where all notes are the same
-        if len(set(permutation)) == 1:
+        # Skip permutations with 3 or more consecutive identical notes
+        if any(a == b == c for a, b, c in zip(permutation, permutation[1:], permutation[2:])):
             continue
 
         # Create the snippet string: e.g. "c'4 d'4 e'4"

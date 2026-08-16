@@ -1,962 +1,4642 @@
 [
     {
-        "name": "c'-c'-d'",
+        "name": "c'-c'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 c'4 d'4"
+            "c'4 c'4 d'4 c'4"
         ]
     },
     {
-        "name": "c'-c'-e'",
+        "name": "c'-c'-d'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 c'4 e'4"
+            "c'4 c'4 d'4 d'4"
         ]
     },
     {
-        "name": "c'-c'-f'",
+        "name": "c'-c'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 c'4 f'4"
+            "c'4 c'4 d'4 e'4"
         ]
     },
     {
-        "name": "c'-c'-g'",
+        "name": "c'-c'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 c'4 g'4"
+            "c'4 c'4 d'4 f'4"
         ]
     },
     {
-        "name": "c'-d'-c'",
+        "name": "c'-c'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 d'4 c'4"
+            "c'4 c'4 d'4 g'4"
         ]
     },
     {
-        "name": "c'-d'-d'",
+        "name": "c'-c'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 d'4 d'4"
+            "c'4 c'4 e'4 c'4"
         ]
     },
     {
-        "name": "c'-d'-e'",
+        "name": "c'-c'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 d'4 e'4"
+            "c'4 c'4 e'4 d'4"
         ]
     },
     {
-        "name": "c'-d'-f'",
+        "name": "c'-c'-e'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 d'4 f'4"
+            "c'4 c'4 e'4 e'4"
         ]
     },
     {
-        "name": "c'-d'-g'",
+        "name": "c'-c'-e'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 d'4 g'4"
+            "c'4 c'4 e'4 f'4"
         ]
     },
     {
-        "name": "c'-e'-c'",
+        "name": "c'-c'-e'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 e'4 c'4"
+            "c'4 c'4 e'4 g'4"
         ]
     },
     {
-        "name": "c'-e'-d'",
+        "name": "c'-c'-f'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 e'4 d'4"
+            "c'4 c'4 f'4 c'4"
         ]
     },
     {
-        "name": "c'-e'-e'",
+        "name": "c'-c'-f'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 e'4 e'4"
+            "c'4 c'4 f'4 d'4"
         ]
     },
     {
-        "name": "c'-e'-f'",
+        "name": "c'-c'-f'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 e'4 f'4"
+            "c'4 c'4 f'4 e'4"
         ]
     },
     {
-        "name": "c'-e'-g'",
+        "name": "c'-c'-f'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 e'4 g'4"
+            "c'4 c'4 f'4 f'4"
         ]
     },
     {
-        "name": "c'-f'-c'",
+        "name": "c'-c'-f'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 f'4 c'4"
+            "c'4 c'4 f'4 g'4"
         ]
     },
     {
-        "name": "c'-f'-d'",
+        "name": "c'-c'-g'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 f'4 d'4"
+            "c'4 c'4 g'4 c'4"
         ]
     },
     {
-        "name": "c'-f'-e'",
+        "name": "c'-c'-g'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 f'4 e'4"
+            "c'4 c'4 g'4 d'4"
         ]
     },
     {
-        "name": "c'-f'-f'",
+        "name": "c'-c'-g'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 f'4 f'4"
+            "c'4 c'4 g'4 e'4"
         ]
     },
     {
-        "name": "c'-f'-g'",
+        "name": "c'-c'-g'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 f'4 g'4"
+            "c'4 c'4 g'4 f'4"
         ]
     },
     {
-        "name": "c'-g'-c'",
+        "name": "c'-c'-g'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 g'4 c'4"
+            "c'4 c'4 g'4 g'4"
         ]
     },
     {
-        "name": "c'-g'-d'",
+        "name": "c'-d'-c'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 g'4 d'4"
+            "c'4 d'4 c'4 c'4"
         ]
     },
     {
-        "name": "c'-g'-e'",
+        "name": "c'-d'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 g'4 e'4"
+            "c'4 d'4 c'4 d'4"
         ]
     },
     {
-        "name": "c'-g'-f'",
+        "name": "c'-d'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 g'4 f'4"
+            "c'4 d'4 c'4 e'4"
         ]
     },
     {
-        "name": "c'-g'-g'",
+        "name": "c'-d'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "c'4 g'4 g'4"
+            "c'4 d'4 c'4 f'4"
         ]
     },
     {
-        "name": "d'-c'-c'",
+        "name": "c'-d'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 c'4 c'4"
+            "c'4 d'4 c'4 g'4"
         ]
     },
     {
-        "name": "d'-c'-d'",
+        "name": "c'-d'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 c'4 d'4"
+            "c'4 d'4 d'4 c'4"
         ]
     },
     {
-        "name": "d'-c'-e'",
+        "name": "c'-d'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 c'4 e'4"
+            "c'4 d'4 d'4 e'4"
         ]
     },
     {
-        "name": "d'-c'-f'",
+        "name": "c'-d'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 c'4 f'4"
+            "c'4 d'4 d'4 f'4"
         ]
     },
     {
-        "name": "d'-c'-g'",
+        "name": "c'-d'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 c'4 g'4"
+            "c'4 d'4 d'4 g'4"
         ]
     },
     {
-        "name": "d'-d'-c'",
+        "name": "c'-d'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 d'4 c'4"
+            "c'4 d'4 e'4 c'4"
         ]
     },
     {
-        "name": "d'-d'-e'",
+        "name": "c'-d'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 d'4 e'4"
+            "c'4 d'4 e'4 d'4"
         ]
     },
     {
-        "name": "d'-d'-f'",
+        "name": "c'-d'-e'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 d'4 f'4"
+            "c'4 d'4 e'4 e'4"
         ]
     },
     {
-        "name": "d'-d'-g'",
+        "name": "c'-d'-e'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 d'4 g'4"
+            "c'4 d'4 e'4 f'4"
         ]
     },
     {
-        "name": "d'-e'-c'",
+        "name": "c'-d'-e'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 e'4 c'4"
+            "c'4 d'4 e'4 g'4"
         ]
     },
     {
-        "name": "d'-e'-d'",
+        "name": "c'-d'-f'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 e'4 d'4"
+            "c'4 d'4 f'4 c'4"
         ]
     },
     {
-        "name": "d'-e'-e'",
+        "name": "c'-d'-f'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 e'4 e'4"
+            "c'4 d'4 f'4 d'4"
         ]
     },
     {
-        "name": "d'-e'-f'",
+        "name": "c'-d'-f'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 e'4 f'4"
+            "c'4 d'4 f'4 e'4"
         ]
     },
     {
-        "name": "d'-e'-g'",
+        "name": "c'-d'-f'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 e'4 g'4"
+            "c'4 d'4 f'4 f'4"
         ]
     },
     {
-        "name": "d'-f'-c'",
+        "name": "c'-d'-f'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 f'4 c'4"
+            "c'4 d'4 f'4 g'4"
         ]
     },
     {
-        "name": "d'-f'-d'",
+        "name": "c'-d'-g'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 f'4 d'4"
+            "c'4 d'4 g'4 c'4"
         ]
     },
     {
-        "name": "d'-f'-e'",
+        "name": "c'-d'-g'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 f'4 e'4"
+            "c'4 d'4 g'4 d'4"
         ]
     },
     {
-        "name": "d'-f'-f'",
+        "name": "c'-d'-g'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 f'4 f'4"
+            "c'4 d'4 g'4 e'4"
         ]
     },
     {
-        "name": "d'-f'-g'",
+        "name": "c'-d'-g'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 f'4 g'4"
+            "c'4 d'4 g'4 f'4"
         ]
     },
     {
-        "name": "d'-g'-c'",
+        "name": "c'-d'-g'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 g'4 c'4"
+            "c'4 d'4 g'4 g'4"
         ]
     },
     {
-        "name": "d'-g'-d'",
+        "name": "c'-e'-c'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 g'4 d'4"
+            "c'4 e'4 c'4 c'4"
         ]
     },
     {
-        "name": "d'-g'-e'",
+        "name": "c'-e'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 g'4 e'4"
+            "c'4 e'4 c'4 d'4"
         ]
     },
     {
-        "name": "d'-g'-f'",
+        "name": "c'-e'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 g'4 f'4"
+            "c'4 e'4 c'4 e'4"
         ]
     },
     {
-        "name": "d'-g'-g'",
+        "name": "c'-e'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "d'4 g'4 g'4"
+            "c'4 e'4 c'4 f'4"
         ]
     },
     {
-        "name": "e'-c'-c'",
+        "name": "c'-e'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 c'4 c'4"
+            "c'4 e'4 c'4 g'4"
         ]
     },
     {
-        "name": "e'-c'-d'",
+        "name": "c'-e'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 c'4 d'4"
+            "c'4 e'4 d'4 c'4"
         ]
     },
     {
-        "name": "e'-c'-e'",
+        "name": "c'-e'-d'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 c'4 e'4"
+            "c'4 e'4 d'4 d'4"
         ]
     },
     {
-        "name": "e'-c'-f'",
+        "name": "c'-e'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 c'4 f'4"
+            "c'4 e'4 d'4 e'4"
         ]
     },
     {
-        "name": "e'-c'-g'",
+        "name": "c'-e'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 c'4 g'4"
+            "c'4 e'4 d'4 f'4"
         ]
     },
     {
-        "name": "e'-d'-c'",
+        "name": "c'-e'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 d'4 c'4"
+            "c'4 e'4 d'4 g'4"
         ]
     },
     {
-        "name": "e'-d'-d'",
+        "name": "c'-e'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 d'4 d'4"
+            "c'4 e'4 e'4 c'4"
         ]
     },
     {
-        "name": "e'-d'-e'",
+        "name": "c'-e'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 d'4 e'4"
+            "c'4 e'4 e'4 d'4"
         ]
     },
     {
-        "name": "e'-d'-f'",
+        "name": "c'-e'-e'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 d'4 f'4"
+            "c'4 e'4 e'4 f'4"
         ]
     },
     {
-        "name": "e'-d'-g'",
+        "name": "c'-e'-e'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 d'4 g'4"
+            "c'4 e'4 e'4 g'4"
         ]
     },
     {
-        "name": "e'-e'-c'",
+        "name": "c'-e'-f'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 e'4 c'4"
+            "c'4 e'4 f'4 c'4"
         ]
     },
     {
-        "name": "e'-e'-d'",
+        "name": "c'-e'-f'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 e'4 d'4"
+            "c'4 e'4 f'4 d'4"
         ]
     },
     {
-        "name": "e'-e'-f'",
+        "name": "c'-e'-f'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 e'4 f'4"
+            "c'4 e'4 f'4 e'4"
         ]
     },
     {
-        "name": "e'-e'-g'",
+        "name": "c'-e'-f'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 e'4 g'4"
+            "c'4 e'4 f'4 f'4"
         ]
     },
     {
-        "name": "e'-f'-c'",
+        "name": "c'-e'-f'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 c'4"
+            "c'4 e'4 f'4 g'4"
         ]
     },
     {
-        "name": "e'-f'-d'",
+        "name": "c'-e'-g'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 d'4"
+            "c'4 e'4 g'4 c'4"
         ]
     },
     {
-        "name": "e'-f'-e'",
+        "name": "c'-e'-g'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 e'4"
+            "c'4 e'4 g'4 d'4"
         ]
     },
     {
-        "name": "e'-f'-f'",
+        "name": "c'-e'-g'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 f'4"
+            "c'4 e'4 g'4 e'4"
         ]
     },
     {
-        "name": "e'-f'-g'",
+        "name": "c'-e'-g'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 f'4 g'4"
+            "c'4 e'4 g'4 f'4"
         ]
     },
     {
-        "name": "e'-g'-c'",
+        "name": "c'-e'-g'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 g'4 c'4"
+            "c'4 e'4 g'4 g'4"
         ]
     },
     {
-        "name": "e'-g'-d'",
+        "name": "c'-f'-c'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 g'4 d'4"
+            "c'4 f'4 c'4 c'4"
         ]
     },
     {
-        "name": "e'-g'-e'",
+        "name": "c'-f'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 g'4 e'4"
+            "c'4 f'4 c'4 d'4"
         ]
     },
     {
-        "name": "e'-g'-f'",
+        "name": "c'-f'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 g'4 f'4"
+            "c'4 f'4 c'4 e'4"
         ]
     },
     {
-        "name": "e'-g'-g'",
+        "name": "c'-f'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "e'4 g'4 g'4"
+            "c'4 f'4 c'4 f'4"
         ]
     },
     {
-        "name": "f'-c'-c'",
+        "name": "c'-f'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 c'4 c'4"
+            "c'4 f'4 c'4 g'4"
         ]
     },
     {
-        "name": "f'-c'-d'",
+        "name": "c'-f'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 c'4 d'4"
+            "c'4 f'4 d'4 c'4"
         ]
     },
     {
-        "name": "f'-c'-e'",
+        "name": "c'-f'-d'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 c'4 e'4"
+            "c'4 f'4 d'4 d'4"
         ]
     },
     {
-        "name": "f'-c'-f'",
+        "name": "c'-f'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 c'4 f'4"
+            "c'4 f'4 d'4 e'4"
         ]
     },
     {
-        "name": "f'-c'-g'",
+        "name": "c'-f'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 c'4 g'4"
+            "c'4 f'4 d'4 f'4"
         ]
     },
     {
-        "name": "f'-d'-c'",
+        "name": "c'-f'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 d'4 c'4"
+            "c'4 f'4 d'4 g'4"
         ]
     },
     {
-        "name": "f'-d'-d'",
+        "name": "c'-f'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 d'4 d'4"
+            "c'4 f'4 e'4 c'4"
         ]
     },
     {
-        "name": "f'-d'-e'",
+        "name": "c'-f'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 d'4 e'4"
+            "c'4 f'4 e'4 d'4"
         ]
     },
     {
-        "name": "f'-d'-f'",
+        "name": "c'-f'-e'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 d'4 f'4"
+            "c'4 f'4 e'4 e'4"
         ]
     },
     {
-        "name": "f'-d'-g'",
+        "name": "c'-f'-e'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 d'4 g'4"
+            "c'4 f'4 e'4 f'4"
         ]
     },
     {
-        "name": "f'-e'-c'",
+        "name": "c'-f'-e'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 c'4"
+            "c'4 f'4 e'4 g'4"
         ]
     },
     {
-        "name": "f'-e'-d'",
+        "name": "c'-f'-f'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 d'4"
+            "c'4 f'4 f'4 c'4"
         ]
     },
     {
-        "name": "f'-e'-e'",
+        "name": "c'-f'-f'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 e'4"
+            "c'4 f'4 f'4 d'4"
         ]
     },
     {
-        "name": "f'-e'-f'",
+        "name": "c'-f'-f'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 f'4"
+            "c'4 f'4 f'4 e'4"
         ]
     },
     {
-        "name": "f'-e'-g'",
+        "name": "c'-f'-f'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 e'4 g'4"
+            "c'4 f'4 f'4 g'4"
         ]
     },
     {
-        "name": "f'-f'-c'",
+        "name": "c'-f'-g'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 f'4 c'4"
+            "c'4 f'4 g'4 c'4"
         ]
     },
     {
-        "name": "f'-f'-d'",
+        "name": "c'-f'-g'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 f'4 d'4"
+            "c'4 f'4 g'4 d'4"
         ]
     },
     {
-        "name": "f'-f'-e'",
+        "name": "c'-f'-g'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 f'4 e'4"
+            "c'4 f'4 g'4 e'4"
         ]
     },
     {
-        "name": "f'-f'-g'",
+        "name": "c'-f'-g'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 f'4 g'4"
+            "c'4 f'4 g'4 f'4"
         ]
     },
     {
-        "name": "f'-g'-c'",
+        "name": "c'-f'-g'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 g'4 c'4"
+            "c'4 f'4 g'4 g'4"
         ]
     },
     {
-        "name": "f'-g'-d'",
+        "name": "c'-g'-c'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 g'4 d'4"
+            "c'4 g'4 c'4 c'4"
         ]
     },
     {
-        "name": "f'-g'-e'",
+        "name": "c'-g'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 g'4 e'4"
+            "c'4 g'4 c'4 d'4"
         ]
     },
     {
-        "name": "f'-g'-f'",
+        "name": "c'-g'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 g'4 f'4"
+            "c'4 g'4 c'4 e'4"
         ]
     },
     {
-        "name": "f'-g'-g'",
+        "name": "c'-g'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "f'4 g'4 g'4"
+            "c'4 g'4 c'4 f'4"
         ]
     },
     {
-        "name": "g'-c'-c'",
+        "name": "c'-g'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 c'4 c'4"
+            "c'4 g'4 c'4 g'4"
         ]
     },
     {
-        "name": "g'-c'-d'",
+        "name": "c'-g'-d'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 c'4 d'4"
+            "c'4 g'4 d'4 c'4"
         ]
     },
     {
-        "name": "g'-c'-e'",
+        "name": "c'-g'-d'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 c'4 e'4"
+            "c'4 g'4 d'4 d'4"
         ]
     },
     {
-        "name": "g'-c'-f'",
+        "name": "c'-g'-d'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 c'4 f'4"
+            "c'4 g'4 d'4 e'4"
         ]
     },
     {
-        "name": "g'-c'-g'",
+        "name": "c'-g'-d'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 c'4 g'4"
+            "c'4 g'4 d'4 f'4"
         ]
     },
     {
-        "name": "g'-d'-c'",
+        "name": "c'-g'-d'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 d'4 c'4"
+            "c'4 g'4 d'4 g'4"
         ]
     },
     {
-        "name": "g'-d'-d'",
+        "name": "c'-g'-e'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 d'4 d'4"
+            "c'4 g'4 e'4 c'4"
         ]
     },
     {
-        "name": "g'-d'-e'",
+        "name": "c'-g'-e'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 d'4 e'4"
+            "c'4 g'4 e'4 d'4"
         ]
     },
     {
-        "name": "g'-d'-f'",
+        "name": "c'-g'-e'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 d'4 f'4"
+            "c'4 g'4 e'4 e'4"
         ]
     },
     {
-        "name": "g'-d'-g'",
+        "name": "c'-g'-e'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 d'4 g'4"
+            "c'4 g'4 e'4 f'4"
         ]
     },
     {
-        "name": "g'-e'-c'",
+        "name": "c'-g'-e'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 e'4 c'4"
+            "c'4 g'4 e'4 g'4"
         ]
     },
     {
-        "name": "g'-e'-d'",
+        "name": "c'-g'-f'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 e'4 d'4"
+            "c'4 g'4 f'4 c'4"
         ]
     },
     {
-        "name": "g'-e'-e'",
+        "name": "c'-g'-f'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 e'4 e'4"
+            "c'4 g'4 f'4 d'4"
         ]
     },
     {
-        "name": "g'-e'-f'",
+        "name": "c'-g'-f'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 e'4 f'4"
+            "c'4 g'4 f'4 e'4"
         ]
     },
     {
-        "name": "g'-e'-g'",
+        "name": "c'-g'-f'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 e'4 g'4"
+            "c'4 g'4 f'4 f'4"
         ]
     },
     {
-        "name": "g'-f'-c'",
+        "name": "c'-g'-f'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 f'4 c'4"
+            "c'4 g'4 f'4 g'4"
         ]
     },
     {
-        "name": "g'-f'-d'",
+        "name": "c'-g'-g'-c'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 f'4 d'4"
+            "c'4 g'4 g'4 c'4"
         ]
     },
     {
-        "name": "g'-f'-e'",
+        "name": "c'-g'-g'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 f'4 e'4"
+            "c'4 g'4 g'4 d'4"
         ]
     },
     {
-        "name": "g'-f'-f'",
+        "name": "c'-g'-g'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 f'4 f'4"
+            "c'4 g'4 g'4 e'4"
         ]
     },
     {
-        "name": "g'-f'-g'",
+        "name": "c'-g'-g'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 f'4 g'4"
+            "c'4 g'4 g'4 f'4"
         ]
     },
     {
-        "name": "g'-g'-c'",
+        "name": "d'-c'-c'-d'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 g'4 c'4"
+            "d'4 c'4 c'4 d'4"
         ]
     },
     {
-        "name": "g'-g'-d'",
+        "name": "d'-c'-c'-e'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 g'4 d'4"
+            "d'4 c'4 c'4 e'4"
         ]
     },
     {
-        "name": "g'-g'-e'",
+        "name": "d'-c'-c'-f'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 g'4 e'4"
+            "d'4 c'4 c'4 f'4"
         ]
     },
     {
-        "name": "g'-g'-f'",
+        "name": "d'-c'-c'-g'",
         "tempo": "120",
         "key": "c \\major",
         "snippets": [
-            "g'4 g'4 f'4"
+            "d'4 c'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-c'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-c'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-c'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-c'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-c'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-c'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-c'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-c'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-c'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-c'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-c'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-c'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-c'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-c'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-c'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-c'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-c'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-c'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-c'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-c'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 c'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-d'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-d'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-d'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-d'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-d'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-d'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-d'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-d'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-d'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-d'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-d'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-d'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-d'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-d'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-d'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-d'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-d'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-d'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-d'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-d'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 d'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-e'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-e'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-e'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-e'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-e'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-e'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-e'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-e'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-e'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-e'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-e'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-e'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-e'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-e'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-e'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-e'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-e'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-e'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-e'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-e'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-e'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-e'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-e'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-e'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 e'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-f'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-f'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-f'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-f'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-f'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-f'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-f'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-f'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-f'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-f'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-f'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-f'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-f'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-f'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-f'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-f'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-f'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-f'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-f'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-f'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-f'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-f'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-f'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-f'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 f'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-g'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-g'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-g'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-g'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-g'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-g'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-g'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-g'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-g'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-g'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-g'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-g'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-g'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-g'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-g'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-g'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-g'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-g'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-g'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "d'-g'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "d'-g'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "d'-g'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "d'-g'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "d'-g'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "d'4 g'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-c'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-c'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-c'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-c'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-c'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-c'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-c'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-c'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-c'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-c'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-c'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-c'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-c'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-c'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-c'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-c'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-c'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-c'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-c'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-c'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-c'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-c'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-c'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-c'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 c'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-d'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-d'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-d'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-d'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-d'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-d'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-d'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-d'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-d'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-d'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-d'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-d'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-d'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-d'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-d'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-d'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-d'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-d'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-d'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-d'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-d'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-d'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-d'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-d'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 d'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-e'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-e'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-e'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-e'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-e'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-e'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-e'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-e'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-e'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-e'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-e'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-e'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-e'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-e'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-e'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-e'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-e'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-e'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-e'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-e'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 e'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-f'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-f'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-f'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-f'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-f'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-f'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-f'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-f'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-f'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-f'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-f'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-f'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-f'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-f'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-f'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-f'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-f'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-f'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-f'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-f'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-f'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-f'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-f'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-f'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 f'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-g'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-g'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-g'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-g'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-g'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-g'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-g'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-g'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-g'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-g'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-g'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-g'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-g'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-g'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-g'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-g'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-g'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-g'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-g'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "e'-g'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "e'-g'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "e'-g'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "e'-g'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "e'-g'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "e'4 g'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-c'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-c'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-c'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-c'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-c'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-c'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-c'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-c'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-c'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-c'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-c'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-c'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-c'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-c'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-c'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-c'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-c'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-c'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-c'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 c'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-d'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-d'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-d'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-d'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-d'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-d'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-d'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-d'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-d'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-d'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-d'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-d'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-d'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-d'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-d'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-d'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-d'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-d'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-d'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-d'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-d'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-d'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-d'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-d'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 d'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-e'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-e'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-e'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-e'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-e'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-e'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-e'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-e'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-e'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-e'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-e'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-e'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-e'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-e'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-e'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-e'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-e'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-e'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-e'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-e'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-e'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-e'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-e'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-e'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 e'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-f'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-f'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-f'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-f'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-f'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-f'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-f'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-f'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-f'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-f'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-f'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-f'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-f'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-f'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-f'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-f'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-f'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-f'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-f'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-f'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 f'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-g'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-g'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-g'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-g'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-g'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-g'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-g'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-g'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-g'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-g'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-g'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-g'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-g'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-g'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-g'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-g'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-g'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-g'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-g'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "f'-g'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "f'-g'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "f'-g'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "f'-g'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "f'-g'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "f'4 g'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-c'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-c'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-c'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-c'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-c'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-c'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-c'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-c'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-c'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-c'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-c'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-c'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-c'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-c'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-c'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-c'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-c'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-c'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-c'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 c'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-d'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-d'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-d'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-d'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-d'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-d'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-d'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-d'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-d'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-d'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-d'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-d'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-d'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-d'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-d'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-d'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-d'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-d'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-d'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-d'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-d'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-d'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-d'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-d'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 d'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-e'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-e'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-e'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-e'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-e'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-e'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-e'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-e'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-e'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-e'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-e'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-e'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-e'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-e'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-e'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-e'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-e'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-e'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-e'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-e'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-e'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-e'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-e'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-e'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 e'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-f'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-f'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-f'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-f'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-f'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-f'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-f'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-f'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-f'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-f'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-f'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-f'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-f'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-f'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-f'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-f'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-f'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-f'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-f'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 f'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-f'-g'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 g'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-f'-g'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 g'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-f'-g'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 g'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-f'-g'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 g'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-f'-g'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 f'4 g'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-g'-c'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 c'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-g'-c'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 c'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-g'-c'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 c'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-g'-c'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 c'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-g'-c'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 c'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-g'-d'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 d'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-g'-d'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 d'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-g'-d'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 d'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-g'-d'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 d'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-g'-d'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 d'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-g'-e'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 e'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-g'-e'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 e'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-g'-e'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 e'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-g'-e'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 e'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-g'-e'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 e'4 g'4"
+        ]
+    },
+    {
+        "name": "g'-g'-f'-c'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 f'4 c'4"
+        ]
+    },
+    {
+        "name": "g'-g'-f'-d'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 f'4 d'4"
+        ]
+    },
+    {
+        "name": "g'-g'-f'-e'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 f'4 e'4"
+        ]
+    },
+    {
+        "name": "g'-g'-f'-f'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 f'4 f'4"
+        ]
+    },
+    {
+        "name": "g'-g'-f'-g'",
+        "tempo": "120",
+        "key": "c \\major",
+        "snippets": [
+            "g'4 g'4 f'4 g'4"
         ]
     }
 ]
