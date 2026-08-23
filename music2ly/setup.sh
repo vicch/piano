@@ -27,10 +27,10 @@ uv sync --extra video --extra dev
 
 if [[ ! -f .env ]]; then
   cp .env.example .env
-  echo "Created .env from .env.example — set GOOGLE_API_KEY before running step 4."
+  echo "Created .env from .env.example — set OPENROUTER_API_KEY before running step 4."
 fi
 
 echo ""
 echo "Setup complete."
-echo "  1. Edit .env and set GOOGLE_API_KEY"
+echo "  1. Edit .env and set OPENROUTER_API_KEY"
 echo "  2. Run: uv run video2ly \"https://youtube.com/watch?v=...\" --title \"Song Title\""

@@ -7,8 +7,6 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 import httpx
-from google import genai
-from google.genai import types
 from music21 import converter
 
 from music2ly.config import Config, project_root, system_prompt_path
@@ -79,23 +77,33 @@ def _call_lmstudio(system_prompt: str, user_prompt: str, config: Config) -> str:
     return data["choices"][0]["message"].get("content") or ""
 
 
-def _call_gemini(system_prompt: str, user_prompt: str, config: Config) -> str:
-    if not config.google_api_key:
+def _call_openrouter(system_prompt: str, user_prompt: str, config: Config) -> str:
+    if not config.openrouter_api_key:
         raise ValueError(
-            "GOOGLE_API_KEY is required for the gemini backend. "
+            "OPENROUTER_API_KEY is required for the openrouter backend. "
             "Set it in .env or your environment."
         )
-    client = genai.Client(api_key=config.google_api_key)
-    response = client.models.generate_content(
-        model=config.gemini_model,
-        contents=user_prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            temperature=0.2,
-            max_output_tokens=32768,
-        ),
-    )
-    return response.text or ""
+    headers = {
+        "Authorization": f"Bearer {config.openrouter_api_key}",
+        "HTTP-Referer": "https://github.com/vicch/piano",
+        "X-Title": "music2ly",
+    }
+    payload = {
+        "model": config.openrouter_model,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        "temperature": 0.2,
+        "max_tokens": 32768,
+        "stream": False,
+    }
+    url = f"{config.openrouter_base_url}/chat/completions"
+    with httpx.Client(timeout=httpx.Timeout(600.0, connect=10.0)) as client:
+        resp = client.post(url, json=payload, headers=headers)
+        resp.raise_for_status()
+        data = resp.json()
+    return data["choices"][0]["message"].get("content") or ""
 
 
 def translate_chunk(
@@ -109,11 +117,11 @@ def translate_chunk(
 
     if config.llm_backend == "lmstudio":
         raw_text = _call_lmstudio(system_prompt, user_prompt, config)
-    elif config.llm_backend == "gemini":
-        raw_text = _call_gemini(system_prompt, user_prompt, config)
+    elif config.llm_backend == "openrouter":
+        raw_text = _call_openrouter(system_prompt, user_prompt, config)
     else:
         raise ValueError(
-            f"Unknown llm_backend: {config.llm_backend!r}. Expected 'lmstudio' or 'gemini'."
+            f"Unknown llm_backend: {config.llm_backend!r}. Expected 'openrouter' or 'lmstudio'."
         )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -275,9 +283,9 @@ def translate_all_chunks(
     source: str,
     sequence: str | None = None,
 ) -> Path:
-    if config.llm_backend == "gemini" and not config.google_api_key:
+    if config.llm_backend == "openrouter" and not config.openrouter_api_key:
         raise ValueError(
-            "GOOGLE_API_KEY is required for the gemini backend. "
+            "OPENROUTER_API_KEY is required for the openrouter backend. "
             "Set it in .env or your environment."
         )
 

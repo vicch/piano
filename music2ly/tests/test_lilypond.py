@@ -54,3 +54,67 @@ def test_merge_lilypond_chunks_builds_score():
     # final barline applied once per hand (treble + bass)
     assert merged.count('\\bar "|."') == 2
     assert "c'4 d'4 e'4 f'4" in merged
+
+
+def test_openrouter_call_requires_api_key():
+    from music2ly.config import Config
+    from music2ly.lilypond import _call_openrouter
+
+    config = Config(
+        openrouter_api_key="",
+        openrouter_model="google/gemini-2.0-flash-001",
+        quantize_subdiv=4,
+        chunk_seconds=20,
+        transcription_backend="piano",
+        llm_backend="openrouter",
+    )
+    with pytest.raises(ValueError, match="OPENROUTER_API_KEY is required"):
+        _call_openrouter("sys", "user", config)
+
+
+def test_openrouter_call_success(monkeypatch):
+    import httpx
+    from music2ly.config import Config
+    from music2ly.lilypond import _call_openrouter
+
+    config = Config(
+        openrouter_api_key="test-key-123",
+        openrouter_model="google/gemini-2.0-flash-001",
+        quantize_subdiv=4,
+        chunk_seconds=20,
+        transcription_backend="piano",
+        llm_backend="openrouter",
+    )
+
+    class MockResponse:
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return {
+                "choices": [
+                    {
+                        "message": {
+                            "content": "```lilypond-treble\nc'4\n```\n```lilypond-bass\nc4\n```"
+                        }
+                    }
+                ]
+            }
+
+    called_kwargs = {}
+
+    def mock_post(self, url, json=None, headers=None):
+        called_kwargs["url"] = url
+        called_kwargs["json"] = json
+        called_kwargs["headers"] = headers
+        return MockResponse()
+
+    monkeypatch.setattr(httpx.Client, "post", mock_post)
+
+    result = _call_openrouter("system instruction", "user content", config)
+    assert "```lilypond-treble" in result
+    assert called_kwargs["url"] == "https://openrouter.ai/api/v1/chat/completions"
+    assert called_kwargs["headers"]["Authorization"] == "Bearer test-key-123"
+    assert called_kwargs["headers"]["HTTP-Referer"] == "https://github.com/vicch/piano"
+    assert called_kwargs["json"]["model"] == "google/gemini-2.0-flash-001"
+

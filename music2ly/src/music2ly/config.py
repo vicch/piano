@@ -45,18 +45,21 @@ SENSITIVITY_PRESETS: dict[str, dict[str, float | int]] = {
     },
 }
 DEFAULT_SENSITIVITY = "medium"
+DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+DEFAULT_OPENROUTER_MODEL = "google/gemini-2.0-flash-001"
 DEFAULT_LMSTUDIO_BASE_URL = "http://127.0.0.1:1234/v1"
 DEFAULT_LMSTUDIO_MODEL = "google/gemma-4-31b"
-DEFAULT_LLM_BACKEND = "lmstudio"
+DEFAULT_LLM_BACKEND = "openrouter"
 
 
 @dataclass
 class Config:
-    google_api_key: str
-    gemini_model: str
+    openrouter_api_key: str
+    openrouter_model: str
     quantize_subdiv: int
     chunk_seconds: float
     transcription_backend: str
+    openrouter_base_url: str = DEFAULT_OPENROUTER_BASE_URL
     sensitivity: str = DEFAULT_SENSITIVITY
     llm_backend: str = DEFAULT_LLM_BACKEND
     lmstudio_base_url: str = DEFAULT_LMSTUDIO_BASE_URL
@@ -91,7 +94,9 @@ class Config:
         quantize_subdiv: int = DEFAULT_QUANTIZE_SUBDIV,
         chunk_seconds: float = DEFAULT_CHUNK_SECONDS,
         transcription_backend: str = "piano",
-        gemini_model: str | None = None,
+        openrouter_api_key: str | None = None,
+        openrouter_model: str | None = None,
+        openrouter_base_url: str | None = None,
         llm_backend: str | None = None,
         lmstudio_base_url: str | None = None,
         lmstudio_model: str | None = None,
@@ -102,8 +107,20 @@ class Config:
         else:
             load_dotenv()
 
-        api_key = os.environ.get("GOOGLE_API_KEY", "").strip()
-        model = gemini_model or os.environ.get("GEMINI_MODEL", "gemini-2.0-flash").strip()
+        api_key = (
+            openrouter_api_key
+            or os.environ.get("OPENROUTER_API_KEY", "")
+        ).strip()
+        or_model = (
+            openrouter_model
+            or os.environ.get("OPENROUTER_MODEL")
+            or DEFAULT_OPENROUTER_MODEL
+        ).strip()
+        or_base_url = (
+            openrouter_base_url
+            or os.environ.get("OPENROUTER_BASE_URL")
+            or DEFAULT_OPENROUTER_BASE_URL
+        ).rstrip("/")
         mscore = os.environ.get("MSCORE_BIN", "").strip() or None
 
         backend = (llm_backend or os.environ.get("LLM_BACKEND") or DEFAULT_LLM_BACKEND).strip()
@@ -126,8 +143,9 @@ class Config:
             )
 
         return cls(
-            google_api_key=api_key,
-            gemini_model=model,
+            openrouter_api_key=api_key,
+            openrouter_model=or_model,
+            openrouter_base_url=or_base_url,
             quantize_subdiv=quantize_subdiv,
             chunk_seconds=chunk_seconds,
             transcription_backend=transcription_backend,

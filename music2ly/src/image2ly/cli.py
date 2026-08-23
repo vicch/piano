@@ -65,10 +65,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--llm-backend",
-        choices=["lmstudio", "gemini"],
+        choices=["openrouter", "lmstudio"],
         default=None,
-        help="LLM backend for LilyPond conversion. Default lmstudio "
-        "(local OpenAI-compatible server); gemini is fallback.",
+        help="LLM backend for LilyPond conversion (default: openrouter; lmstudio is local fallback).",
+    )
+    parser.add_argument(
+        "--openrouter-model",
+        default=None,
+        help="OpenRouter model id (default google/gemini-2.0-flash-001)",
+    )
+    parser.add_argument(
+        "--openrouter-base-url",
+        default=None,
+        help="OpenRouter base URL (default https://openrouter.ai/api/v1)",
     )
     parser.add_argument(
         "--lmstudio-base-url",
@@ -80,11 +89,6 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="LM-Studio model id (default google/gemma-4-31b)",
     )
-    parser.add_argument(
-        "--gemini-model",
-        default=None,
-        help="Override GEMINI_MODEL from environment",
-    )
     return parser
 
 
@@ -95,7 +99,8 @@ def main(argv: list[str] | None = None) -> int:
     config = Config.load(
         env_file=args.env_file,
         chunk_seconds=args.chunk_seconds,
-        gemini_model=args.gemini_model,
+        openrouter_model=args.openrouter_model,
+        openrouter_base_url=args.openrouter_base_url,
         llm_backend=args.llm_backend,
         lmstudio_base_url=args.lmstudio_base_url,
         lmstudio_model=args.lmstudio_model,
