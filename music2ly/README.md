@@ -26,8 +26,8 @@ uv sync --extra dev      # development and test dependencies (pytest)
 
 ### image2ly pipeline (3 steps)
 
-1. **Recognize (`recognize`)** — Optical Music Recognition via `homr` (default, run via `uvx homr`) or `oemer` → `recognized.musicxml`
-2. **Structure (`musicxml`)** — `music21` parses grand-staff MusicXML and splits it into chunks in `chunks/`
+1. **Recognize (`recognize`)** — Optical Music Recognition on all sheet images in the directory in natural page order via `homr` (default, run via `uvx homr`) or `oemer` → `recognized_001.musicxml`, `recognized_002.musicxml`, ... and merged `recognized.musicxml`
+2. **Structure (`musicxml`)** — `music21` parses grand-staff MusicXML across all pages into continuous measures and splits it into chunks in `chunks/`
 3. **Engrave (`lilypond`)** — LLM translates MusicXML chunks to LilyPond (`lilypond_chunks/`) and merges into `<title>.ly`
 
 ## Prerequisites
@@ -112,22 +112,28 @@ Key options:
 
 ### image2ly
 
-Converts a sheet music image (PNG or JPG) to LilyPond via OMR and LLM translation:
+Converts sheet music images (PNG or JPG) in a directory to LilyPond via OMR and LLM translation. Supports single or multi-page scores:
+
+Place your page images (e.g. `1.png`, `2.png` or `page1.png`, `page2.png`) inside `output/<title>/` and pass the song title / directory name:
 
 ```bash
 # Install image extra if using oemer fallback (homr runs via uvx):
 uv sync --extra image
 
-uv run image2ly path/to/score.png --title "My Song Title"
+# Processes all image sheets in ./output/My Song Title in natural order:
+uv run image2ly "My Song Title"
+
+# Or pass a path to any directory containing images:
+uv run image2ly path/to/score_dir
 ```
 
 Resume and step execution:
 
 ```bash
-uv run image2ly path/to/score.png --title "My Song Title" --resume
-uv run image2ly path/to/score.png --title "My Song Title" --steps recognize
-uv run image2ly path/to/score.png --title "My Song Title" --steps musicxml
-uv run image2ly path/to/score.png --title "My Song Title" --steps lilypond
+uv run image2ly "My Song Title" --resume
+uv run image2ly "My Song Title" --steps recognize
+uv run image2ly "My Song Title" --steps musicxml
+uv run image2ly "My Song Title" --steps lilypond
 ```
 
 OMR Backends (`--omr-backend`, default `homr`):
@@ -143,14 +149,17 @@ All artifacts for a run are organized in `output/<title>/`:
 
 ```text
 output/My-Song-Title/
+├── 1.png                               # [image2ly] Page 1 sheet image
+├── 2.png                               # [image2ly] Page 2 sheet image
 ├── audio.wav                           # [video2ly] Extracted WAV audio
 ├── transcription.mid                   # [video2ly] Raw transcribed MIDI
 ├── transcription.meta.json             # [video2ly] Transcription metadata
 ├── transcription.quantized.mid         # [video2ly] Tempo-snapped quantized MIDI
 ├── transcription.quantized.meta.json   # [video2ly] Quantization metadata
-├── source.png                          # [image2ly] Preserved source image copy
 ├── structured.musicxml                 # [video2ly] MuseScore structured MusicXML
-├── recognized.musicxml                 # [image2ly] OMR recognized MusicXML
+├── recognized_001.musicxml             # [image2ly] Page 1 OMR recognized MusicXML
+├── recognized_002.musicxml             # [image2ly] Page 2 OMR recognized MusicXML
+├── recognized.musicxml                 # [image2ly] Merged continuous MusicXML
 ├── chunks/                             # MusicXML chunk slices and metadata
 │   ├── chunk_001.musicxml
 │   └── chunk_001.json

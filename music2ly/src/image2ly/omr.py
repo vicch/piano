@@ -38,6 +38,14 @@ def _resolve_command(backend: str) -> list[str]:
                 "--no-config",
                 "--default-index",
                 "https://pypi.org/simple",
+                "--with",
+                "opencv-python==4.9.0.80",
+                "--with",
+                "numpy<2",
+                "--with",
+                "albumentations",
+                "--with",
+                "timm",
                 "homr",
             ]
         raise OMRError(
@@ -70,49 +78,54 @@ def recognize(
     """Run OMR on ``image_path`` and write the result to ``out_musicxml``.
 
     OMR engines emit the MusicXML next to the image (homr) or into an output dir
-    (oemer); we run with the image's directory as the workspace, detect the
-    newly created MusicXML, and move it to ``out_musicxml``.
+    (oemer); we run with a temporary directory as the workspace to avoid non-ASCII
+    path issues (e.g. OpenCV limitations on Windows) and keep the project clean,
+    then detect the newly created MusicXML and move it to ``out_musicxml``.
     """
-    # Resolve to absolute paths: the engine runs with cwd set to the work dir,
-    # so any relative path passed through would no longer resolve.
+    import tempfile
+
     image_path = image_path.resolve()
     out_musicxml = out_musicxml.resolve()
     if not image_path.exists():
         raise FileNotFoundError(f"Image not found: {image_path}")
 
     base = _resolve_command(backend)
-    work_dir = image_path.parent
-    work_dir.mkdir(parents=True, exist_ok=True)
     out_musicxml.parent.mkdir(parents=True, exist_ok=True)
 
-    before = _existing_xml(work_dir)
+    with tempfile.TemporaryDirectory() as temp_dir_str:
+        temp_dir = Path(temp_dir_str)
+        # Use an ASCII filename for the image inside the temp dir
+        temp_image_path = temp_dir / f"image{image_path.suffix}"
+        shutil.copy2(str(image_path), str(temp_image_path))
 
-    if backend == "oemer":
-        argv = [*base, str(image_path), "-o", str(work_dir)]
-    else:  # homr writes alongside the input
-        argv = [*base, str(image_path)]
+        before = _existing_xml(temp_dir)
 
-    proc = subprocess.run(
-        argv,
-        capture_output=True,
-        text=True,
-        timeout=timeout,
-        cwd=str(work_dir),
-    )
-    if proc.returncode != 0:
-        raise OMRError(
-            f"{backend} failed (exit {proc.returncode}).\n"
-            f"stderr:\n{proc.stderr[-2000:]}"
+        if backend == "oemer":
+            argv = [*base, str(temp_image_path), "-o", str(temp_dir)]
+        else:  # homr writes alongside the input
+            argv = [*base, str(temp_image_path)]
+
+        proc = subprocess.run(
+            argv,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            cwd=str(temp_dir),
         )
+        if proc.returncode != 0:
+            raise OMRError(
+                f"{backend} failed (exit {proc.returncode}).\n"
+                f"stderr:\n{proc.stderr[-2000:]}"
+            )
 
-    produced = sorted(_existing_xml(work_dir) - before, key=lambda p: p.stat().st_mtime)
-    if not produced:
-        raise OMRError(
-            f"{backend} produced no MusicXML in {work_dir}. "
-            f"stdout tail:\n{proc.stdout[-1000:]}"
-        )
+        produced = sorted(_existing_xml(temp_dir) - before, key=lambda p: p.stat().st_mtime)
+        if not produced:
+            raise OMRError(
+                f"{backend} produced no MusicXML in temporary directory. "
+                f"stdout tail:\n{proc.stdout[-1000:]}"
+            )
 
-    result = produced[-1]
-    if result.resolve() != out_musicxml.resolve():
+        result = produced[-1]
         shutil.move(str(result), str(out_musicxml))
+
     return out_musicxml

@@ -203,7 +203,7 @@ def _relative_template_include(output_path: Path) -> str:
     template_path = project_root().parent / "template" / "base.ly"
     if not template_path.exists():
         return "../template/base.ly"
-    return os.path.relpath(template_path, output_path.parent)
+    return os.path.relpath(template_path, output_path.parent).replace("\\", "/")
 
 
 def _indent(body: str, spaces: int = 6) -> str:

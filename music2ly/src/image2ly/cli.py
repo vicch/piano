@@ -25,14 +25,17 @@ def parse_steps(raw: str) -> set[str]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Convert an image of sheet music to LilyPond via OMR.",
+        description="Convert sheet music images in a directory to LilyPond via OMR.",
     )
-    parser.add_argument("image", help="Path to a sheet-music image (PNG/JPG)")
+    parser.add_argument(
+        "target",
+        help="Directory containing sheet-music images (e.g. 'Foo Bar' for ./output/Foo Bar, or path/to/dir), or path to a sheet image",
+    )
     parser.add_argument(
         "--title",
         "-t",
-        required=True,
-        help="Song title; artifacts and score go under output/<title>/",
+        default=None,
+        help="Song title (default: derived from target directory name); artifacts and score go in that directory",
     )
     parser.add_argument(
         "--omr-backend",
@@ -106,15 +109,13 @@ def main(argv: list[str] | None = None) -> int:
         lmstudio_model=args.lmstudio_model,
     )
 
-    image_input = Path(args.image)
-    paths = ImagePaths.from_title(args.title, image_input)
+    paths, title = ImagePaths.from_target(args.target, title=args.title)
 
     try:
         run_pipeline(
-            image_input,
             paths,
             config,
-            title=args.title,
+            title=title,
             steps=args.steps,
             resume=args.resume,
             omr_backend=args.omr_backend,

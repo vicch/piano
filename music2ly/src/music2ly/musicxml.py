@@ -219,6 +219,55 @@ def load_grand_staff(musicxml_path: Path) -> tuple[stream.Part, stream.Part, int
     return treble, bass, measure_count
 
 
+def merge_grand_staff_parts(
+    pages: list[tuple[stream.Part, stream.Part]],
+) -> tuple[stream.Part, stream.Part, int]:
+    """Merge grand staff parts from multiple pages into single continuous treble and bass parts.
+
+    Measures are renumbered sequentially starting at 1 so the entire multi-page
+    score forms a continuous measure timeline.
+    """
+    merged_treble = stream.Part()
+    merged_bass = stream.Part()
+    current_measure = 1
+
+    for treble_part, bass_part in pages:
+        t_measures = list(treble_part.getElementsByClass("Measure"))
+        b_measures = list(bass_part.getElementsByClass("Measure"))
+        num_m = max(len(t_measures), len(b_measures))
+
+        for i in range(num_m):
+            if i < len(t_measures):
+                m_t = copy.deepcopy(t_measures[i])
+                m_t.number = current_measure
+                merged_treble.append(m_t)
+            if i < len(b_measures):
+                m_b = copy.deepcopy(b_measures[i])
+                m_b.number = current_measure
+                merged_bass.append(m_b)
+            current_measure += 1
+
+    total_measures = current_measure - 1
+    return merged_treble, merged_bass, total_measures
+
+
+def load_multi_grand_staff(
+    musicxml_paths: list[Path],
+) -> tuple[stream.Part, stream.Part, int]:
+    """Parse multiple MusicXML files (e.g. pages) and merge into continuous (treble, bass, measure_count)."""
+    if not musicxml_paths:
+        raise ValueError("No MusicXML paths provided")
+    if len(musicxml_paths) == 1:
+        return load_grand_staff(musicxml_paths[0])
+
+    pages: list[tuple[stream.Part, stream.Part]] = []
+    for p in musicxml_paths:
+        treble, bass, _ = load_grand_staff(p)
+        pages.append((treble, bass))
+
+    return merge_grand_staff_parts(pages)
+
+
 def chunk_musicxml(
     treble: stream.Part,
     bass: stream.Part,
