@@ -8,7 +8,7 @@ from pathlib import Path
 from music21 import stream
 
 from music2ly.config import Config
-from music2ly.lilypond import translate_all_chunks
+from music2ly.lilypond import _derive_sequence, translate_all_chunks
 from music2ly.models import ChunkInfo
 from music2ly.musicxml import chunk_musicxml, load_grand_staff, load_multi_grand_staff
 
@@ -192,12 +192,7 @@ def run_pipeline(
             print(f"Skipping lilypond (exists): {paths.output_path}", file=sys.stderr)
         else:
             print(f"Step 3: Translating {len(chunks)} chunk(s) to LilyPond...", file=sys.stderr)
-            if len(paths.source_images) == 1:
-                sequence = f"Sheet image: {paths.source_images[0].name}"
-            elif len(paths.source_images) > 1:
-                sequence = f"Sheet images: {len(paths.source_images)} pages"
-            else:
-                sequence = f"Sheet: {song_title}"
+            sequence = _derive_sequence(paths.source_images or paths.work_dir)
 
             translate_all_chunks(
                 chunks,

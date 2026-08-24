@@ -98,3 +98,21 @@ def test_image_paths_with_title_override(tmp_path):
     paths, title = ImagePaths.from_target(d, title="Custom Title")
     assert title == "Custom Title"
     assert paths.output_path == d.resolve() / "Custom Title.ly"
+
+
+def test_image_paths_with_sequence_in_title(tmp_path):
+    d = tmp_path / "Für Elise (EveryonePiano 47)"
+    d.mkdir()
+    paths, title = ImagePaths.from_target(d)
+    assert title == "Für Elise"
+    assert paths.output_path == d.resolve() / "Für Elise (EveryonePiano 47).ly"
+
+
+def test_image_paths_with_sequence_in_images(tmp_path):
+    d = tmp_path / "Für Elise"
+    d.mkdir()
+    (d / "Für Elise (EveryonePiano 47) 1.png").write_text("")
+    (d / "Für Elise (EveryonePiano 47) 2.png").write_text("")
+    paths, title = ImagePaths.from_target(d)
+    assert title == "Für Elise"
+    assert paths.output_path == d.resolve() / "Für Elise (EveryonePiano 47).ly"

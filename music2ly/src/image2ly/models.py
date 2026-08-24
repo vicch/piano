@@ -108,7 +108,24 @@ class ImagePaths:
         work_dir, song_title, images = cls.resolve_target(
             target, title=title, output_root=output_root
         )
-        basename = slugify_title(song_title)
+
+        from music2ly.lilypond import _derive_sequence
+
+        # Extract sequence from song_title if present, or from images/work_dir
+        match = re.search(r"\(([^)]+)\)", song_title)
+        if match:
+            title_clean = song_title[:match.start()].strip()
+            sequence = match.group(1).strip()
+        else:
+            title_clean = song_title.strip()
+            sequence = _derive_sequence(images or work_dir)
+
+        if sequence:
+            display_title = f"{title_clean} ({sequence})"
+        else:
+            display_title = title_clean
+
+        basename = slugify_title(display_title)
         paths = cls(
             work_dir=work_dir,
             source_images=images,
@@ -117,7 +134,7 @@ class ImagePaths:
             lilypond_chunks_dir=work_dir / "lilypond_chunks",
             output_path=work_dir / f"{basename}.ly",
         )
-        return paths, song_title
+        return paths, title_clean
 
     @classmethod
     def from_title(

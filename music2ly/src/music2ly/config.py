@@ -45,25 +45,14 @@ SENSITIVITY_PRESETS: dict[str, dict[str, float | int]] = {
     },
 }
 DEFAULT_SENSITIVITY = "medium"
-DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-DEFAULT_OPENROUTER_MODEL = "google/gemini-2.0-flash-001"
-DEFAULT_LMSTUDIO_BASE_URL = "http://127.0.0.1:1234/v1"
-DEFAULT_LMSTUDIO_MODEL = "google/gemma-4-31b"
-DEFAULT_LLM_BACKEND = "openrouter"
 
 
 @dataclass
 class Config:
-    openrouter_api_key: str
-    openrouter_model: str
-    quantize_subdiv: int
-    chunk_seconds: float
-    transcription_backend: str
-    openrouter_base_url: str = DEFAULT_OPENROUTER_BASE_URL
+    quantize_subdiv: int = DEFAULT_QUANTIZE_SUBDIV
+    chunk_seconds: float = DEFAULT_CHUNK_SECONDS
+    transcription_backend: str = "piano"
     sensitivity: str = DEFAULT_SENSITIVITY
-    llm_backend: str = DEFAULT_LLM_BACKEND
-    lmstudio_base_url: str = DEFAULT_LMSTUDIO_BASE_URL
-    lmstudio_model: str = DEFAULT_LMSTUDIO_MODEL
     mscore_bin: str | None = None
 
     @property
@@ -94,46 +83,16 @@ class Config:
         quantize_subdiv: int = DEFAULT_QUANTIZE_SUBDIV,
         chunk_seconds: float = DEFAULT_CHUNK_SECONDS,
         transcription_backend: str = "piano",
-        openrouter_api_key: str | None = None,
-        openrouter_model: str | None = None,
-        openrouter_base_url: str | None = None,
-        llm_backend: str | None = None,
-        lmstudio_base_url: str | None = None,
-        lmstudio_model: str | None = None,
         sensitivity: str | None = None,
+        mscore_bin: str | None = None,
+        **_ignored_kwargs,
     ) -> Config:
         if env_file and env_file.exists():
             load_dotenv(env_file)
         else:
             load_dotenv()
 
-        api_key = (
-            openrouter_api_key
-            or os.environ.get("OPENROUTER_API_KEY", "")
-        ).strip()
-        or_model = (
-            openrouter_model
-            or os.environ.get("OPENROUTER_MODEL")
-            or DEFAULT_OPENROUTER_MODEL
-        ).strip()
-        or_base_url = (
-            openrouter_base_url
-            or os.environ.get("OPENROUTER_BASE_URL")
-            or DEFAULT_OPENROUTER_BASE_URL
-        ).rstrip("/")
-        mscore = os.environ.get("MSCORE_BIN", "").strip() or None
-
-        backend = (llm_backend or os.environ.get("LLM_BACKEND") or DEFAULT_LLM_BACKEND).strip()
-        base_url = (
-            lmstudio_base_url
-            or os.environ.get("LMSTUDIO_BASE_URL")
-            or DEFAULT_LMSTUDIO_BASE_URL
-        ).rstrip("/")
-        lm_model = (
-            lmstudio_model
-            or os.environ.get("LMSTUDIO_MODEL")
-            or DEFAULT_LMSTUDIO_MODEL
-        ).strip()
+        mscore = mscore_bin or os.environ.get("MSCORE_BIN", "").strip() or None
 
         sens = (sensitivity or os.environ.get("SENSITIVITY") or DEFAULT_SENSITIVITY).strip()
         if sens not in SENSITIVITY_PRESETS:
@@ -143,24 +102,14 @@ class Config:
             )
 
         return cls(
-            openrouter_api_key=api_key,
-            openrouter_model=or_model,
-            openrouter_base_url=or_base_url,
             quantize_subdiv=quantize_subdiv,
             chunk_seconds=chunk_seconds,
             transcription_backend=transcription_backend,
             sensitivity=sens,
-            llm_backend=backend,
-            lmstudio_base_url=base_url,
-            lmstudio_model=lm_model,
             mscore_bin=mscore,
         )
 
 
 def project_root() -> Path:
-    """App root when developing from the repo (video2ly/)."""
+    """App root when developing from the repo (music2ly/)."""
     return Path(__file__).resolve().parents[2]
-
-
-def system_prompt_path() -> Path:
-    return Path(__file__).resolve().parent / "prompts" / "lilypond_system.txt"

@@ -1,6 +1,6 @@
 # music2ly
 
-Local Python project that turns music into LilyPond sheet music. It ships two CLIs over a shared core (`src/music2ly`, MusicXML chunking and LLM MusicXML-to-LilyPond translation):
+Local Python project that turns music into LilyPond sheet music. It ships two CLIs over a shared core (`src/music2ly`, MusicXML structuring and deterministic MusicXML-to-LilyPond translation):
 
 - **video2ly** — YouTube piano performance to LilyPond (audio pipeline).
 - **image2ly** — Sheet music image (PNG/JPG) to LilyPond via OMR (image pipeline).
@@ -22,13 +22,13 @@ uv sync --extra dev      # development and test dependencies (pytest)
 2. **Transcribe (`transcribe`)** — `piano-transcription-inference` (default, includes sustain pedal) or `basic-pitch` → `transcription.mid`
 3. **Quantize (`quantize`)** — `librosa` beat tracking snaps note onsets/offsets to beat grid and filters short/quiet ghost notes → `transcription.quantized.mid`
 4. **Structure (`musicxml`)** — MuseScore CLI (`mscore`) assigns hands, voices, tuplets, and export grand-staff MusicXML (`structured.musicxml`), then `music21` splits it into manageable chunks in `chunks/`
-5. **Engrave (`lilypond`)** — LLM (OpenRouter or local LM-Studio via `httpx`) translates each chunk to LilyPond notation (`lilypond_chunks/`) and merges into the final score `<title>.ly`
+5. **Engrave (`lilypond`)** — Deterministic syntax engine translates MusicXML into clean, template-conforming LilyPond notation (`<title>.ly`)
 
 ### image2ly pipeline (3 steps)
 
 1. **Recognize (`recognize`)** — Optical Music Recognition on all sheet images in the directory in natural page order via `homr` (default, run via `uvx homr`) or `oemer` → `recognized_001.musicxml`, `recognized_002.musicxml`, ... and merged `recognized.musicxml`
 2. **Structure (`musicxml`)** — `music21` parses grand-staff MusicXML across all pages into continuous measures and splits it into chunks in `chunks/`
-3. **Engrave (`lilypond`)** — LLM translates MusicXML chunks to LilyPond (`lilypond_chunks/`) and merges into `<title>.ly`
+3. **Engrave (`lilypond`)** — Deterministic syntax engine translates MusicXML into clean, template-conforming LilyPond notation (`<title>.ly`)
 
 ## Prerequisites
 
@@ -37,7 +37,6 @@ uv sync --extra dev      # development and test dependencies (pytest)
 | [uv](https://docs.astral.sh/uv/) | Python environment & package management | `curl -LsSf https://astral.sh/uv/install.sh \| sh` or `./setup.sh` |
 | [ffmpeg](https://ffmpeg.org/) | Audio extraction (`video2ly`) | `brew install ffmpeg` / `apt install ffmpeg` / `winget install Gyan.FFmpeg` |
 | [MuseScore](https://musescore.org/) | MIDI → MusicXML structuring (`video2ly`) | `brew install --cask musescore` / `apt install musescore3` / set `MSCORE_BIN` |
-| [OPENROUTER_API_KEY](https://openrouter.ai/keys) | LLM LilyPond translation (step `lilypond`) | Set in `.env` (or use local LM-Studio backend) |
 | [homr](https://github.com/homr-omr/homr) / `uvx` | OMR recognition (`image2ly` default) | Handled automatically via `uvx homr` when `uv` is installed |
 | NVIDIA CUDA / Apple Silicon (MPS) | GPU acceleration for audio transcription | PyTorch uses CUDA or Apple Silicon Metal (MPS) when available |
 | [LilyPond](https://lilypond.org/) (optional) | Compile generated `.ly` → PDF | `brew install lilypond` / `apt install lilypond` / Windows installer |
@@ -57,14 +56,6 @@ chmod +x setup.sh
 ```bash
 cd music2ly
 uv sync --extra video --extra dev   # or --extra all
-cp .env.example .env               # on Windows: copy .env.example .env
-```
-
-Edit `.env` and set `OPENROUTER_API_KEY`:
-
-```env
-OPENROUTER_API_KEY=your_api_key_here
-OPENROUTER_MODEL=google/gemini-2.0-flash-001
 ```
 
 ## Usage
@@ -102,107 +93,74 @@ Key options:
 
 - `--sensitivity {low,medium,high}` — transcription sensitivity preset (default: `medium`). Lower sensitivity is stricter and reduces ghost notes from audio effects/reverb; higher sensitivity captures quieter/shorter notes.
 - `--quantize-subdiv {2,4,8}` — beat-snap grid subdivisions per beat (2=8th, 4=16th [default], 8=32nd).
-- `--chunk-seconds 20` — target duration in seconds per MusicXML chunk for LLM translation (default: 20).
+- `--chunk-seconds 20` — target duration in seconds per MusicXML chunk (default: 20).
 - `--transcription-backend {piano,basic-pitch}` — default `piano` (PyTorch CRNN model with sustain pedal detection).
-- `--llm-backend {openrouter,lmstudio}` — default `openrouter` (or local `lmstudio`).
-- `--openrouter-model MODEL` — override OpenRouter model (default: `google/gemini-2.0-flash-001`).
-- `--lmstudio-model MODEL` — override LM-Studio model (default: `google/gemma-4-31b`).
-- `--lmstudio-base-url URL` — override LM-Studio base URL (default: `http://127.0.0.1:1234/v1`).
 - `--env-file PATH` — path to custom `.env` file.
 
 ### image2ly
 
-Converts sheet music images (PNG or JPG) in a directory to LilyPond via OMR and LLM translation. Supports single or multi-page scores:
+Converts sheet music images (PNG or JPG) in a directory to LilyPond via OMR and deterministic translation. Supports single or multi-page scores:
 
 Place your page images (e.g. `1.png`, `2.png` or `page1.png`, `page2.png`) inside `output/<title>/` and pass the song title / directory name:
 
 ```bash
-# Install image extra if using oemer fallback (homr runs via uvx):
-uv sync --extra image
-
-# Processes all image sheets in ./output/My Song Title in natural order:
-uv run image2ly "My Song Title"
-
-# Or pass a path to any directory containing images:
-uv run image2ly path/to/score_dir
+# Process all page images inside output/Moonlight Sonata/
+uv run image2ly "Moonlight Sonata"
 ```
 
-Resume and step execution:
+You can also pass an explicit directory or a single image file directly:
 
 ```bash
-uv run image2ly "My Song Title" --resume
-uv run image2ly "My Song Title" --steps recognize
-uv run image2ly "My Song Title" --steps musicxml
-uv run image2ly "My Song Title" --steps lilypond
+uv run image2ly path/to/sheet/images/
+uv run image2ly path/to/single_page.png --title "Song Title"
 ```
 
-OMR Backends (`--omr-backend`, default `homr`):
+Resume after interruption (skips already recognized pages and generated steps):
 
-- `homr` — Transformer-based OMR executed via `uvx homr` (AGPL, requires `uv` on PATH). Best recognition accuracy for typeset piano/grand-staff scores.
-- `oemer` — Installed via `uv sync --extra image` (MIT). Fallback engine.
+```bash
+uv run image2ly "Für Elise" --resume
+```
 
-*Note: OMR backends are designed for typeset sheet music; handwritten scores are not supported.*
+Run specific steps:
 
-## Artifact Output Structure
+```bash
+uv run image2ly "Für Elise" --steps recognize
+uv run image2ly "Für Elise" --steps musicxml
+uv run image2ly "Für Elise" --steps lilypond
+uv run image2ly "Für Elise" --steps musicxml,lilypond
+```
 
-All artifacts for a run are organized in `output/<title>/`:
+Options:
 
-```text
-output/My-Song-Title/
-├── 1.png                               # [image2ly] Page 1 sheet image
-├── 2.png                               # [image2ly] Page 2 sheet image
-├── audio.wav                           # [video2ly] Extracted WAV audio
-├── transcription.mid                   # [video2ly] Raw transcribed MIDI
-├── transcription.meta.json             # [video2ly] Transcription metadata
-├── transcription.quantized.mid         # [video2ly] Tempo-snapped quantized MIDI
-├── transcription.quantized.meta.json   # [video2ly] Quantization metadata
-├── structured.musicxml                 # [video2ly] MuseScore structured MusicXML
-├── recognized_001.musicxml             # [image2ly] Page 1 OMR recognized MusicXML
-├── recognized_002.musicxml             # [image2ly] Page 2 OMR recognized MusicXML
-├── recognized.musicxml                 # [image2ly] Merged continuous MusicXML
-├── chunks/                             # MusicXML chunk slices and metadata
+- `--omr-backend {homr,oemer}` — OMR engine (default: `homr` via `uvx homr`).
+- `--title`, `-t` — Song title override (default: directory name).
+- `--chunk-seconds 20` — Target chunk duration in seconds (default: 20).
+- `--steps` — Comma-separated steps (`recognize,musicxml,lilypond` or `all`).
+- `--resume` — Skip steps whose artifacts already exist.
+
+## Output Artifacts
+
+```
+output/<title>/
+├── <title>.ly                  # Final merged LilyPond score (matches template/base.ly)
+├── audio.wav                   # Extracted audio (video2ly)
+├── transcription.mid           # Raw transcribed MIDI with sustain pedal (video2ly)
+├── transcription.quantized.mid # Beat-snapped MIDI (video2ly)
+├── structured.musicxml         # Structured MusicXML from MuseScore (video2ly)
+├── recognized_001.musicxml     # Page 1 OMR output (image2ly)
+├── recognized_002.musicxml     # Page 2 OMR output (image2ly)
+├── recognized.musicxml         # Merged grand-staff MusicXML (image2ly)
+├── chunks/                     # Segmented MusicXML chunks
 │   ├── chunk_001.musicxml
 │   └── chunk_001.json
-├── lilypond_chunks/                    # Raw and parsed LLM LilyPond translations
-│   ├── chunk_001.raw.txt
-│   └── chunk_001.ly
-└── My-Song-Title.ly                    # Final merged LilyPond score
+└── lilypond_chunks/            # Deterministically engraved LilyPond chunks
+    ├── chunk_001.ly
+    └── ...
 ```
 
-## First run: model download
-
-When using the default `piano` transcription backend, PyTorch automatically downloads the **~165 MB** CRNN model checkpoint on first run to:
-
-`~/piano_transcription_inference_data/note_F1=0.9677_pedal_F1=0.9186.pth`
-
-Downloads use Python's standard library (`urllib.request`) and work cross-platform without external tools like `wget`.
-
-## Compiling to PDF
-
-Once the `.ly` file is generated, compile it with LilyPond (scores automatically include `template/base.ly` formatting):
+## Testing
 
 ```bash
-lilypond output/My-Song-Title/My-Song-Title.ly
-```
-
-## Tests
-
-Run the test suite with `pytest`:
-
-```bash
+cd music2ly
 uv run pytest
 ```
-
-## Optional: basic-pitch backend
-
-A lighter audio transcription backend without sustain pedal detection. **Not included in default setup** because `basic-pitch` can pull `tensorflow-macos` wheels that are restricted to Python 3.10–3.11 on macOS:
-
-```bash
-uv sync --extra transcribe-basic
-uv run video2ly "URL" --title "Song Title" --transcription-backend basic-pitch
-```
-
-## Legal
-
-Downloading YouTube content may violate YouTube's Terms of Service. Use only for personal or educational purposes on material you have rights to transcribe.
-

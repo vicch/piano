@@ -6,50 +6,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-import httpx
-from music21 import converter
-
-from music2ly.config import Config, project_root, system_prompt_path
+from music2ly.config import Config, project_root
+from music2ly.converter import (
+    LilyPondFormatter,
+    MusicXMLParser,
+    ScoreConverter,
+    convert_musicxml_to_lilypond,
+)
 from music2ly.models import ChunkInfo
-from music2ly.musicxml import slim_musicxml
-
-
-TREBLE_FENCE_RE = re.compile(
-    r"```lilypond-treble\s*\n(.*?)```",
-    re.DOTALL | re.IGNORECASE,
-)
-BASS_FENCE_RE = re.compile(
-    r"```lilypond-bass\s*\n(.*?)```",
-    re.DOTALL | re.IGNORECASE,
-)
-
-
-def load_system_prompt() -> str:
-    path = system_prompt_path()
-    if not path.exists():
-        raise FileNotFoundError(f"System prompt not found: {path}")
-    return path.read_text(encoding="utf-8")
-
-
-def parse_chunk_response(response_text: str) -> tuple[str, str]:
-    treble_match = TREBLE_FENCE_RE.search(response_text)
-    bass_match = BASS_FENCE_RE.search(response_text)
-    if not treble_match or not bass_match:
-        raise ValueError(
-            "LLM response missing ```lilypond-treble``` or ```lilypond-bass``` fenced block. "
-            f"Got: {response_text[:200]!r}"
-        )
-    return treble_match.group(1).strip(), bass_match.group(1).strip()
-
-
-def build_user_prompt(chunk: ChunkInfo, musicxml_text: str) -> str:
-    return (
-        f"Chunk {chunk.index} of {chunk.total} "
-        f"(measures {chunk.measure_start}–{chunk.measure_end}, ~{chunk.duration_est:.0f}s). "
-        f"First chunk: {'yes' if chunk.index == 1 else 'no'}. "
-        f"Last chunk: {'yes' if chunk.index == chunk.total else 'no'}.\n\n"
-        f"MusicXML:\n```xml\n{musicxml_text}\n```"
-    )
 
 
 @dataclass
@@ -58,144 +22,44 @@ class ChunkBody:
     bass: str
 
 
-def _call_lmstudio(system_prompt: str, user_prompt: str, config: Config) -> str:
-    payload = {
-        "model": config.lmstudio_model,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "temperature": 0.2,
-        "max_tokens": 24576,
-        "stream": False,
-    }
-    url = f"{config.lmstudio_base_url}/chat/completions"
-    with httpx.Client(timeout=httpx.Timeout(600.0, connect=10.0)) as client:
-        resp = client.post(url, json=payload)
-        resp.raise_for_status()
-        data = resp.json()
-    return data["choices"][0]["message"].get("content") or ""
+def _extract_parentheses_content(name: str) -> str:
+    match = re.search(r"\(([^)]+)\)", name)
+    if match:
+        return match.group(1).strip()
+    return ""
 
 
-def _call_openrouter(system_prompt: str, user_prompt: str, config: Config) -> str:
-    if not config.openrouter_api_key:
-        raise ValueError(
-            "OPENROUTER_API_KEY is required for the openrouter backend. "
-            "Set it in .env or your environment."
-        )
-    headers = {
-        "Authorization": f"Bearer {config.openrouter_api_key}",
-        "HTTP-Referer": "https://github.com/vicch/piano",
-        "X-Title": "music2ly",
-    }
-    payload = {
-        "model": config.openrouter_model,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        "temperature": 0.2,
-        "max_tokens": 32768,
-        "stream": False,
-    }
-    url = f"{config.openrouter_base_url}/chat/completions"
-    with httpx.Client(timeout=httpx.Timeout(600.0, connect=10.0)) as client:
-        resp = client.post(url, json=payload, headers=headers)
-        resp.raise_for_status()
-        data = resp.json()
-    return data["choices"][0]["message"].get("content") or ""
+def _derive_sequence(source: str | Path | list[Path]) -> str:
+    if isinstance(source, (list, tuple)):
+        for item in source:
+            seq = _extract_parentheses_content(Path(item).name)
+            if seq:
+                return seq
+        return ""
 
+    src_str = str(source)
+    if src_str.startswith("http://") or src_str.startswith("https://"):
+        parsed = urlparse(src_str)
+        host = (parsed.hostname or "").lower()
+        if host in ("youtu.be",):
+            video_id = parsed.path.lstrip("/")
+        elif "youtube" in host:
+            q = parse_qs(parsed.query)
+            video_id = (q.get("v") or [""])[0] or parsed.path.rsplit("/", 1)[-1]
+        else:
+            return ""
+        return f"YouTube {video_id}" if video_id else ""
 
-def translate_chunk(
-    chunk: ChunkInfo,
-    config: Config,
-    system_prompt: str,
-    output_path: Path,
-) -> ChunkBody:
-    musicxml_text = slim_musicxml(chunk.musicxml_path.read_text(encoding="utf-8"))
-    user_prompt = build_user_prompt(chunk, musicxml_text)
-
-    if config.llm_backend == "lmstudio":
-        raw_text = _call_lmstudio(system_prompt, user_prompt, config)
-    elif config.llm_backend == "openrouter":
-        raw_text = _call_openrouter(system_prompt, user_prompt, config)
-    else:
-        raise ValueError(
-            f"Unknown llm_backend: {config.llm_backend!r}. Expected 'openrouter' or 'lmstudio'."
-        )
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    raw_path = output_path.with_suffix(".raw.txt")
-    raw_path.write_text(raw_text, encoding="utf-8")
-
-    treble, bass = parse_chunk_response(raw_text)
-    output_path.write_text(
-        f"% chunk {chunk.index}/{chunk.total} "
-        f"(measures {chunk.measure_start}-{chunk.measure_end})\n"
-        f"```lilypond-treble\n{treble}\n```\n\n"
-        f"```lilypond-bass\n{bass}\n```\n",
-        encoding="utf-8",
-    )
-    return ChunkBody(treble=treble, bass=bass)
-
-
-# ---------- score-header / template assembly -------------------------------
-
-
-_SHARP_KEYS = ("c", "g", "d", "a", "e", "b", "fs", "cs")
-_FLAT_KEYS = ("c", "f", "bf", "ef", "af", "df", "gf", "cf")
-
-
-def _lilypond_key(sharps: int, mode: str = "major") -> str:
-    if sharps >= 0:
-        tonic = _SHARP_KEYS[min(sharps, 7)]
-    else:
-        tonic = _FLAT_KEYS[min(-sharps, 7)]
-    if mode == "minor":
-        # relative minor: 3 steps below the major tonic
-        # Easier: use music21's pitch arithmetic.
-        from music21 import key as m21key
-
-        tonic = m21key.KeySignature(sharps).asKey("minor").tonic.name.lower()
-        tonic = tonic.replace("-", "f").replace("#", "s")
-    return f"{tonic} \\{mode}"
-
-
-def _extract_score_metadata(first_chunk_path: Path) -> dict:
-    score = converter.parse(str(first_chunk_path))
-
-    tempo_bpm = 96
-    for mark in score.recurse().getElementsByClass("MetronomeMark"):
-        if mark.number:
-            tempo_bpm = int(round(float(mark.number)))
-            break
-
-    key_str = "c \\major"
-    for ks in score.recurse().getElementsByClass("KeySignature"):
-        sharps = ks.sharps
-        mode = getattr(ks, "mode", None) or "major"
-        key_str = _lilypond_key(sharps, mode)
-        break
-
-    time_str = "4/4"
-    for ts in score.recurse().getElementsByClass("TimeSignature"):
-        time_str = f"{ts.numerator}/{ts.denominator}"
-        break
-
-    return {"tempo": tempo_bpm, "key": key_str, "time": time_str}
-
-
-def _derive_sequence(youtube_url: str) -> str:
-    parsed = urlparse(youtube_url)
-    host = (parsed.hostname or "").lower()
-    if host in ("youtu.be",):
-        video_id = parsed.path.lstrip("/")
-    elif "youtube" in host:
-        q = parse_qs(parsed.query)
-        video_id = (q.get("v") or [""])[0] or parsed.path.rsplit("/", 1)[-1]
-    else:
-        return parsed.netloc or "Unknown"
-    return f"YouTube {video_id}" if video_id else "YouTube"
+    p = Path(source)
+    seq = _extract_parentheses_content(p.name)
+    if seq:
+        return seq
+    if p.is_dir():
+        for f in p.iterdir():
+            seq = _extract_parentheses_content(f.name)
+            if seq:
+                return seq
+    return ""
 
 
 def _relative_template_include(output_path: Path) -> str:
@@ -203,12 +67,59 @@ def _relative_template_include(output_path: Path) -> str:
     template_path = project_root().parent / "template" / "base.ly"
     if not template_path.exists():
         return "../template/base.ly"
-    return os.path.relpath(template_path, output_path.parent).replace("\\", "/")
+    try:
+        return os.path.relpath(template_path, output_path.parent).replace("\\", "/")
+    except ValueError:
+        # Cross-drive on Windows
+        return "../template/base.ly"
 
 
 def _indent(body: str, spaces: int = 6) -> str:
     pad = " " * spaces
     return "\n".join(pad + line if line.strip() else line for line in body.splitlines())
+
+
+def translate_chunk(
+    chunk: ChunkInfo,
+    config: Config | None = None,
+    output_path: Path | None = None,
+    default_time_signature=None,
+    default_key_signature=None,
+) -> ChunkBody:
+    """Deterministically translates a single chunk MusicXML into treble & bass bodies."""
+    xml_text = chunk.musicxml_path.read_text(encoding="utf-8")
+    score_ir = MusicXMLParser.parse_xml(
+        xml_text,
+        default_time_signature=default_time_signature,
+        default_key_signature=default_key_signature,
+    )
+
+    treble_str = ""
+    bass_str = ""
+    if len(score_ir.staves) >= 1:
+        treble_str = LilyPondFormatter.format_staff(
+            score_ir.staves[0],
+            time_sig=score_ir.time_signature,
+            key_sig=score_ir.key_signature,
+        )
+    if len(score_ir.staves) >= 2:
+        bass_str = LilyPondFormatter.format_staff(
+            score_ir.staves[1],
+            time_sig=score_ir.time_signature,
+            key_sig=score_ir.key_signature,
+        )
+
+    if output_path is not None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(
+            f"% chunk {chunk.index}/{chunk.total} "
+            f"(measures {chunk.measure_start}-{chunk.measure_end})\n"
+            f"```lilypond-treble\n{treble_str}\n```\n\n"
+            f"```lilypond-bass\n{bass_str}\n```\n",
+            encoding="utf-8",
+        )
+
+    return ChunkBody(treble=treble_str, bass=bass_str)
 
 
 def merge_lilypond_chunks(
@@ -219,95 +130,103 @@ def merge_lilypond_chunks(
     metadata: dict,
     include_path: str,
 ) -> str:
-    treble_combined = "\n      \n      ".join(c.treble.rstrip() for c in chunks)
-    bass_combined = "\n      \n      ".join(c.bass.rstrip() for c in chunks)
+    treble_parts = [c.treble.strip() for c in chunks if c.treble.strip()]
+    bass_parts = [c.bass.strip() for c in chunks if c.bass.strip()]
 
-    # Final barline on the last measure of both hands.
-    treble_combined = _strip_trailing_break(treble_combined) + ' \\bar "|."'
-    bass_combined = _strip_trailing_break(bass_combined) + ' \\bar "|."'
+    treble_combined = " | ".join(treble_parts) + ' \\bar "|."'
+    bass_combined = " | ".join(bass_parts) + ' \\bar "|."'
+
+    tempo = metadata.get("tempo", 96)
+    key = metadata.get("key", "c \\major")
+    time_sig = metadata.get("time", "4/4")
 
     return (
         '\\version "2.24.3"\n'
-        '\n'
+        "\n"
         f'#(define title      "{title}")\n'
         '#(define title-font "")\n'
         f'#(define sequence   "{sequence}")\n'
-        '#(define total-page 1)\n'
-        '\n'
+        "#(define total-page 1)\n"
+        "\n"
         f'\\include "{include_path}"\n'
-        '\n'
-        '\\markup \\vspace #1.5\n'
-        '\n'
-        '\\score {\n'
+        "\n"
+        "\\markup \\vspace #1.5\n"
+        "\n"
+        "\\score {\n"
         '  \\new PianoStaff \\with {\n'
         '    instrumentName = "Piano"\n'
-        '  } <<\n'
-        '    \\new Staff {\n'
-        f'      \\tempo 4 = {metadata["tempo"]}\n'
-        '      \\clef treble\n'
-        f'      \\key {metadata["key"]}\n'
-        f'      \\time {metadata["time"]}\n'
-        '      \n'
-        f'{_indent(treble_combined)}\n'
-        '    }\n'
-        '    \\new Staff {\n'
-        '      \\clef bass\n'
-        f'      \\key {metadata["key"]}\n'
-        f'      \\time {metadata["time"]}\n'
-        '      \n'
-        f'{_indent(bass_combined)}\n'
-        '    }\n'
-        '    \\chords {\n'
-        '    }\n'
-        '  >>\n'
-        '  \\layout {}\n'
-        '  \\midi {}\n'
-        '}\n'
+        "  } <<\n"
+        "    \\new Staff {\n"
+        f"      \\tempo 4 = {tempo}\n"
+        "      \\clef treble\n"
+        f"      \\key {key}\n"
+        f"      \\time {time_sig}\n"
+        "      \n"
+        f"{_indent(treble_combined)}\n"
+        "    }\n"
+        "    \\new Staff {\n"
+        "      \\clef bass\n"
+        f"      \\key {key}\n"
+        f"      \\time {time_sig}\n"
+        "      \n"
+        f"{_indent(bass_combined)}\n"
+        "    }\n"
+        "    \\chords {\n"
+        "    }\n"
+        "  >>\n"
+        "  \\layout {}\n"
+        "  \\midi {}\n"
+        "}\n"
     )
-
-
-def _strip_trailing_break(body: str) -> str:
-    stripped = body.rstrip()
-    if stripped.endswith("\\break"):
-        stripped = stripped[: -len("\\break")].rstrip()
-    return stripped
 
 
 def translate_all_chunks(
     chunks: list[ChunkInfo],
-    config: Config,
-    lilypond_chunks_dir: Path,
-    output_path: Path,
+    config: Config | None = None,
+    lilypond_chunks_dir: Path | None = None,
+    output_path: Path | None = None,
     *,
-    title: str,
-    source: str,
+    title: str = "",
+    source: str = "",
     sequence: str | None = None,
 ) -> Path:
-    if config.llm_backend == "openrouter" and not config.openrouter_api_key:
-        raise ValueError(
-            "OPENROUTER_API_KEY is required for the openrouter backend. "
-            "Set it in .env or your environment."
-        )
+    """Deterministically translates chunks to LilyPond fragments and merges them."""
+    score_first = MusicXMLParser.parse_file(chunks[0].musicxml_path)
+    from music2ly.converter.rules import KeyRule, TimeRule
 
-    system_prompt = load_system_prompt()
+    metadata = {
+        "tempo": score_first.tempo,
+        "key": KeyRule.to_lilypond(score_first.key_signature),
+        "time": TimeRule.to_lilypond(score_first.time_signature),
+    }
+
     bodies: list[ChunkBody] = []
-
     for chunk in chunks:
-        chunk_out = lilypond_chunks_dir / f"chunk_{chunk.index:03d}.ly"
-        body = translate_chunk(chunk, config, system_prompt, chunk_out)
+        chunk_out = (
+            (lilypond_chunks_dir / f"chunk_{chunk.index:03d}.ly")
+            if lilypond_chunks_dir
+            else None
+        )
+        body = translate_chunk(
+            chunk,
+            config,
+            chunk_out,
+            default_time_signature=score_first.time_signature,
+            default_key_signature=score_first.key_signature,
+        )
         bodies.append(body)
 
-    metadata = _extract_score_metadata(chunks[0].musicxml_path)
-    sequence = sequence or _derive_sequence(source)
-    include_path = _relative_template_include(output_path)
+    resolved_seq = sequence if sequence is not None else _derive_sequence(source)
+    resolved_out = output_path or (chunks[0].musicxml_path.parent / f"{title}.ly")
+    include_path = _relative_template_include(resolved_out)
 
     merged = merge_lilypond_chunks(
         bodies,
         title=title,
-        sequence=sequence,
+        sequence=resolved_seq,
         metadata=metadata,
         include_path=include_path,
     )
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(merged, encoding="utf-8")
-    return output_path
+    resolved_out.parent.mkdir(parents=True, exist_ok=True)
+    resolved_out.write_text(merged, encoding="utf-8")
+    return resolved_out

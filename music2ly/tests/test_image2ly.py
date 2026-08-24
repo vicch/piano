@@ -106,7 +106,6 @@ def test_run_pipeline_multi_image_end_to_end(tmp_path, monkeypatch):
 
     paths, title = ImagePaths.from_target("Moonlight")
     config = Config.load(
-        openrouter_api_key="mock",
         chunk_seconds=20.0,
     )
 
@@ -149,7 +148,7 @@ def test_run_pipeline_resume_skips_existing(tmp_path, monkeypatch):
     monkeypatch.setattr("image2ly.pipeline.translate_all_chunks", mock_translate_all_chunks)
 
     paths, title = ImagePaths.from_target("ResumeTest")
-    config = Config.load(openrouter_api_key="mock", chunk_seconds=20.0)
+    config = Config.load(chunk_seconds=20.0)
 
     run_pipeline(paths, config, title=title, resume=True)
 
@@ -165,7 +164,7 @@ def test_run_pipeline_no_images_raises(tmp_path, monkeypatch):
     work_dir.mkdir(parents=True)
 
     paths, title = ImagePaths.from_target("Empty")
-    config = Config.load(openrouter_api_key="mock")
+    config = Config.load()
 
     with pytest.raises(FileNotFoundError, match="No sheet music images found"):
         run_pipeline(paths, config, title=title)
