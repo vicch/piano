@@ -311,9 +311,18 @@ def chunk_musicxml(
         treble_slice = copy.deepcopy(treble.measures(measure_start, measure_end))
         bass_slice = copy.deepcopy(bass.measures(measure_start, measure_end))
 
+        has_treble = len(treble_slice.getElementsByClass("Measure")) > 0
+        has_bass = len(bass_slice.getElementsByClass("Measure")) > 0
+
+        if not has_treble and not has_bass:
+            measure_start = measure_end + 1
+            continue
+
         chunk_score = stream.Score()
-        chunk_score.insert(0, treble_slice)
-        chunk_score.insert(0, bass_slice)
+        if has_treble:
+            chunk_score.insert(0, treble_slice)
+        if has_bass:
+            chunk_score.insert(0, bass_slice)
 
         musicxml_file = chunks_dir / f"chunk_{chunk_index:03d}.musicxml"
         chunk_score.write("musicxml", fp=str(musicxml_file), makeNotation=make_notation)
