@@ -1,7 +1,7 @@
 \version "2.24.3"
 
 #(define title      "水晶")
-#(define title-font "FangSong")
+#(define title-font "FZCuSong-B09")
 #(define sequence   "EveryonePiano 313")
 #(define total-page 3)
 

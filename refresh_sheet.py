@@ -1,5 +1,5 @@
 """
-This script iterates all folders under current path, and for each ".ly" file, remove its associated PDF and MIDI files,
+This script iterates sheet folders under current path, and for each ".ly" file, remove its associated PDF and MIDI files,
 and execute LilyPond command to re-generate them.
 """
 import os
@@ -9,7 +9,7 @@ from collections import defaultdict
 
 LILYPOND_PATH = 'D:/Programs/lilypond-2.24.3/bin/lilypond.exe'
 
-EXCLUDE_DIRS = ['music2ly', 'piano', 'snippet', 'template']
+EXCLUDE_DIRS = ['archive', 'music2ly', 'piano', 'snippet', 'template']
 
 SHEET_JSON = 'sheet.json'
 
@@ -54,16 +54,16 @@ def refresh_sheet(path, name):
 
 def need_refresh(ly_path, pdf_path, mid_path):
     ly_mtime = os.path.getmtime(ly_path)
-    
+
     # Check if .pdf or .mid files exist and are older than .ly
     for file_path in [pdf_path, mid_path]:
         if not os.path.exists(file_path):
             return True
-        
+
         file_mtime = os.path.getmtime(file_path)
         if ly_mtime > file_mtime:
             return True
-    
+
     return False
 
 if __name__ == '__main__':

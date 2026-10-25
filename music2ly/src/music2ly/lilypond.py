@@ -101,6 +101,7 @@ def translate_chunk(
             score_ir.staves[0],
             time_sig=score_ir.time_signature,
             key_sig=score_ir.key_signature,
+            add_break=True,
         )
     if len(score_ir.staves) >= 2:
         bass_str = LilyPondFormatter.format_staff(
@@ -133,8 +134,8 @@ def merge_lilypond_chunks(
     treble_parts = [c.treble.strip() for c in chunks if c.treble.strip()]
     bass_parts = [c.bass.strip() for c in chunks if c.bass.strip()]
 
-    treble_combined = " | ".join(treble_parts) + ' \\bar "|."'
-    bass_combined = " | ".join(bass_parts) + ' \\bar "|."'
+    treble_combined = "\n".join(treble_parts) + ' \\bar "|."'
+    bass_combined = "\n".join(bass_parts) + ' \\bar "|."'
 
     tempo = metadata.get("tempo", 96)
     key = metadata.get("key", "c \\major")

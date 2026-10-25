@@ -40,6 +40,7 @@ class LilyPondFormatter:
                 score.staves[0],
                 time_sig=score.time_signature,
                 key_sig=score.key_signature,
+                add_break=True,
             )
         if len(score.staves) >= 2:
             bass_content = cls.format_staff(
@@ -100,6 +101,8 @@ class LilyPondFormatter:
         staff: StaffIR,
         time_sig: TimeSignatureIR | None = None,
         key_sig: KeySignatureIR | None = None,
+        line_break_interval: int | None = 4,
+        add_break: bool = False,
     ) -> str:
         measure_strs: list[str] = []
         current_clef = staff.initial_clef
@@ -137,6 +140,13 @@ class LilyPondFormatter:
             )
             measure_strs.append(m_str)
 
+        if line_break_interval is not None and line_break_interval > 0:
+            lines = []
+            for i in range(0, len(measure_strs), line_break_interval):
+                group = measure_strs[i:i + line_break_interval]
+                suffix = " \\break" if add_break else ""
+                lines.append(" | ".join(group) + " |" + suffix)
+            return "\n".join(lines)
         return " | ".join(measure_strs)
 
     @classmethod
