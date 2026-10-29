@@ -32,6 +32,86 @@ PAPER_ANCHOR_PCT = 99.5    # brightness percentile treated as "paper" for normal
 MAX_PAPER_GAIN = 4.0       # cap for the paper->white gain (never darken, never explode)
 PAPER_TARGET = 245
 
+# --- restoration knobs: the "document scanner" pass -----------------------
+# Goal: restore a photographed/photocopied page to what it looked like
+# when it was printed - solid dark notation on clean white paper, smooth
+# natural edges, no photo traits (grain, shading, gray wash). The final
+# page keeps the anti-aliased grayscale (hard 1-bit thresholding is what
+# makes edges look crystallized; a real scanner/PDF keeps the edge ramp),
+# with Sauvola used internally to find specks and QC ink coverage.
+# Strict pure black-and-white output is opt-in via --binary.
+#
+# The active values below are the "balanced" preset; copy one of the
+# preset columns over them to move between fidelity and extreme punch.
+#
+#   knob                  fidelity      balanced      extreme
+#   --------------------  -----------  -----------  -----------
+#   CONTRAST_INK_PCT      5.0           2.0           0.5
+#   CONTRAST_INK_TARGET   80.0          55.0          30.0
+#   CONTRAST_GAMMA        1.0           1.05          1.35
+#   CONTRAST_MIN_SPAN     140.0         200.0         240.0
+#   EDGE_SMOOTH_SIGMA     0.5           0.75          0.5
+#   PAPER_WHITE_MARGIN    25.0          40.0          60.0
+#   SHARPEN_AMOUNT        0.0           0.25          1.2
+#   SHARPEN_SIGMA_SCALE   0.35          0.5           0.75
+#   DESPECKLE_AREA_SCALE  0.03          0.05          0.12
+#
+# How each level works as a whole (the values trade off against each
+# other, so mix-and-matching between columns can misfire):
+#
+# fidelity — reads like the original page with clean paper: healthy scans
+#   (ink-paper span >= 140) skip the contrast remap entirely; washed-out
+#   pages are rescued gently (anchor to 80, no gamma). Zero sharpening,
+#   light edge smoothing, low white saturation (only the faintest grain
+#   goes), gentle despeckling. For literally zero processing of the tones
+#   use --no-contrast --no-sharpen (whiten/despeckle/smooth remain -
+#   they are restoration, not enhancement).
+#
+# balanced — the professional-scan look and the working default: the
+#   span gate (200) lets everything short of a pristine scan through the
+#   remap, but the anchor target (55) sits near where healthy ink already
+#   lands after levels, so good pages barely move while faint pages
+#   darken in proportion to how washed they are. Gamma 1.05 keeps stroke
+#   edges firm without crushing their anti-aliasing ramp. Edge smoothing
+#   (sigma 0.75) melts pixel jaggies and JPEG blockiness; the whisper of
+#   sharpening (0.25) keeps strokes from going soft. White margin 40 is
+#   the scanner-look sweet spot: paper grain (which lives within ~40 of
+#   white after levels) vanishes; genuinely faint notation is darker
+#   than that and survives. Despeckle 0.05 staff spaces squared (~7px at
+#   12px spacing) clears grain blobs while staccato/augmentation dots
+#   (12px+) and staff-line fragments stay.
+#
+# extreme — maximum punch for mushy sources, accepting harsher edges:
+#   the darkest-percentile anchor (0.5) crushed toward black (target 30),
+#   gamma 1.35 drags midtones down with it - faint pencil becomes solid
+#   ink, and everything short of a perfect scan gets remapped (span gate
+#   240). White margin 60 erases even heavy grain but also swallows the
+#   very faintest marks. Sharpen 1.2 deliberately pairs with a LARGER
+#   radius (0.75 staff spaces): at that strength a small radius amplifies
+#   paper grain instead of strokes. Despeckle 0.12 (~17px) starts to eat
+#   small staccato dots - only use it when the source is truly speckled.
+#   When it goes too far back off SHARPEN_AMOUNT first, then
+#   CONTRAST_GAMMA, then CONTRAST_INK_TARGET.
+
+CONTRAST_INK_PCT = 2.0      # percentile within ink pixels defining the black anchor
+                            # (lower = only the darkest ink defines black -> stronger pull)
+CONTRAST_INK_TARGET = 55.0  # brightness the black anchor is remapped to (lower = punchier)
+CONTRAST_GAMMA = 1.05       # midtone gamma applied after the remap (>1 darkens midtones)
+CONTRAST_MIN_SPAN = 200.0   # remap only pages whose ink-paper span is narrower than this;
+                            # pages already this contrasty are left alone
+EDGE_SMOOTH_SIGMA = 0.75    # gentle blur that melts pixel jaggies and JPEG blocks on
+                            # stroke edges (0 = off); keeps the page looking scanned,
+                            # not crystallized. Heavy values thin faint 1px staff lines.
+PAPER_WHITE_MARGIN = 40.0   # grayscale tones within this distance of 255 saturate to pure
+                            # white: paper grain lives here. Trade-off: marks only
+                            # slightly darker than paper are erased with it.
+SHARPEN_AMOUNT = 0.25       # unsharp-mask strength (0 = off; 0.5 subtle, 2 very crisp)
+SHARPEN_SIGMA_SCALE = 0.5   # unsharp radius = this * staff spacing (px); raise when
+                            # raising amount, so grain is not amplified ahead of strokes
+DESPECKLE_AREA_SCALE = 0.05 # drop ink blobs (per the Sauvola mask) whose area is at most
+                            # this * staff_spacing^2 px (grain clusters); musical dots
+                            # and staff-line fragments are larger and survive
+
 
 def load_grayscale(path: Path) -> np.ndarray:
     """Load an image as grayscale, honoring EXIF orientation."""
@@ -285,6 +365,53 @@ def apply_levels(
     return np.clip(gray.astype(np.float32) * gain, 0, 255).astype(np.uint8)
 
 
+def apply_contrast(
+    gray: np.ndarray,
+    ink_pct: float = CONTRAST_INK_PCT,
+    ink_target: float = CONTRAST_INK_TARGET,
+    gamma: float = CONTRAST_GAMMA,
+    min_span: float = CONTRAST_MIN_SPAN,
+) -> np.ndarray:
+    """Aggressive linear contrast remap: black anchor -> ink_target,
+    paper -> 255, then a gamma tilt for darker midtones.
+
+    The black anchor is a low percentile of ink-pixel brightness (below
+    Otsu), so faint notation is pulled toward true black without touching
+    the paper. Skipped when the ink-paper span is already at least
+    `min_span` wide: on contrasty pages the remap would only fatten
+    strokes or wash ink, so they pass through untouched.
+    """
+    thr, _ = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    ink_pixels = gray[gray <= thr]
+    if ink_pixels.size == 0:
+        return gray
+    black = float(np.percentile(ink_pixels, ink_pct))
+    paper = float(np.percentile(gray, PAPER_ANCHOR_PCT))
+    if paper - black >= min_span:
+        return gray
+    scale = (255.0 - ink_target) / (paper - black)
+    out = ink_target + (gray.astype(np.float32) - black) * scale
+    out = 255.0 * np.clip(out / 255.0, 0.0, 1.0) ** gamma
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
+def sharpen(
+    gray: np.ndarray,
+    staff_space: int,
+    amount: float = SHARPEN_AMOUNT,
+    sigma_scale: float = SHARPEN_SIGMA_SCALE,
+) -> np.ndarray:
+    """Unsharp mask sized to the notation: radius = sigma_scale * staff
+    spacing, so staff-line thickness and stem edges are crispened without
+    paper-grain-scale noise being amplified. Run after denoise."""
+    if amount <= 0:
+        return gray
+    sigma = max(sigma_scale * float(staff_space), 0.5)
+    blur = cv2.GaussianBlur(gray, (0, 0), sigma)
+    out = gray.astype(np.float32) + amount * (gray.astype(np.float32) - blur)
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+
 def denoise(gray: np.ndarray) -> np.ndarray:
     """Remove isolated single-pixel specks, filling them with the local
     paper level (3x3 max). Structurally safe: every connected structure —
@@ -319,14 +446,79 @@ def sauvola_binary(gray: np.ndarray, window: int, k: float) -> np.ndarray:
     return np.where(gray > threshold, 255, 0).astype(np.uint8)
 
 
+def saturate_white(
+    gray: np.ndarray,
+    margin: float = PAPER_WHITE_MARGIN,
+) -> np.ndarray:
+    """Document-scanner restoration: every tone within `margin` of pure
+    white becomes pure white.
+
+    This is what removes paper grain: after levels, grain lives just
+    below 255 while real notation is far darker, so saturating the top of
+    the range erases the photo texture without touching the music. The
+    trade-off is that marks only slightly darker than paper (very faint
+    pencil) are erased together with the grain."""
+    if margin <= 0:
+        return gray
+    return np.where(gray >= 255.0 - margin, 255, gray).astype(np.uint8)
+
+
+def smooth_edges(gray: np.ndarray, sigma: float = EDGE_SMOOTH_SIGMA) -> np.ndarray:
+    """Gentle blur that melts pixel-scale jaggies and JPEG blockiness on
+    stroke edges, so the restored page looks scanned rather than
+    crystallized (0 disables). Deliberately subtle: a heavy blur would
+    thin faint 1px staff lines and soften small marks."""
+    if sigma <= 0:
+        return gray
+    return cv2.GaussianBlur(gray, (0, 0), sigma)
+
+
+def speck_mask(
+    binary: np.ndarray,
+    staff_space: int,
+    area_scale: float = DESPECKLE_AREA_SCALE,
+) -> tuple[np.ndarray, int]:
+    """Boolean mask (True = speck) of ink components whose area is at
+    most area_scale * staff_spacing^2 pixels — photocopy speckle, sensor
+    dust, grain clusters — plus how many components were flagged.
+
+    Area-filtered, not morphological: 1px staff lines and stems are long
+    (large area) so they survive, and every connected musical mark
+    (staccato/augmentation dots included) is either bigger than the grain
+    cutoff or part of a bigger structure."""
+    ink = (binary == 0).astype(np.uint8)
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    if n <= 1:
+        return np.zeros_like(ink, dtype=bool), 0
+    max_area = max(4.0, area_scale * float(staff_space) ** 2)
+    remove = np.zeros(n, dtype=bool)
+    remove[1:] = stats[1:, cv2.CC_STAT_AREA] <= max_area
+    return remove[labels], int(remove.sum())
+
+
+def despeckle_binary(
+    binary: np.ndarray,
+    staff_space: int,
+    area_scale: float = DESPECKLE_AREA_SCALE,
+) -> tuple[np.ndarray, int]:
+    """Drop grain-sized ink blobs from a 1-bit page (thin wrapper over
+    speck_mask). Returns (cleaned, n_removed)."""
+    mask, removed = speck_mask(binary, staff_space, area_scale)
+    if not removed:
+        return binary, 0
+    out = binary.copy()
+    out[mask] = 255
+    return out, removed
+
+
 # --- diagnostics ----------------------------------------------------------
 
 
 def make_preview(rows: list[list[np.ndarray]], width: int = 700) -> np.ndarray:
     """Contact sheet: one row of panels per page, panels scaled to `width`.
 
-    Rows may have 2 panels (original | clean) or 3 (with binary). A 4px
-    white gutter separates panels and rows.
+    Each row has 2 panels (original | clean). A 4px white gutter
+    separates panels and rows.
     """
     scaled_rows: list[np.ndarray] = []
     for row in rows:

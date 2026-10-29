@@ -165,6 +165,83 @@ def test_apply_levels_normalizes_paper_without_clipping_ink():
     assert out.min() < 100  # ink stayed ink (scaled, not clipped to black)
 
 
+def test_apply_contrast_pulls_washed_pages_and_gates_contrasty_ones():
+    """The span gate: pages with at least min_span of ink-paper contrast
+    pass through untouched; narrower (washed-out) pages get ink pulled
+    darker and paper pushed to white."""
+    washed = np.full((100, 100), 200, dtype=np.uint8)
+    washed[10:20, 10:20] = 120  # span 80 < gate -> remapped
+    out = enhance.apply_contrast(washed, min_span=100)
+    assert float(out[10:20, 10:20].mean()) < 120  # ink pulled darker
+    assert float(out[0:10, 0:10].mean()) > 240  # paper pushed to white
+
+    crisp = np.full((100, 100), 255, dtype=np.uint8)
+    crisp[10:20, 10:20] = 10  # span 245 >= gate -> untouched
+    crisp_out = enhance.apply_contrast(crisp, min_span=200)
+    assert np.array_equal(crisp_out, crisp)
+
+
+def test_sharpen_steepens_edges_without_clipping():
+    edge = np.full((60, 60), 220, dtype=np.uint8)
+    edge[:, 30:] = 40
+    soft = cv2.GaussianBlur(edge, (0, 0), 2.0)
+    out = enhance.sharpen(soft, staff_space=10, amount=0.9)
+    assert out.min() >= 0 and out.max() <= 255
+    # the step must get steeper: overshoot on the light side (cols < 30),
+    # undershoot on the dark side (cols > 30) - that reads as "crisp"
+    assert float(out[:, 24:27].mean()) > float(soft[:, 24:27].mean())
+    assert float(out[:, 33:36].mean()) < float(soft[:, 33:36].mean())
+    # amount 0 must be an exact no-op
+    assert np.array_equal(enhance.sharpen(soft, 10, amount=0.0), soft)
+
+
+def test_saturate_white_erases_grain_not_ink():
+    """Scanner look: near-white tones (paper grain) become pure white;
+    notation and midtones are untouched; margin 0 is a no-op."""
+    img = np.full((50, 50), 255, dtype=np.uint8)
+    img[0:10, 0:10] = 230  # paper grain, just below white
+    img[20:30, 20:30] = 180  # faint but real mark
+    img[40:50, 40:50] = 60   # solid ink
+    out = enhance.saturate_white(img, margin=40)
+    assert (out[0:10, 0:10] == 255).all()  # grain erased
+    assert (out[20:30, 20:30] == 180).all()  # faint mark survives
+    assert (out[40:50, 40:50] == 60).all()  # ink untouched
+    assert np.array_equal(enhance.saturate_white(img, margin=0), img)
+
+
+def test_despeckle_drops_grain_keeps_musical_marks():
+    """Area filter: 2-4px grain blobs vanish; staccato-dot-sized marks and
+    long 1px line fragments (staff lines, stems) survive."""
+    binary = np.full((200, 200), 255, dtype=np.uint8)
+    binary[5, 5] = 0  # single grain pixel
+    binary[50:52, 50:52] = 0  # 2x2 grain cluster (area 4)
+    cv2.circle(binary, (100, 100), 2, 0, -1)  # staccato-dot-sized mark
+    cv2.line(binary, (0, 150), (199, 150), 0, 1)  # 1px staff-line fragment
+    out, removed = enhance.despeckle_binary(binary, staff_space=12, area_scale=0.05)
+    assert removed == 2  # the pixel and the 2x2 cluster
+    assert out[5, 5] == 255
+    assert (out[50:52, 50:52] == 255).all()
+    assert out[100, 100] == 0  # musical dot kept
+    assert (out[150] == 0).all()  # line fragment kept
+
+
+def test_process_page_restores_grainy_scan(tmp_path):
+    """End to end: clustered grain (what denoise's isolated-speck filter
+    misses) must not survive into the binarized page."""
+    scan = make_scan()
+    rng = np.random.default_rng(7)
+    for _ in range(40):  # 2x2 grain blobs scattered over the paper
+        y = int(rng.integers(5, 590))
+        x = int(rng.integers(5, 390))
+        scan[y:y + 2, x:x + 2] = 150
+    src = save_scan(scan, tmp_path / "grainy.png")
+
+    result = process_page(src, 1, "grainy", PrepOptions())
+    assert result.report.specks_removed > 0
+    # the page is still notation, not confetti
+    assert 0.001 < result.report.ink_ratio < 0.25
+
+
 def test_denoise_removes_isolated_specks():
     img = np.full((200, 200), 240, dtype=np.uint8)
     for k in range(50):
@@ -229,13 +306,35 @@ def test_process_page_adapts_decisions_per_input(tmp_path):
     )
 
 
-def test_process_page_keeps_binary_ink_sane(tmp_path):
+def test_process_page_output_default_smooth_binary_optional(tmp_path):
     src = save_scan(make_scan(), tmp_path / "scan.png")
     result = process_page(src, 1, "scan", PrepOptions())
     assert result.report.noise_pct < enhance.DENOISE_NOISE_THRESHOLD
     assert 0.001 < result.report.ink_ratio < 0.25
-    assert result.binary is not None
+    # Default: restored grayscale - solid dark ink, pure white paper, and
+    # anti-aliased edges kept (the natural scanned-PDF look).
+    assert result.clean.min() < 80
+    assert result.clean.max() == 255
     assert result.report.sauvola_k == enhance.SAUVOLA_K_BASE
+
+    # Strict 1-bit output on request: pure black and white.
+    strict = process_page(src, 1, "scan", PrepOptions(binary_output=True))
+    assert set(np.unique(strict.clean)) <= {0, 255}
+
+
+def test_restored_page_keeps_anti_aliased_edges(tmp_path):
+    """A hard threshold crystallizes edges; the default page must keep the
+    source's anti-aliasing ramp so lines look smooth, not staircased."""
+    img = make_scan()
+    cv2.line(img, (0, 300), (399, 300), 40, 1, lineType=cv2.LINE_AA)
+    src = save_scan(img, tmp_path / "aa.png")
+
+    result = process_page(src, 1, "aa", PrepOptions())
+    band = result.clean[295:306, 100:300]
+    assert set(np.unique(band)) - {0, 255}  # intermediate edge tones survive
+
+    strict = process_page(src, 1, "aa", PrepOptions(binary_output=True))
+    assert not set(np.unique(strict.clean[295:306, 100:300])) - {0, 255}
 
 
 # --- in-place pairing and pipeline -----------------------------------------
@@ -251,12 +350,26 @@ def test_discover_pages_first_run(tmp_path):
     assert [s.stem for s in sources] == ["1", "2"]
     assert all(s.backup_path is not None for s in sources)
     assert sources[0].raw_path.name == "1.jpg"
-    assert sources[0].backup_path.name == "1 (original).jpg"
+    assert sources[0].backup_path == work / "original" / "1.jpg"  # kept as-is
     assert sources[0].processed_path.name == "1.png"
-    assert sources[0].binary_path.name == "1.png"
 
 
-def test_discover_pages_rerun_uses_backups(tmp_path):
+def test_discover_pages_rerun_uses_original_dir(tmp_path):
+    work = tmp_path / "output" / "Song"
+    work.mkdir(parents=True)
+    save_scan(make_scan(), work / "original" / "1.jpg")
+    save_scan(make_scan(), work / "1.png")
+
+    sources = discover_page_sources(work)
+    assert len(sources) == 1
+    assert sources[0].raw_path == work / "original" / "1.jpg"
+    assert sources[0].backup_path is None  # already preserved
+    assert sources[0].processed_path.name == "1.png"
+
+
+def test_discover_pages_legacy_backup_migrates(tmp_path):
+    """Legacy top-level "1 (original).jpg" is still a raw; it migrates into
+    original/ under its original name."""
     work = tmp_path / "output" / "Song"
     work.mkdir(parents=True)
     save_scan(make_scan(), work / "1 (original).jpg")
@@ -265,7 +378,7 @@ def test_discover_pages_rerun_uses_backups(tmp_path):
     sources = discover_page_sources(work)
     assert len(sources) == 1
     assert sources[0].raw_path.name == "1 (original).jpg"
-    assert sources[0].backup_path is None  # already backed up
+    assert sources[0].backup_path == work / "original" / "1.jpg"
     assert sources[0].processed_path.name == "1.png"
 
 
@@ -303,7 +416,7 @@ def test_discover_pages_prefers_output_named_raw(tmp_path):
     sources = discover_page_sources(work)
     assert len(sources) == 1
     assert sources[0].raw_path.name == "1.png"
-    assert sources[0].backup_path.name == "1 (original).png"
+    assert sources[0].backup_path == work / "original" / "1.png"  # kept as-is
     assert [p.name for p in sources[0].strays] == ["1.jpg"]
 
 
@@ -319,14 +432,21 @@ def test_run_pipeline_in_place_end_to_end(tmp_path, monkeypatch):
 
     run_pipeline(paths, PrepOptions())
 
-    # Originals renamed and preserved; processed pages keep the stems.
-    assert (work / "1 (original).jpg").exists()
-    assert (work / "2 (original).jpg").exists()
+    # Originals preserved as-is in original/; processed pages keep the stems.
+    assert (work / "original" / "1.jpg").exists()
+    assert (work / "original" / "2.jpg").exists()
     assert not (work / "1.jpg").exists()
     assert (work / "1.png").exists()
     assert (work / "2.png").exists()
-    assert (work / "binary" / "1.png").exists()
+    assert not (work / "binary").exists()  # no side artifacts anymore
     assert (work / "scanprep" / "preview.png").exists()
+
+    # Cleaned pages: solid dark ink on pure white paper (anti-aliased
+    # edges by default - the smooth scanned-page look).
+    for page in ("1.png", "2.png"):
+        restored = np.array(Image.open(work / page))
+        assert restored.max() == 255
+        assert restored.min() < 80
 
     report = json.loads((work / "scanprep" / "scanprep.json").read_text(encoding="utf-8"))
     assert report["tool"] == "scanprep"
@@ -335,8 +455,7 @@ def test_run_pipeline_in_place_end_to_end(tmp_path, monkeypatch):
     assert report["pages"][0]["staff_space_px"] == 12
     assert report["pages"][0]["outputs"] == {
         "processed": "1.png",
-        "original": "1 (original).jpg",
-        "binary": "binary/1.png",
+        "original": "original/1.jpg",
     }
     assert report["parameters"]["background_method"] == "morph"
 
@@ -373,11 +492,29 @@ def test_run_pipeline_idempotent_rerun(tmp_path, monkeypatch):
 
     run_pipeline(paths, PrepOptions())  # re-run without --resume re-processes
 
-    # Raw never gets double-renamed; processed page regenerated from the raw.
-    backups = [f for f in work.iterdir() if "(original)" in f.name]
-    assert [f.name for f in backups] == ["1 (original).jpg"]
+    # Raw never gets double-moved; processed page regenerated from the raw.
+    assert (work / "original" / "1.jpg").exists()
+    assert [f.name for f in (work / "original").iterdir()] == ["1.jpg"]
     assert (work / "1.png").exists()
     assert not (work / "1.jpg").exists()
+
+
+def test_run_pipeline_overwrites_existing_original(tmp_path, monkeypatch):
+    """A same-named raw already in original/ is overwritten, not an error."""
+    monkeypatch.chdir(tmp_path)
+    work = tmp_path / "output" / "Overwrite"
+    work.mkdir(parents=True)
+    save_scan(make_scan(), work / "1.jpg")
+    stale = np.full((21, 13), 200, dtype=np.uint8)
+    save_scan(stale, work / "original" / "1.jpg")  # leftover from an earlier run
+
+    paths, _ = ScanPaths.from_target("Overwrite")
+    run_pipeline(paths, PrepOptions())
+
+    kept = np.array(Image.open(work / "original" / "1.jpg"))
+    assert kept.shape == (600, 400)  # the new raw replaced the stale one
+    assert [f.name for f in (work / "original").iterdir()] == ["1.jpg"]
+    assert (work / "1.png").exists()
 
 
 def test_run_pipeline_resume_skips_cleaned(tmp_path, monkeypatch):
@@ -409,8 +546,8 @@ def test_run_pipeline_resume_processes_fresh_raw(tmp_path, monkeypatch):
     paths = ScanPaths.for_work_dir(work)
     run_pipeline(paths, PrepOptions(resume=True))
 
-    # A fresh raw has no backup yet: resume must not skip the rename+clean.
-    assert (work / "1 (original).jpg").exists()
+    # A fresh raw is not preserved yet: resume must not skip the move+clean.
+    assert (work / "original" / "1.jpg").exists()
     assert (work / "1.png").exists()
 
 
@@ -449,12 +586,21 @@ def test_scan_paths_from_single_file_copies_raw(tmp_path, monkeypatch):
     assert title == "Innocent 1"
     assert paths.work_dir == (tmp_path / "output" / "Innocent 1").resolve()
     assert (paths.work_dir / "Innocent 1.jpg").exists()  # copied in like image2ly
-    assert paths.binary_dir == paths.work_dir / "binary"
+    assert paths.original_dir == paths.work_dir / "original"
     assert paths.report_path == paths.scanprep_dir / "scanprep.json"
 
     # Re-resolving after the stem is settled must not re-copy the raw.
-    (paths.work_dir / "Innocent 1.jpg").rename(paths.work_dir / "Innocent 1 (original).jpg")
+    # (A preserved raw in original/ counts as settled; so does a legacy
+    # "(original)" backup.)
+    save_scan(make_scan(), paths.original_dir / "Innocent 1.jpg")
+    (paths.work_dir / "Innocent 1.jpg").unlink()
     save_scan(make_scan(), paths.work_dir / "Innocent 1.png")
+    ScanPaths.from_target(src)
+    assert not (paths.work_dir / "Innocent 1.jpg").exists()
+
+    (paths.original_dir / "Innocent 1.jpg").rename(
+        paths.work_dir / "Innocent 1 (original).jpg"
+    )
     ScanPaths.from_target(src)
     assert not (paths.work_dir / "Innocent 1.jpg").exists()
 
@@ -481,7 +627,11 @@ def test_cli_parser_defaults():
     assert args.background_method == "morph"
     assert args.background_scale == 4.0
     assert args.paper_target == 245
-    assert args.no_binary is False
+    assert args.no_contrast is False
+    assert args.no_whiten is False
+    assert args.no_sharpen is False
+    assert args.no_despeckle is False
+    assert args.binary is False
     assert args.sauvola_k is None
     assert args.sauvola_window_scale == 5.0
     assert args.denoise is None
@@ -499,7 +649,11 @@ def test_cli_parser_custom_options():
             "--background-method", "morph",
             "--background-scale", "6",
             "--paper-target", "250",
-            "--no-binary",
+            "--no-contrast",
+            "--no-whiten",
+            "--no-sharpen",
+            "--no-despeckle",
+            "--binary",
             "--sauvola-k", "0.2",
             "--denoise", "off",
             "--no-preview",
@@ -511,7 +665,11 @@ def test_cli_parser_custom_options():
     assert args.background_method == "morph"
     assert args.background_scale == 6.0
     assert args.paper_target == 250
-    assert args.no_binary is True
+    assert args.no_contrast is True
+    assert args.no_whiten is True
+    assert args.no_sharpen is True
+    assert args.no_despeckle is True
+    assert args.binary is True
     assert args.sauvola_k == 0.2
     assert args.denoise is False
     assert args.no_preview is True
@@ -527,8 +685,9 @@ def test_cli_main_end_to_end(tmp_path, monkeypatch):
     exit_code = main(["CliScan"])
     assert exit_code == 0
     assert (work / "page1.png").exists()
-    assert (work / "page1 (original).png").exists()
-    assert (work / "binary" / "page1.png").exists()
+    assert (work / "original" / "page1.png").exists()
+    restored = np.array(Image.open(work / "page1.png"))
+    assert restored.max() == 255 and restored.min() < 80  # restored page
     assert (work / "scanprep" / "scanprep.json").exists()
     # image2ly chaining: only the cleaned page remains in the listing
     assert [p.name for p in find_image_files(work)] == ["page1.png"]

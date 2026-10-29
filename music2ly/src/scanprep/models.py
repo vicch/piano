@@ -14,26 +14,31 @@ from music2ly.models import (
 )
 
 
+ORIGINAL_DIR = "original"  # subdirectory holding preserved raw scans, as-is
+
+
 @dataclass
 class PageSource:
     """One sheet page discovered in a work directory.
 
-    The raw scan lives either as a plain file (first run: it must be
-    renamed to "<stem> (original)<ext>") or already as that backup
-    (re-runs: ``backup_path`` is None and ``raw_path`` points at it).
-    The processed page is always written as "<stem>.png" next to it.
+    The raw scan lives either as a plain file in the work directory
+    (first run: it is moved as-is into the "original/" subdirectory) or
+    already inside "original/" (re-runs: ``backup_path`` is None and
+    ``raw_path`` points there). Legacy "<stem> (original)<ext>" backups
+    from older scanprep runs are still recognized as raws and migrate
+    into "original/" under their original name. The processed page is
+    always written as "<stem>.png" at the top level.
     """
 
     stem: str
     raw_path: Path
-    backup_path: Path | None  # rename target for first-run raws; None if already backed up
+    backup_path: Path | None  # move target for first-run raws; None if already preserved
     processed_path: Path
-    binary_path: Path
     strays: list[Path] = field(default_factory=list)  # duplicate files left untouched (warned)
 
     @property
     def settled(self) -> bool:
-        """True when the raw is already backed up and processing is idempotent."""
+        """True when the raw is already preserved and processing is idempotent."""
         return self.backup_path is None
 
 
@@ -47,56 +52,93 @@ def _split_backup_stem(path: Path) -> str | None:
 def discover_page_sources(work_dir: Path) -> list[PageSource]:
     """Pair raw scans with their processed outputs in a work directory.
 
-    Every image directly in the directory participates: plain files are
-    fresh raws (to be backed up), "(original)" files are raws of earlier
-    runs, and "<stem>.png" next to a backup is a previous processed page.
-    Duplicate top-level files sharing a stem are reported as strays.
+    Preserved raws live in the "original/" subdirectory under their
+    original filenames. Plain top-level images are fresh raws (to be
+    moved into "original/"); legacy top-level "<stem> (original)<ext>"
+    backups from older runs are raws too (they migrate into "original/"
+    under their original name). A re-dropped raw whose name matches a
+    preserved raw replaces it (the move overwrites the old raw).
+    "<stem>.png" at the top level is the processed page. Duplicate
+    top-level files sharing a stem are reported as strays.
     """
+    original_dir = work_dir / ORIGINAL_DIR
+    preserved: dict[str, list[Path]] = {}
+    for f in find_image_files(original_dir):
+        preserved.setdefault(f.stem, []).append(f)
+
     files = find_image_files(work_dir, include_originals=True)
-    backups: dict[str, list[Path]] = {}
+    legacy: dict[str, list[Path]] = {}
     tops: dict[str, list[Path]] = {}
     for f in files:
         backup_stem = _split_backup_stem(f)
         if backup_stem is not None:
-            backups.setdefault(backup_stem, []).append(f)
+            legacy.setdefault(backup_stem, []).append(f)
         else:
             tops.setdefault(f.stem, []).append(f)
 
-    stems = sorted(set(backups) | set(tops), key=natural_sort_key)
+    stems = sorted(set(preserved) | set(legacy) | set(tops), key=natural_sort_key)
     sources: list[PageSource] = []
     for stem in stems:
-        raw_candidates = sorted(backups.get(stem, []), key=natural_sort_key)
-        top_candidates = sorted(tops.get(stem, []), key=natural_sort_key)
-        binary_dir = work_dir / "binary"
         processed_path = work_dir / f"{stem}.png"
+        preserved_raws = sorted(preserved.get(stem, []), key=natural_sort_key)
+        legacy_raws = sorted(legacy.get(stem, []), key=natural_sort_key)
+        top_candidates = sorted(tops.get(stem, []), key=natural_sort_key)
 
-        if raw_candidates:
-            # Re-run: the backup is the canonical raw; the processed page is
-            # expected next to it. Anything else is a leftover that image2ly
-            # would sweep up.
-            strays = [t for t in top_candidates if t != processed_path]
+        if preserved_raws:
+            # A re-dropped raw carrying the same name as the preserved one
+            # replaces it (the move into original/ overwrites the old raw).
+            # A file named like the processed page is that page, never a
+            # re-dropped raw, so idempotent re-runs don't clobber raws.
+            redrop = next(
+                (t for t in top_candidates if t.name == preserved_raws[0].name and t != processed_path),
+                None,
+            )
+            if redrop is not None:
+                sources.append(
+                    PageSource(
+                        stem=stem,
+                        raw_path=redrop,
+                        backup_path=original_dir / redrop.name,
+                        processed_path=processed_path,
+                        strays=[t for t in top_candidates if t not in (redrop, processed_path)]
+                        + legacy_raws,
+                    )
+                )
+            else:
+                # Re-run: the preserved raw is canonical. Anything else at
+                # the top level is a leftover that image2ly would sweep up.
+                sources.append(
+                    PageSource(
+                        stem=stem,
+                        raw_path=preserved_raws[0],
+                        backup_path=None,
+                        processed_path=processed_path,
+                        strays=[t for t in top_candidates if t != processed_path] + legacy_raws,
+                    )
+                )
+        elif legacy_raws:
+            # Legacy "<stem> (original)<ext>" backup migrates into original/
+            # under its original name.
             sources.append(
                 PageSource(
                     stem=stem,
-                    raw_path=raw_candidates[0],
-                    backup_path=None,
+                    raw_path=legacy_raws[0],
+                    backup_path=original_dir / f"{stem}{legacy_raws[0].suffix}",
                     processed_path=processed_path,
-                    binary_path=binary_dir / f"{stem}.png",
-                    strays=strays,
+                    strays=[t for t in top_candidates if t != processed_path] + legacy_raws[1:],
                 )
             )
         else:
             # Fresh raws: prefer a file already named like the processed page
-            # (renaming it away never silently overwrites user data); the
+            # (moving it away never silently overwrites user data); the
             # rest become strays.
             primary = next((t for t in top_candidates if t == processed_path), top_candidates[0])
             sources.append(
                 PageSource(
                     stem=stem,
                     raw_path=primary,
-                    backup_path=work_dir / f"{primary.stem} {ORIGINAL_SUFFIX}{primary.suffix.lower()}",
+                    backup_path=original_dir / primary.name,
                     processed_path=processed_path,
-                    binary_path=binary_dir / f"{stem}.png",
                     strays=[t for t in top_candidates if t != primary],
                 )
             )
@@ -108,21 +150,21 @@ class ScanPaths:
     """Artifact layout for the scanprep pipeline inside a song directory.
 
     Processing is in place, mirroring image2ly's flow: raw scans are
-    renamed "<stem> (original)<ext>", cleaned pages are written as
-    "<stem>.png" with the original stem, so ``image2ly <dir>`` picks up
-    exactly the cleaned pages in natural page order:
+    moved as-is into the "original/" subdirectory (overwriting any
+    same-named file there), cleaned pages are written as "<stem>.png"
+    with the original stem, so ``image2ly <dir>`` picks up exactly the
+    cleaned pages in natural page order:
 
         <work_dir>/
-        ├── 1.png                  # cleaned page (OMR-ready master)
-        ├── 1 (original).jpg        # preserved raw scan
-        ├── binary/1.png            # optional Sauvola binarization
+        ├── 1.png                  # cleaned page (restored, smooth anti-aliased)
+        ├── original/1.jpg          # preserved raw scan, original filename
         └── scanprep/
-            ├── preview.png         # raw | clean | binary contact sheet
+            ├── preview.png         # raw | clean contact sheet
             └── scanprep.json       # parameters + per-page metrics report
     """
 
     work_dir: Path
-    binary_dir: Path
+    original_dir: Path
     scanprep_dir: Path
     preview_path: Path
     report_path: Path
@@ -132,7 +174,7 @@ class ScanPaths:
         scanprep_dir = work_dir / "scanprep"
         return cls(
             work_dir=work_dir,
-            binary_dir=work_dir / "binary",
+            original_dir=work_dir / ORIGINAL_DIR,
             scanprep_dir=scanprep_dir,
             preview_path=scanprep_dir / "preview.png",
             report_path=scanprep_dir / "scanprep.json",
@@ -140,14 +182,20 @@ class ScanPaths:
 
     @staticmethod
     def _stem_settled(work_dir: Path, stem: str) -> bool:
-        """True when a stem already has a processed page or a raw backup."""
+        """True when a stem already has a processed page or a preserved raw."""
         if not work_dir.is_dir():
             return False
+        processed = work_dir / f"{stem}.png"
+        if processed.is_file():
+            return True
+        original_dir = work_dir / ORIGINAL_DIR
+        if original_dir.is_dir():
+            for f in original_dir.iterdir():
+                if f.is_file() and f.stem == stem and f.suffix.lower() in IMAGE_EXTENSIONS:
+                    return True
         for f in work_dir.iterdir():
             if not f.is_file():
                 continue
-            if f.stem == stem and f.suffix.lower() == ".png":
-                return True
             if f.stem == f"{stem} {ORIGINAL_SUFFIX}" and f.suffix.lower() in IMAGE_EXTENSIONS:
                 return True
         return False
@@ -220,10 +268,13 @@ class PageReport:
     background_size_px: float = 0.0
     background_range: float = 0.0
     illumination_corrected: bool = False
+    contrast_applied: bool = False
     noise_pct: float = 0.0
     denoised: bool = False
+    sharpened: bool = False
     sauvola_window_px: int = 0
     sauvola_k: float = 0.0
+    specks_removed: int = 0
     paper_before: dict = field(default_factory=dict)
     paper_after: dict = field(default_factory=dict)
     ink_ratio: float = 0.0
@@ -247,10 +298,13 @@ class PageReport:
             "background_size_px": round(self.background_size_px, 1),
             "background_range": round(self.background_range, 1),
             "illumination_corrected": self.illumination_corrected,
+            "contrast_applied": self.contrast_applied,
             "noise_pct": round(self.noise_pct, 2),
             "denoised": self.denoised,
+            "sharpened": self.sharpened,
             "sauvola_window_px": self.sauvola_window_px,
             "sauvola_k": round(self.sauvola_k, 3),
+            "specks_removed": self.specks_removed,
             "paper_before": self.paper_before,
             "paper_after": self.paper_after,
             "ink_ratio": round(self.ink_ratio, 4),

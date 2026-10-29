@@ -2,10 +2,14 @@
 
 Adaptive pre-processing for low-quality scans and photocopies of sheet
 music: deskew, staff-metric estimation, illumination/background
-correction, contrast levels, selective denoising, and optional Sauvola
-binarization. Pages are cleaned in place: raws are renamed to
-"<stem> (original)<ext>" and cleaned pages written as "<stem>.png", so
-image2ly run on the same directory picks up exactly the cleaned pages.
+correction, contrast levels, document-scanner restoration (ink
+solidifying, edge smoothing, paper whitening, despeckling), and an
+internal Sauvola threshold for QC. The restored page keeps smooth
+anti-aliased edges like a professionally scanned document; strict
+black-and-white is opt-in. Pages are cleaned in place: raws are moved
+as-is into an "original/" subdirectory and cleaned pages written as
+"<stem>.png", so image2ly run on the same directory picks up exactly
+the cleaned pages.
 
 All kernel sizes and thresholds derive from per-page measurements
 (staff-line spacing, background flatness, noise level), so heterogeneous

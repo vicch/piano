@@ -37,13 +37,13 @@ uv sync --extra dev      # development and test dependencies (pytest)
 1. **Measure** — EXIF orientation, skew (long-line Hough evidence), staff-line spacing (row-ink autocorrelation), background unevenness, isolated-speck noise, dark photocopy borders
 2. **Correct geometry** — deskew by the measured angle only when long-line evidence confirms it
 3. **Correct tone** — divide out the paper background (morphological max-filter estimate that sees past noteheads and fat title blocks), floored so solid ink never blows out; skipped entirely on already-flat pages
-4. **Normalize** — paper-anchored gain to white (never stretches/clips faint notation), speck removal only when specks are measured
-5. **Binarize (optional)** — Sauvola local thresholding with noise-adaptive k, as a strict black-and-white alternative for comparison
+4. **Normalize & restore** — paper-anchored gain to white, speck removal only when specks are measured, then the document-scanner restoration pass: ink-darkening contrast remap (gamma tilt), edge smoothing (melts jaggies/JPEG blocks), subtle unsharp-mask definition, white saturation that erases paper grain (the "clean scan" look), and grain-blob removal driven by an internal Sauvola threshold. All strengths are tweakable constants in `src/scanprep/enhance.py` (`CONTRAST_*`, `EDGE_SMOOTH_SIGMA`, `PAPER_WHITE_MARGIN`, `SHARPEN_*`, `DESPECKLE_AREA_SCALE`), which documents three ready-made combinations (fidelity / balanced / extreme) and how they trade off; disable per run with `--no-contrast` / `--no-whiten` / `--no-sharpen` / `--no-despeckle`
+5. **Final page** — the cleaned page keeps the restored grayscale with its anti-aliased edges: solid dark notation on pure white paper, smooth like a professionally scanned document or PDF (hard 1-bit thresholding is what makes edges look crystallized). The internal Sauvola threshold (noise-adaptive k, window scaled to staff spacing) drives QC and despeckling; pass `--binary` for strict pure black-and-white output instead
 6. **QC** — per-page metrics and every effective parameter recorded in `scanprep/scanprep.json`, side-by-side `scanprep/preview.png` contact sheet
 
-Processing is in place, mirroring image2ly's flow: for every image in the target directory the raw scan is renamed `<stem> (original)<ext>` and the cleaned page is written as `<stem>.png`, so `image2ly <dir>` afterwards picks up exactly the cleaned pages in natural page order. Re-runs are idempotent: an existing `(original)` backup is always the raw source and is never double-renamed.
+Processing is in place, mirroring image2ly's flow: for every image in the target directory the raw scan is moved as-is into an `original/` subdirectory (overwriting any same-named file there) and the cleaned page is written as `<stem>.png`, so `image2ly <dir>` afterwards picks up exactly the cleaned pages in natural page order. Re-runs are idempotent: a raw already in `original/` is always the raw source and is never moved twice. Legacy `1 (original).jpg` backups from older scanprep runs are still recognized and migrate into `original/`.
 
-All kernel sizes derive from the measured staff spacing, so any scan resolution, exposure, or paper tone converges on the same output quality; nothing assumes one fixed scan profile. The grayscale master (`<stem>.png`) is the archival/OMR output; staff lines are content and are never removed.
+All kernel sizes derive from the measured staff spacing, so any scan resolution, exposure, or paper tone converges on the same output quality; nothing assumes one fixed scan profile. The restored page (`<stem>.png`) — dark notation, white paper, smooth anti-aliased edges — is the archival/OMR output; staff lines are content and are never removed.
 
 ## Prerequisites
 
@@ -153,7 +153,7 @@ Options:
 - `--steps` — Comma-separated steps (`recognize,musicxml,lilypond` or `all`).
 - `--resume` — Skip steps whose artifacts already exist.
 
-Files whose stem ends with `(original)` (raw backups kept by scanprep) are ignored when listing pages.
+Only top-level images are listed (subdirectories like `original/` are never scanned); legacy files whose stem ends with `(original)` (old scanprep backups) are ignored when listing pages.
 
 ### scanprep
 
@@ -167,7 +167,7 @@ uv run scanprep "Innocent"
 uv run image2ly "Innocent"
 ```
 
-Processing is in place: each raw `Innocent 1.jpg` is renamed `Innocent 1 (original).jpg` and the cleaned page is written as `Innocent 1.png` with the original stem, so image2ly run on the same directory picks up exactly the cleaned pages in natural page order. Re-runs re-process from the `(original)` backups and never rename twice; with `--resume` already-cleaned pages are skipped entirely.
+Processing is in place: each raw `Innocent 1.jpg` is moved as-is into `original/Innocent 1.jpg` and the cleaned page is written as `Innocent 1.png` with the original stem, so image2ly run on the same directory picks up exactly the cleaned pages in natural page order. Re-runs re-process from the `original/` raws and never move twice; with `--resume` already-cleaned pages are skipped entirely.
 
 A single image file works too (it is copied into `output/<title>/` like image2ly does, then cleaned in place):
 
@@ -182,7 +182,8 @@ Options (defaults adapt per page; these override the automatic decisions):
 - `--background-method {morph,gaussian}` — Paper-background estimator (default: `morph`, robust under fat title blocks).
 - `--background-scale 4` — Background window size in staff-spacing units; raise it if the report warns about residual unevenness.
 - `--paper-target 245` — Target paper brightness after correction.
-- `--no-binary` — Skip the Sauvola binarization output.
+- `--no-contrast` / `--no-whiten` / `--no-sharpen` / `--no-despeckle` — Skip restoration stages individually (strengths are constants in `src/scanprep/enhance.py`).
+- `--binary` — Strict pure black-and-white output instead of the default smooth restored grayscale.
 - `--sauvola-k 0.15` — Pin Sauvola sensitivity (default: auto — 0.15, or 0.22 on speckled pages).
 - `--sauvola-window-scale 5` — Sauvola window in staff-spacing units.
 - `--denoise {auto,on,off}` — Isolated-speck removal (default: `auto`, applied only when specks are measured).
@@ -201,12 +202,11 @@ output/<title>/
 ├── recognized_001.musicxml     # Page 1 OMR output (image2ly)
 ├── recognized_002.musicxml     # Page 2 OMR output (image2ly)
 ├── recognized.musicxml         # Merged grand-staff MusicXML (image2ly)
-├── 1.png                       # Cleaned page masters, original stems (scanprep)
-├── 1 (original).jpg            # Preserved raw scans (scanprep; ignored by image2ly)
-├── binary/                     # Optional Sauvola binarizations (scanprep)
-│   └── 1.png
+├── 1.png                       # Restored page masters, original stems (scanprep)
+├── original/                   # Preserved raw scans, original filenames (scanprep)
+│   └── 1.jpg
 ├── scanprep/                   # scanprep QC artifacts
-│   ├── preview.png             # Original | clean | binary contact sheet
+│   ├── preview.png             # Original | clean contact sheet
 │   └── scanprep.json           # Per-page metrics + effective parameters
 ├── chunks/                     # Segmented MusicXML chunks
 │   ├── chunk_001.musicxml

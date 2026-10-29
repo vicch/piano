@@ -22,10 +22,10 @@ def build_parser() -> argparse.ArgumentParser:
         description=(
             "Pre-process raw scanned sheet-music images (scans, photocopies, "
             "photos) into clean, OMR-ready pages for image2ly. Processes in "
-            "place: raws are renamed '<stem> (original)<ext>' and cleaned pages "
-            "are written as '<stem>.png', so image2ly picks up exactly the "
-            "cleaned pages. Kernel sizes and corrections adapt to each page "
-            "automatically."
+            "place: raws are moved as-is into an 'original/' subdirectory and "
+            "cleaned pages are written as '<stem>.png', so image2ly picks up "
+            "exactly the cleaned pages. Kernel sizes and corrections adapt to "
+            "each page automatically."
         ),
     )
     parser.add_argument(
@@ -72,15 +72,38 @@ def build_parser() -> argparse.ArgumentParser:
         help="Target paper brightness after correction, 0-255 (default: 245)",
     )
     parser.add_argument(
-        "--no-binary",
+        "--no-contrast",
         action="store_true",
-        help="Do not write the optional Sauvola binarization",
+        help="Skip the ink-darkening contrast remap",
+    )
+    parser.add_argument(
+        "--no-whiten",
+        action="store_true",
+        help="Skip white saturation (paper grain survives as gray tones)",
+    )
+    parser.add_argument(
+        "--no-sharpen",
+        action="store_true",
+        help="Skip the unsharp-mask crispness pass",
+    )
+    parser.add_argument(
+        "--no-despeckle",
+        action="store_true",
+        help="Skip grain-blob removal from the restored page",
+    )
+    parser.add_argument(
+        "--binary",
+        action="store_true",
+        help="Write a strict pure black-and-white page instead of the default "
+        "restored grayscale (which keeps smooth anti-aliased edges like a "
+        "professionally scanned document)",
     )
     parser.add_argument(
         "--sauvola-k",
         type=float,
         default=None,
-        help="Pin Sauvola sensitivity k (default: auto, 0.15 or 0.22 for noisy pages)",
+        help="Pin Sauvola threshold sensitivity k "
+        "(default: auto, 0.15 or 0.22 for noisy pages)",
     )
     parser.add_argument(
         "--sauvola-window-scale",
@@ -123,7 +146,11 @@ def main(argv: list[str] | None = None) -> int:
             background_method=args.background_method,
             background_scale=args.background_scale,
             paper_target=args.paper_target,
-            binary=not args.no_binary,
+            contrast=not args.no_contrast,
+            whiten=not args.no_whiten,
+            sharpen=not args.no_sharpen,
+            despeckle=not args.no_despeckle,
+            binary_output=args.binary,
             sauvola_k=args.sauvola_k,
             sauvola_window_scale=args.sauvola_window_scale,
             denoise=args.denoise,

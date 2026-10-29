@@ -1,18 +1,19 @@
 """scanprep pipeline: in-place raw scans -> cleaned pages + QC report.
 
-For every image directly in the target directory, the raw scan is renamed
-to "<stem> (original)<ext>" and the cleaned page is written as
-"<stem>.png" with the original stem, so image2ly picks up exactly the
-cleaned pages (its file finder skips "(original)" backups). The pipeline
-adapts per page: it measures the input first (skew, staff spacing,
-background unevenness, noise) and then decides which corrections to
-apply. Effective decisions are recorded in scanprep.json so results are
-auditable and reproducible.
+For every image directly in the target directory, the raw scan is moved
+as-is into the "original/" subdirectory (overwriting any same-named file
+there) and the cleaned page is written as "<stem>.png" with the original
+stem, so image2ly picks up exactly the cleaned pages (its file finder
+only lists top-level images). The pipeline adapts per page: it measures
+the input first (skew, staff spacing, background unevenness, noise) and
+then decides which corrections to apply. Effective decisions are
+recorded in scanprep.json so results are auditable and reproducible.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import sys
 from dataclasses import dataclass, replace
 from pathlib import Path
@@ -39,7 +40,11 @@ class PrepOptions:
     background_method: str = "morph"  # "morph" | "gaussian"
     background_scale: float = 4.0
     paper_target: int = enhance.PAPER_TARGET
-    binary: bool = True
+    contrast: bool = True
+    whiten: bool = True
+    sharpen: bool = True
+    despeckle: bool = True
+    binary_output: bool = False       # strict 1-bit page; default keeps anti-aliased edges
     sauvola_window_scale: float = 5.0
     sauvola_k: float | None = None       # None: derive from measured noise
     denoise: bool | None = None           # None: derive from measured noise
@@ -53,7 +58,11 @@ class PrepOptions:
             "background_method": self.background_method,
             "background_scale": self.background_scale,
             "paper_target": self.paper_target,
-            "binary": self.binary,
+            "contrast": self.contrast,
+            "whiten": self.whiten,
+            "sharpen": self.sharpen,
+            "despeckle": self.despeckle,
+            "binary_output": self.binary_output,
             "sauvola_window_scale": self.sauvola_window_scale,
             "sauvola_k": self.sauvola_k,
             "denoise": self.denoise,
@@ -65,7 +74,6 @@ class PrepOptions:
 @dataclass
 class PageResult:
     clean: np.ndarray
-    binary: np.ndarray | None
     report: PageReport
 
 
@@ -126,7 +134,17 @@ def process_page(
     #    scaling ink by the same gain so faint notation is never clipped.
     gray = enhance.apply_levels(gray)
 
-    # 5. Denoise only when the page is measurably noisy.
+    # 5. Contrast: aggressively pull ink toward black and paper toward white
+    #    (strengths are constants in enhance.py, tweakable to taste).
+    if options.contrast:
+        gray = enhance.apply_contrast(
+            gray,
+            ink_target=enhance.CONTRAST_INK_TARGET,
+            gamma=enhance.CONTRAST_GAMMA,
+        )
+        report.contrast_applied = True
+
+    # 6. Denoise only when the page is measurably noisy.
     noise = enhance.measure_noise(gray)
     report.noise_pct = noise
     denoise_on = options.denoise if options.denoise is not None else (
@@ -136,31 +154,62 @@ def process_page(
         gray = enhance.denoise(gray)
     report.denoised = bool(denoise_on)
 
-    clean = gray
+    # 7. Smooth: melt pixel jaggies and JPEG blockiness so edges look
+    #    scanned, not crystallized; the subtle sharpen below adds back
+    #    just enough definition.
+    gray = enhance.smooth_edges(gray)
 
-    # 6. Optional Sauvola binarization; window scales with staff spacing,
-    #    k adapts to measured noise (unless pinned via CLI).
-    binary = None
-    if options.binary:
-        window = max(15, int(options.sauvola_window_scale * staff_space))
-        k = options.sauvola_k if options.sauvola_k is not None else enhance.sauvola_k_for(noise)
-        binary = enhance.sauvola_binary(clean, window, k)
-        report.sauvola_window_px = window
-        report.sauvola_k = k
-        ink_ratio = float((binary == 0).mean())
-        if not (INK_RATIO_MIN <= ink_ratio <= INK_RATIO_MAX):
-            report.warnings.append(
-                f"ink coverage {100 * ink_ratio:.1f}% outside sane bounds "
-                f"({100 * INK_RATIO_MIN:.1f}-{100 * INK_RATIO_MAX:.0f}%); "
-                "binarization may be unreliable, trust the grayscale master"
-            )
-    else:
-        ink_ratio = float((enhance.otsu_ink(clean) > 0).mean())
+    # 8. Crispness: unsharp mask scaled to staff spacing, after denoise so
+    #    specks are removed before edges are boosted.
+    if options.sharpen:
+        gray = enhance.sharpen(
+            gray,
+            staff_space,
+            amount=enhance.SHARPEN_AMOUNT,
+            sigma_scale=enhance.SHARPEN_SIGMA_SCALE,
+        )
+        report.sharpened = True
+
+    # 9. Whiten: saturate near-paper tones to pure white (the document-
+    #    scanner look). Run after sharpening so grain raised toward white
+    #    by the unsharp mask is erased too.
+    if options.whiten:
+        gray = enhance.saturate_white(gray, margin=enhance.PAPER_WHITE_MARGIN)
+
+    # 10. Sauvola threshold: the ink decision. It drives QC (ink ratio)
+    #     and the despeckle mask. The saved page keeps the restored
+    #     grayscale with its anti-aliased edges - the natural scanned-PDF
+    #     look; a hard 1-bit threshold is what makes edges crystallized,
+    #     so strict black-and-white is opt-in (options.binary_output).
+    window = max(15, int(options.sauvola_window_scale * staff_space))
+    k = options.sauvola_k if options.sauvola_k is not None else enhance.sauvola_k_for(noise)
+    report.sauvola_window_px = window
+    report.sauvola_k = k
+    binary = enhance.sauvola_binary(gray, window, k)
+    ink_ratio = float((binary == 0).mean())
+    if not (INK_RATIO_MIN <= ink_ratio <= INK_RATIO_MAX):
+        report.warnings.append(
+            f"ink coverage {100 * ink_ratio:.1f}% outside sane bounds "
+            f"({100 * INK_RATIO_MIN:.1f}-{100 * INK_RATIO_MAX:.0f}%); "
+            "thresholding may be unreliable, try a different --sauvola-k"
+        )
     report.ink_ratio = ink_ratio
 
-    # 7. Diagnostics.
+    # 11. Final page: restored grayscale (default) or strict 1-bit; grain
+    #     blobs found in the threshold mask are erased from either.
+    clean = binary.copy() if options.binary_output else gray.copy()
+    if options.despeckle:
+        mask, removed = enhance.speck_mask(
+            binary, staff_space, area_scale=enhance.DESPECKLE_AREA_SCALE
+        )
+        if removed:
+            clean[mask] = 255
+        report.specks_removed = removed
+
+    # 12. Diagnostics (paper flatness is measured on the enhanced grayscale,
+    #     where it is still meaningful).
     report.paper_before = enhance.paper_stats(original)
-    report.paper_after = enhance.paper_stats(clean)
+    report.paper_after = enhance.paper_stats(gray)
     if report.paper_after.get("std", 0.0) > PAPER_UNEVENNESS_WARN:
         report.warnings.append(
             f"paper unevenness after correction (std={report.paper_after['std']}); "
@@ -172,34 +221,29 @@ def process_page(
             "dark border frame detected (photocopy edge); consider cropping the scan"
         )
 
-    return PageResult(clean=clean, binary=binary, report=report)
+    return PageResult(clean=clean, report=report)
 
 
 def _backup_raw(source: PageSource) -> None:
-    """Rename a first-run raw to its "(original)" backup name."""
+    """Move a first-run raw into original/ under its original name,
+    overwriting any same-named file already preserved there."""
     backup = source.backup_path
     assert backup is not None
-    if backup.exists():
-        raise RuntimeError(
-            f"cannot back up {source.raw_path.name}: {backup.name} already exists"
-        )
-    source.raw_path.rename(backup)
+    backup.parent.mkdir(parents=True, exist_ok=True)
+    os.replace(source.raw_path, backup)
     source.raw_path = backup
     source.backup_path = None
 
 
-def _outputs(paths: ScanPaths, source: PageSource, options: PrepOptions) -> dict[str, str]:
+def _outputs(paths: ScanPaths, source: PageSource) -> dict[str, str]:
     """Report paths relative to the work dir (POSIX style)."""
-    outputs = {
+    return {
         "processed": source.processed_path.relative_to(paths.work_dir).as_posix(),
         "original": source.raw_path.relative_to(paths.work_dir).as_posix(),
     }
-    if options.binary:
-        outputs["binary"] = source.binary_path.relative_to(paths.work_dir).as_posix()
-    return outputs
 
 
-def _build_preview(paths: ScanPaths, sources: list[PageSource], binary: bool) -> None:
+def _build_preview(paths: ScanPaths, sources: list[PageSource]) -> None:
     if not sources:
         return
     width = 700 if len(sources) <= 4 else 420
@@ -207,13 +251,12 @@ def _build_preview(paths: ScanPaths, sources: list[PageSource], binary: bool) ->
     for source in sources:
         if not source.processed_path.exists():
             continue
-        panels = [
-            enhance.load_grayscale(source.raw_path),
-            enhance.load_grayscale(source.processed_path),
-        ]
-        if binary and source.binary_path.exists():
-            panels.append(enhance.load_grayscale(source.binary_path))
-        rows.append(panels)
+        rows.append(
+            [
+                enhance.load_grayscale(source.raw_path),
+                enhance.load_grayscale(source.processed_path),
+            ]
+        )
     if not rows:
         return
     enhance.save_image(enhance.make_preview(rows, width=width), paths.preview_path)
@@ -255,7 +298,7 @@ def run_pipeline(
                     stem=source.stem,
                     source=str(source.raw_path),
                     skipped=True,
-                    outputs=_outputs(paths, source, options),
+                    outputs=_outputs(paths, source),
                 )
             )
             continue
@@ -267,15 +310,13 @@ def run_pipeline(
         if not source.settled:
             _backup_raw(source)
             print(
-                f"  raw kept as {source.raw_path.name}",
+                f"  raw kept as {source.raw_path.relative_to(paths.work_dir).as_posix()}",
                 file=sys.stderr,
             )
 
         result = process_page(source.raw_path, idx, source.stem, options)
         enhance.save_image(result.clean, source.processed_path)
-        if options.binary:
-            enhance.save_image(result.binary, source.binary_path)
-        result.report.outputs = _outputs(paths, source, options)
+        result.report.outputs = _outputs(paths, source)
         reports.append(result.report)
         processed += 1
 
@@ -284,7 +325,7 @@ def run_pipeline(
         print(f"  -> {result.report.outputs['processed']}", file=sys.stderr)
 
     if options.preview:
-        _build_preview(paths, sources, options.binary)
+        _build_preview(paths, sources)
         if paths.preview_path.exists():
             print(f"  -> {paths.preview_path.relative_to(paths.work_dir).as_posix()}", file=sys.stderr)
 

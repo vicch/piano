@@ -6,14 +6,15 @@ from pathlib import Path
 
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff", ".tif"}
 
-# Suffix convention marking a preserved raw scan that a tool has backed up
-# in place (scanprep renames "1.jpg" -> "1 (original).jpg" before writing the
-# cleaned "1.png"). Backup files are skipped by default when listing pages.
+# Suffix convention of the legacy scanprep backup scheme ("1.jpg" was renamed
+# to "1 (original).jpg" before the cleaned "1.png" was written). scanprep now
+# preserves raws as-is in an "original/" subdirectory instead; leftover legacy
+# backups are still skipped by default when listing pages.
 ORIGINAL_SUFFIX = "(original)"
 
 
 def is_original_backup(p: Path | str) -> bool:
-    """True for files like "1 (original).jpg": preserved raw backups."""
+    """True for files like "1 (original).jpg": legacy preserved raw backups."""
     s = p if isinstance(p, str) else p.stem
     return s.endswith(ORIGINAL_SUFFIX)
 
@@ -27,8 +28,10 @@ def natural_sort_key(p: Path | str) -> list[int | str]:
 def find_image_files(directory: Path, *, include_originals: bool = False) -> list[Path]:
     """Find all image files directly in a directory in natural sort order.
 
-    Files whose stem ends with "(original)" are preserved raw backups and
-    are skipped unless include_originals is set.
+    Only top-level files are listed (subdirectories such as scanprep's
+    "original/" are never scanned). Legacy files whose stem ends with
+    "(original)" are preserved raw backups and are skipped unless
+    include_originals is set.
     """
     if not directory.exists() or not directory.is_dir():
         return []

@@ -61,13 +61,17 @@ def test_find_image_files(tmp_path):
 
 
 def test_find_image_files_skips_original_backups(tmp_path):
-    """scanprep renames raws to "<stem> (original)<ext>"; image2ly must
-    only ever see the cleaned pages."""
+    """scanprep preserves raws in an original/ subdirectory (never scanned,
+    since only top-level files are listed) plus legacy "<stem> (original)<ext>"
+    backups; image2ly must only ever see the cleaned pages."""
     d = tmp_path / "song"
     d.mkdir()
     (d / "1.png").write_text("")
     (d / "1 (original).jpg").write_text("")
     (d / "2 (original).png").write_text("")
+    (d / "original").mkdir()
+    (d / "original" / "2.jpg").write_text("")
+    (d / "original" / "3.jpg").write_text("")
 
     assert [f.name for f in find_image_files(d)] == ["1.png"]
 
