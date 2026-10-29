@@ -2,12 +2,10 @@
 
 #(define title      "Castle in the Sky")
 #(define title-font "")
-#(define sequence   "EveryonePiano 1596")
+#(define source     "EveryonePiano 1596")
 #(define total-page 2)
 
 \include "../template/base.ly"
-
-\markup \vspace #1.5
 
 C     = { c8  e8  g2.  }
 Dm    = { d8  f8  a2.  }
@@ -18,9 +16,20 @@ AmII  = { a,8 c8  e2.  }
 Bfive = { b,8 fs8 b2.  }
 
 \score {
-  \new PianoStaff \with {
-    instrumentName = "Piano"
-  } <<
+  \new PianoStaff <<
+    \chords {
+      r4 | a1:m | e1:m | f1   |
+      c1 | d1:m | c1   | b1:5 |
+      
+      e1 | a1:m | e1:m | f1      |
+      c1 | d1:m | a1:m | d2:5 e2 |
+      
+      a2.:m r4 | c1    | g1 | a1:m |
+      e1:m     | f2 r2 | c1 | r1   |
+      
+      r1 | a2:5 e2:m | r1 | r1 |
+      r1 | a2:5 e2:m | r1 | r1 | a1:m |
+    }
     \new Staff {
       \tempo 4 = 96
       \clef treble
@@ -52,19 +61,6 @@ Bfive = { b,8 fs8 b2.  }
       
       e,4   gs,8 b,8 e8 gs8 b8 e'8 | a,8 e8 a4 e,8 b,8 g4 | f,8 c8 f8 a8 b4 g4 | g,8 d8 f4 a4  c'4  |
       c8 e8 g8   c'8 d'4    r4     | a,8 e8 a4 e,8 b,8 g4 | f,8 c8 f8 a8 b4 g4 | <b, d f>2 b,4 gs,4 | <a, c e>1 |
-    }
-    \chords {
-      r4 | a1:m | e1:m | f1   |
-      c1 | d1:m | c1   | b1:5 |
-      
-      e1 | a1:m | e1:m | f1      |
-      c1 | d1:m | a1:m | d2:5 e2 |
-      
-      a2.:m r4 | c1    | g1 | a1:m |
-      e1:m     | f2 r2 | c1 | r1   |
-      
-      r1 | a2:5 e2:m | r1 | r1 |
-      r1 | a2:5 e2:m | r1 | r1 | a1:m |
     }
   >>
   \layout {}

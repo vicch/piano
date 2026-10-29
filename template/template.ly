@@ -2,7 +2,7 @@
 
 #(define title      "")
 #(define title-font "")
-#(define sequence   "")
+#(define source     "")
 #(define total-page 1)
 
 \include "../template/base.ly"
@@ -10,9 +10,9 @@
 \markup \vspace #1.5
 
 \score {
-  \new PianoStaff \with {
-    instrumentName = "Piano"
-  } <<
+  \new PianoStaff <<
+    \chords {
+    }
     \new Staff {
       \tempo 4 = 96
       \clef treble
@@ -23,8 +23,6 @@
       \clef bass
       \key c \major
       \time 3/4
-    }
-    \chords {
     }
   >>
   \layout {}

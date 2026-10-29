@@ -1,48 +1,94 @@
+\version "2.24.0"
 \language "english"
 
+% ==============================================================================
+% SCHEME HELPERS & DYNAMIC TITLE HANDLERS
+% ==============================================================================
+
+% Safe font generator for title (handles empty/missing 'title-font' gracefully)
 #(define (title-font-override)
-   (let ((base `((font-size . 6))))
-     (if (or (not title-font) (string=? title-font ""))
-         base ; fallback to default font if title-font is #f or ""
-         (cons (cons 'font-name title-font) base))))
+   (let ((tf (ly:parser-lookup 'title-font))
+         (base `((font-size . 6) (font-series . bold))))
+     (if (and (string? tf) (not (string=? tf "")))
+         (cons (cons 'font-name tf) base)
+         base)))
 
-#(define total-page-markup (markup (number->string total-page)))
+% Custom markup command to fetch title from either \header { title = ... } or #(define title ...)
+#(define-markup-command (format-title layout props) ()
+   (let* ((header-title (chain-assoc-get 'header:title props #f))
+          (scheme-title (ly:parser-lookup 'title))
+          (final-title (cond
+                        ((string? header-title) header-title)
+                        ((string? scheme-title) scheme-title)
+                        (else "")))
+          (font-list (title-font-override)))
+     (interpret-markup layout props
+       (markup #:override font-list final-title))))
 
+% Evaluates total pages for use in the custom footer
+#(define total-page-markup 
+   (markup (number->string (if (defined? 'total-page) total-page 1))))
+
+% Global staff size setting (20pt)
 #(set-global-staff-size 20)
 
+
+% ==============================================================================
+% HEADER DEFAULTS
+% ==============================================================================
+
 \header {
-  title = \markup \override #(title-font-override) #title
-  tagline = #sequence
+  % Automatically pulls global 'source' variable if defined
+  tagline = #(if (defined? 'source) source #f)
 }
+
+
+% ==============================================================================
+% PAPER & PAGE LAYOUT
+% ==============================================================================
 
 \paper {
   #(set-paper-size "letter")
 
-  top-margin    = #15
-  bottom-margin = #15
-  left-margin   = #15
-  right-margin  = #15
+  top-margin    = #20
+  bottom-margin = #20
+  left-margin   = #16
+  right-margin  = #16
   
-  system-system-spacing.basic-distance = #14
-  system-system-spacing.padding = #2
+  system-system-spacing.basic-distance = #16
+  system-system-spacing.padding = #4
+
+  last-bottom-spacing.basic-distance = #16
+  last-bottom-spacing.padding = #4
   
-  last-bottom-spacing.basic-distance = #14
-  last-bottom-spacing.padding = #2
-  
-  % indent = #0
+  indent = #0
   
   scoreTitleMarkup = \markup \fill-line {
     \null "Engraved by vicch"
   }
+  
+  bookTitleMarkup = \markup {
+    \override #'(baseline-skip . 3)
+    \column {
+      \fill-line {
+        \null
+        \format-title % Renders the title with your size & font overrides
+        \null
+      }
+      \vspace #2.0
+      \fill-line {
+        \fromproperty #'header:poet
+        \fromproperty #'header:composer
+      }
+    }
+  }
 
   print-page-number = ##t
-  
-  oddHeaderMarkup = \markup \null
+  oddHeaderMarkup  = \markup \null
   evenHeaderMarkup = \oddHeaderMarkup
   
   oddFooterMarkup = \markup {
     \fill-line {
-      % \fromproperty #'header:tagline
       \null
       \null
       \concat {
@@ -55,10 +101,14 @@
   evenFooterMarkup = \oddFooterMarkup
 }
 
+
+% ==============================================================================
+% GLOBAL SCORE LAYOUT & CONTEXT OVERRIDES
+% ==============================================================================
+
 \layout {
   \context {
     \Score
-    % barNumberVisibility = #all-bar-numbers-visible
     barNumberVisibility = #first-bar-number-invisible-save-broken-bars
     
     \override StaffGrouper.staff-staff-spacing.basic-distance = #10
@@ -70,26 +120,33 @@
     
     \override TimeSignature.style = #'numbered
     \override TimeSignature.break-visibility = #end-of-line-invisible
-    
-    \override ChordName.font-size = #-2
     \override SectionLabel.font-size = #-2
   }
-}
 
-\layout {
   \context {
     \Staff
     ottavationMarkups = #ottavation-ordinals
     explicitKeySignatureVisibility = #end-of-line-invisible
   }
-}
 
-\layout {
+  \context {
+    \Voice
+    \override Fingering.font-size = #-6
+    \override Fingering.font-series = #'medium
+  }
+
   \context {
     \ChordNames
+    \override ChordName.font-family = #'roman
+    \override ChordName.font-size = #-2
     noChordSymbol = #""
   }
 }
+
+
+% ==============================================================================
+% MIDI EXPORT SETTINGS
+% ==============================================================================
 
 \midi {
   \context {
@@ -97,6 +154,11 @@
     \remove "Note_performer"
   }
 }
+
+
+% ==============================================================================
+% REUSABLE SHORTCUTS & MACROS
+% ==============================================================================
 
 A = \sectionLabel \markup { \box "A" }
 B = \sectionLabel \markup { \box "B" }

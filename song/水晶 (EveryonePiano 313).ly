@@ -1,13 +1,11 @@
 \version "2.24.3"
 
-#(define title      "水晶")
+#(define title      "水 晶")
 #(define title-font "FZCuSong-B09")
-#(define sequence   "EveryonePiano 313")
+#(define source     "EveryonePiano 313")
 #(define total-page 3)
 
 \include "../template/base.ly"
-
-\markup \vspace #1.5
 
 CI   = { c8  g8  c'8 e'8 g'4 }
 CII  = { c8  g8  c'8 d'8 e'4 }
@@ -29,9 +27,7 @@ GIV   = { g,8 d8  b2  }
 AmII  = { a,8 e8  c'2 }
 
 \score {
-  \new PianoStaff \with {
-    instrumentName = "Piano"
-  } <<
+  \new PianoStaff <<
     \new Staff {
       \tempo 4 = 96
       \clef treble
