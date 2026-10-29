@@ -4,26 +4,14 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from music2ly.models import slugify_title
-
-IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff", ".tif"}
-
-
-def natural_sort_key(p: Path | str) -> list[int | str]:
-    """Natural sort key for ordering file names containing numbers (e.g. page 1, 2, 10)."""
-    s = p.name if isinstance(p, Path) else str(p)
-    return [int(text) if text.isdigit() else text.lower() for text in re.split(r"(\d+)", s)]
-
-
-def find_image_files(directory: Path) -> list[Path]:
-    """Find all image files directly in a directory in natural sort order."""
-    if not directory.exists() or not directory.is_dir():
-        return []
-    images = [
-        f for f in directory.iterdir()
-        if f.is_file() and f.suffix.lower() in IMAGE_EXTENSIONS
-    ]
-    return sorted(images, key=natural_sort_key)
+# Generic image-file discovery lives in the shared core (music2ly.models);
+# re-exported here for backward compatibility with existing imports.
+from music2ly.models import (  # noqa: F401
+    IMAGE_EXTENSIONS,
+    find_image_files,
+    natural_sort_key,
+    slugify_title,
+)
 
 
 @dataclass

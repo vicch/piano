@@ -4,6 +4,42 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".bmp", ".tiff", ".tif"}
+
+# Suffix convention marking a preserved raw scan that a tool has backed up
+# in place (scanprep renames "1.jpg" -> "1 (original).jpg" before writing the
+# cleaned "1.png"). Backup files are skipped by default when listing pages.
+ORIGINAL_SUFFIX = "(original)"
+
+
+def is_original_backup(p: Path | str) -> bool:
+    """True for files like "1 (original).jpg": preserved raw backups."""
+    s = p if isinstance(p, str) else p.stem
+    return s.endswith(ORIGINAL_SUFFIX)
+
+
+def natural_sort_key(p: Path | str) -> list[int | str]:
+    """Natural sort key for ordering file names containing numbers (e.g. page 1, 2, 10)."""
+    s = p.name if isinstance(p, Path) else str(p)
+    return [int(text) if text.isdigit() else text.lower() for text in re.split(r"(\d+)", s)]
+
+
+def find_image_files(directory: Path, *, include_originals: bool = False) -> list[Path]:
+    """Find all image files directly in a directory in natural sort order.
+
+    Files whose stem ends with "(original)" are preserved raw backups and
+    are skipped unless include_originals is set.
+    """
+    if not directory.exists() or not directory.is_dir():
+        return []
+    images = [
+        f for f in directory.iterdir()
+        if f.is_file()
+        and f.suffix.lower() in IMAGE_EXTENSIONS
+        and (include_originals or not is_original_backup(f))
+    ]
+    return sorted(images, key=natural_sort_key)
+
 
 @dataclass
 class ChunkInfo:

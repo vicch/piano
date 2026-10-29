@@ -1,16 +1,18 @@
 # music2ly
 
-Local Python project that turns music into LilyPond sheet music. It ships two CLIs over a shared core (`src/music2ly`, MusicXML structuring and deterministic MusicXML-to-LilyPond translation):
+Local Python project that turns music into LilyPond sheet music. It ships three CLIs over a shared core (`src/music2ly`, MusicXML structuring and deterministic MusicXML-to-LilyPond translation):
 
 - **video2ly** — YouTube piano performance to LilyPond (audio pipeline).
 - **image2ly** — Sheet music image (PNG/JPG) to LilyPond via OMR (image pipeline).
+- **scanprep** — Raw low-quality scans/photocopies to clean, OMR-ready pages (adaptive image pre-processing for image2ly).
 
 Install dependencies for the tool(s) you need; heavy dependencies are isolated in extras and imported lazily:
 
 ```bash
 uv sync --extra video    # video2ly stack (yt-dlp, torch, piano-transcription, librosa, mido)
 uv sync --extra image    # image2ly stack (oemer); homr runs externally via `uvx homr`
-uv sync --extra all      # both video2ly and image2ly stacks
+uv sync --extra scan     # scanprep stack (opencv-python, numpy, pillow)
+uv sync --extra all      # all three stacks
 uv sync --extra dev      # development and test dependencies (pytest)
 ```
 
@@ -29,6 +31,19 @@ uv sync --extra dev      # development and test dependencies (pytest)
 1. **Recognize (`recognize`)** — Optical Music Recognition on all sheet images in the directory in natural page order via `homr` (default, run via `uvx homr`) or `oemer` → `recognized_001.musicxml`, `recognized_002.musicxml`, ... and merged `recognized.musicxml`
 2. **Structure (`musicxml`)** — `music21` parses grand-staff MusicXML across all pages into continuous measures and splits it into chunks in `chunks/`
 3. **Engrave (`lilypond`)** — Deterministic syntax engine translates MusicXML into clean, template-conforming LilyPond notation (`<title>.ly`)
+
+### scanprep pipeline (adaptive, per page, in place)
+
+1. **Measure** — EXIF orientation, skew (long-line Hough evidence), staff-line spacing (row-ink autocorrelation), background unevenness, isolated-speck noise, dark photocopy borders
+2. **Correct geometry** — deskew by the measured angle only when long-line evidence confirms it
+3. **Correct tone** — divide out the paper background (morphological max-filter estimate that sees past noteheads and fat title blocks), floored so solid ink never blows out; skipped entirely on already-flat pages
+4. **Normalize** — paper-anchored gain to white (never stretches/clips faint notation), speck removal only when specks are measured
+5. **Binarize (optional)** — Sauvola local thresholding with noise-adaptive k, as a strict black-and-white alternative for comparison
+6. **QC** — per-page metrics and every effective parameter recorded in `scanprep/scanprep.json`, side-by-side `scanprep/preview.png` contact sheet
+
+Processing is in place, mirroring image2ly's flow: for every image in the target directory the raw scan is renamed `<stem> (original)<ext>` and the cleaned page is written as `<stem>.png`, so `image2ly <dir>` afterwards picks up exactly the cleaned pages in natural page order. Re-runs are idempotent: an existing `(original)` backup is always the raw source and is never double-renamed.
+
+All kernel sizes derive from the measured staff spacing, so any scan resolution, exposure, or paper tone converges on the same output quality; nothing assumes one fixed scan profile. The grayscale master (`<stem>.png`) is the archival/OMR output; staff lines are content and are never removed.
 
 ## Prerequisites
 
@@ -138,6 +153,42 @@ Options:
 - `--steps` — Comma-separated steps (`recognize,musicxml,lilypond` or `all`).
 - `--resume` — Skip steps whose artifacts already exist.
 
+Files whose stem ends with `(original)` (raw backups kept by scanprep) are ignored when listing pages.
+
+### scanprep
+
+Cleans raw, low-quality sheet-music scans (photocopies, phone photos, gray JPEGs) into uniform, OMR-ready pages, then feeds image2ly. Put the raw scans in a directory under `output/` (or anywhere) and pass the directory name, exactly like image2ly:
+
+```bash
+# Raw scans sit in output/Innocent/ (Innocent 1.jpg, Innocent 2.jpg, ...)
+uv run scanprep "Innocent"
+
+# Afterwards run OMR on the cleaned pages — same directory, same title
+uv run image2ly "Innocent"
+```
+
+Processing is in place: each raw `Innocent 1.jpg` is renamed `Innocent 1 (original).jpg` and the cleaned page is written as `Innocent 1.png` with the original stem, so image2ly run on the same directory picks up exactly the cleaned pages in natural page order. Re-runs re-process from the `(original)` backups and never rename twice; with `--resume` already-cleaned pages are skipped entirely.
+
+A single image file works too (it is copied into `output/<title>/` like image2ly does, then cleaned in place):
+
+```bash
+uv run scanprep "path/to/Innocent 1.jpg"
+```
+
+Options (defaults adapt per page; these override the automatic decisions):
+
+- `--title`, `-t` — Song title override (default: directory or file name).
+- `--no-deskew` / `--max-skew 3.0` — Skip rotation, or trust skew estimates up to N degrees.
+- `--background-method {morph,gaussian}` — Paper-background estimator (default: `morph`, robust under fat title blocks).
+- `--background-scale 4` — Background window size in staff-spacing units; raise it if the report warns about residual unevenness.
+- `--paper-target 245` — Target paper brightness after correction.
+- `--no-binary` — Skip the Sauvola binarization output.
+- `--sauvola-k 0.15` — Pin Sauvola sensitivity (default: auto — 0.15, or 0.22 on speckled pages).
+- `--sauvola-window-scale 5` — Sauvola window in staff-spacing units.
+- `--denoise {auto,on,off}` — Isolated-speck removal (default: `auto`, applied only when specks are measured).
+- `--no-preview` — Skip the side-by-side contact sheet.
+- `--resume` — Skip pages already cleaned in place (raw backed up + page exists).
+
 ## Output Artifacts
 
 ```
@@ -150,6 +201,13 @@ output/<title>/
 ├── recognized_001.musicxml     # Page 1 OMR output (image2ly)
 ├── recognized_002.musicxml     # Page 2 OMR output (image2ly)
 ├── recognized.musicxml         # Merged grand-staff MusicXML (image2ly)
+├── 1.png                       # Cleaned page masters, original stems (scanprep)
+├── 1 (original).jpg            # Preserved raw scans (scanprep; ignored by image2ly)
+├── binary/                     # Optional Sauvola binarizations (scanprep)
+│   └── 1.png
+├── scanprep/                   # scanprep QC artifacts
+│   ├── preview.png             # Original | clean | binary contact sheet
+│   └── scanprep.json           # Per-page metrics + effective parameters
 ├── chunks/                     # Segmented MusicXML chunks
 │   ├── chunk_001.musicxml
 │   └── chunk_001.json

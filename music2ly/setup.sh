@@ -23,6 +23,7 @@ fi
 # video2ly stack (piano backend) + dev. basic-pitch optional extra pulls
 # tensorflow-macos which does not support Python 3.12 on Apple Silicon; install
 # separately if needed. For image2ly use: uv sync --extra image
+# For scanprep use: uv sync --extra scan
 uv sync --extra video --extra dev
 
 if [[ ! -f .env ]]; then

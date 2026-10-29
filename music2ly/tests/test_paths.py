@@ -60,6 +60,26 @@ def test_find_image_files(tmp_path):
     assert [f.name for f in found] == ["p1.jpg", "p2.png", "p10.png"]
 
 
+def test_find_image_files_skips_original_backups(tmp_path):
+    """scanprep renames raws to "<stem> (original)<ext>"; image2ly must
+    only ever see the cleaned pages."""
+    d = tmp_path / "song"
+    d.mkdir()
+    (d / "1.png").write_text("")
+    (d / "1 (original).jpg").write_text("")
+    (d / "2 (original).png").write_text("")
+
+    assert [f.name for f in find_image_files(d)] == ["1.png"]
+
+    from music2ly.models import find_image_files as find_all
+
+    assert [f.name for f in find_all(d, include_originals=True)] == [
+        "1 (original).jpg",
+        "1.png",
+        "2 (original).png",
+    ]
+
+
 def test_image_paths_from_target_dir_name(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     # Target is "Foo Bar", default output root is "output"

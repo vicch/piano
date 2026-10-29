@@ -1,7 +1,7 @@
 [project]
 name = "music2ly"
 version = "0.1.0"
-description = "Music to LilyPond sheet music: video2ly (audio) and image2ly (sheet image) tools over a shared core"
+description = "Music to LilyPond sheet music: video2ly (audio), image2ly (sheet image), and scanprep (scan clean-up) tools over a shared core"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 # Shared core: MusicXML handling + deterministic MusicXML->LilyPond translation engine.
@@ -27,21 +27,34 @@ video = [
 image = [
     "oemer @ git+https://github.com/BreezeWhite/oemer@v0.1.8",
 ]
+# scanprep: raw scan -> cleaned sheet image (deskew, illumination, levels,
+# denoise, Sauvola binarize) so image2ly's OMR works on low-quality scans.
+scan = [
+    "opencv-python>=4.8",
+    "numpy>=1.24",
+    "pillow>=10.0",
+]
 # Optional transcription backend; basic-pitch may require Python 3.10-3.11 on
 # macOS (tensorflow-macos wheels). Default video "piano" backend works on 3.10-3.12.
 transcribe-basic = [
     "basic-pitch>=0.4.0",
 ]
 all = [
-    "music2ly[video,image]",
+    "music2ly[video,image,scan]",
 ]
 dev = [
     "pytest>=8.0.0",
+    # scanprep's own stack is needed to run its tests; keep versions in sync
+    # with the `scan` extra above.
+    "opencv-python>=4.8",
+    "numpy>=1.24",
+    "pillow>=10.0",
 ]
 
 [project.scripts]
 video2ly = "video2ly.cli:main"
 image2ly = "image2ly.cli:main"
+scanprep = "scanprep.cli:main"
 
 [build-system]
 requires = ["setuptools>=61"]
