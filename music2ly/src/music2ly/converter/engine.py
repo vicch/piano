@@ -19,13 +19,13 @@ class ScoreConverter:
         xml_text: str,
         *,
         title: str = "",
-        sequence: str = "",
+        source: str = "",
         include_path: str = "../template/base.ly",
     ) -> str:
         score = MusicXMLParser.parse_xml(xml_text, title=title)
         return LilyPondFormatter.format_score(
             score,
-            sequence=sequence,
+            source=source,
             include_path=include_path,
         )
 
@@ -35,7 +35,7 @@ class ScoreConverter:
         file_path: str | Path,
         *,
         title: str = "",
-        sequence: str = "",
+        source: str = "",
         include_path: str = "../template/base.ly",
     ) -> str:
         path = Path(file_path)
@@ -44,7 +44,7 @@ class ScoreConverter:
         return cls.convert_xml(
             content,
             title=resolved_title,
-            sequence=sequence,
+            source=source,
             include_path=include_path,
         )
 
@@ -55,7 +55,7 @@ class ScoreConverter:
         output_path: Path,
         *,
         title: str = "",
-        sequence: str = "",
+        source: str = "",
         include_path: str | None = None,
     ) -> Path:
         resolved_title = title or output_path.stem
@@ -63,7 +63,7 @@ class ScoreConverter:
         ly_code = cls.convert_file(
             source_xml_path,
             title=resolved_title,
-            sequence=sequence,
+            source=source,
             include_path=rel_include,
         )
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -90,7 +90,7 @@ def convert_musicxml_to_lilypond(
     output_path: Path | None = None,
     *,
     title: str = "",
-    sequence: str = "",
+    source: str = "",
     include_path: str | None = None,
 ) -> str:
     """Convenience functional API for deterministic MusicXML -> LilyPond conversion."""
@@ -99,7 +99,7 @@ def convert_musicxml_to_lilypond(
             Path(musicxml_source),
             output_path,
             title=title,
-            sequence=sequence,
+            source=source,
             include_path=include_path,
         )
         return output_path.read_text(encoding="utf-8")
@@ -110,13 +110,13 @@ def convert_musicxml_to_lilypond(
         return ScoreConverter.convert_file(
             musicxml_source,
             title=title,
-            sequence=sequence,
+            source=source,
             include_path=include_path or "../template/base.ly",
         )
 
     return ScoreConverter.convert_xml(
         str(musicxml_source),
         title=title,
-        sequence=sequence,
+        source=source,
         include_path=include_path or "../template/base.ly",
     )

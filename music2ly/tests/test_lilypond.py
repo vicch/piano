@@ -32,12 +32,16 @@ def test_merge_lilypond_chunks_builds_score():
     merged = merge_lilypond_chunks(
         chunks,
         title="Test Song",
-        sequence="Sheet image: test.png",
+        source="Sheet image: test.png",
         metadata={"tempo": 96, "key": "c \\major", "time": "4/4"},
         include_path="../template/base.ly",
     )
     assert '\\version "2.24.3"' in merged
     assert "PianoStaff" in merged
+    assert "#(define source     \"Sheet image: test.png\")" in merged
+    assert "instrumentName" not in merged
+    assert "\\vspace" not in merged
+    assert merged.index("\\chords {") < merged.index("\\new Staff {")
     assert "\\clef treble" in merged
     assert "\\clef bass" in merged
     assert "Test Song" in merged
@@ -174,7 +178,7 @@ def test_translate_chunk_and_all_chunks_deterministic(tmp_path):
     assert result_path.exists()
     content = result_path.read_text(encoding="utf-8")
     assert '#(define title      "OutputSong")' in content
-    assert '#(define sequence   "YouTube TEST1234")' in content
+    assert '#(define source     "YouTube TEST1234")' in content
     assert "c'4 d'4 e'4 f'4" in content
     assert "g'1" in content
     assert (chunks_dir / "chunk_001.ly").exists()

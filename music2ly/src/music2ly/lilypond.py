@@ -127,15 +127,15 @@ def merge_lilypond_chunks(
     chunks: list[ChunkBody],
     *,
     title: str,
-    sequence: str,
+    source: str,
     metadata: dict,
     include_path: str,
 ) -> str:
     treble_parts = [c.treble.strip() for c in chunks if c.treble.strip()]
     bass_parts = [c.bass.strip() for c in chunks if c.bass.strip()]
 
-    treble_combined = "\n".join(treble_parts) + ' \\bar "|."'
-    bass_combined = "\n".join(bass_parts) + ' \\bar "|."'
+    treble_combined = "\n".join(treble_parts).removesuffix(" \\break") + ' \\bar "|."'
+    bass_combined = "\n".join(bass_parts).removesuffix(" \\break") + ' \\bar "|."'
 
     tempo = metadata.get("tempo", 96)
     key = metadata.get("key", "c \\major")
@@ -146,17 +146,15 @@ def merge_lilypond_chunks(
         "\n"
         f'#(define title      "{title}")\n'
         '#(define title-font "")\n'
-        f'#(define sequence   "{sequence}")\n'
+        f'#(define source     "{source}")\n'
         "#(define total-page 1)\n"
         "\n"
         f'\\include "{include_path}"\n'
         "\n"
-        "\\markup \\vspace #1.5\n"
-        "\n"
         "\\score {\n"
-        '  \\new PianoStaff \\with {\n'
-        '    instrumentName = "Piano"\n'
-        "  } <<\n"
+        "  \\new PianoStaff <<\n"
+        "    \\chords {\n"
+        "    }\n"
         "    \\new Staff {\n"
         f"      \\tempo 4 = {tempo}\n"
         "      \\clef treble\n"
@@ -171,8 +169,6 @@ def merge_lilypond_chunks(
         f"      \\time {time_sig}\n"
         "      \n"
         f"{_indent(bass_combined)}\n"
-        "    }\n"
-        "    \\chords {\n"
         "    }\n"
         "  >>\n"
         "  \\layout {}\n"
@@ -224,7 +220,7 @@ def translate_all_chunks(
     merged = merge_lilypond_chunks(
         bodies,
         title=title,
-        sequence=resolved_seq,
+        source=resolved_seq,
         metadata=metadata,
         include_path=include_path,
     )

@@ -169,7 +169,20 @@ class NoteRule:
 
 
 class ChordRule:
-    """Translates simultaneous chord notes into LilyPond `<pitch ...>dur` syntax."""
+    """Translates simultaneous chord notes into LilyPond `<pitch ...>dur` syntax.
+
+    Notes are emitted from lowest to highest pitch, e.g. `<c e g>1`.
+    """
+
+    _STEP_SEMITONES = {"c": 0, "d": 2, "e": 4, "f": 5, "g": 7, "a": 9, "b": 11}
+
+    @classmethod
+    def _pitch_sort_key(cls, note: NoteIR) -> tuple[int, int, float]:
+        pitch = note.pitch
+        if pitch is None:
+            return (0, 0, 0.0)
+        step_semitone = cls._STEP_SEMITONES.get(pitch.step.lower(), 0)
+        return (pitch.octave, step_semitone, pitch.alter)
 
     @classmethod
     def to_lilypond(
@@ -180,8 +193,9 @@ class ChordRule:
         if not chord.notes:
             return "r4"
 
+        ordered_notes = sorted(chord.notes, key=cls._pitch_sort_key)
         pitch_tokens: list[str] = []
-        for n in chord.notes:
+        for n in ordered_notes:
             p_str = PitchRule.to_lilypond(n.pitch)
             if n.finger:
                 p_str += f"^{n.finger}"

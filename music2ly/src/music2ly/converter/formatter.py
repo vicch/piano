@@ -29,7 +29,7 @@ class LilyPondFormatter:
         cls,
         score: ScoreIR,
         *,
-        sequence: str = "",
+        source: str = "",
         include_path: str = "../template/base.ly",
     ) -> str:
         treble_content = ""
@@ -49,9 +49,9 @@ class LilyPondFormatter:
                 key_sig=score.key_signature,
             )
 
-        # Apply final barlines
-        treble_formatted = treble_content.rstrip() + ' \\bar "|."'
-        bass_formatted = bass_content.rstrip() + ' \\bar "|."'
+        # Apply final barlines (drop a trailing \break from the last line)
+        treble_formatted = treble_content.rstrip().removesuffix(" \\break") + ' \\bar "|."'
+        bass_formatted = bass_content.rstrip().removesuffix(" \\break") + ' \\bar "|."'
 
         key_str = KeyRule.to_lilypond(score.key_signature)
         time_str = TimeRule.to_lilypond(score.time_signature)
@@ -61,17 +61,15 @@ class LilyPondFormatter:
             "\n"
             f'#(define title      "{score.title}")\n'
             '#(define title-font "")\n'
-            f'#(define sequence   "{sequence}")\n'
+            f'#(define source     "{source}")\n'
             "#(define total-page 1)\n"
             "\n"
             f'\\include "{include_path}"\n'
             "\n"
-            "\\markup \\vspace #1.5\n"
-            "\n"
             "\\score {\n"
-            '  \\new PianoStaff \\with {\n'
-            '    instrumentName = "Piano"\n'
-            "  } <<\n"
+            "  \\new PianoStaff <<\n"
+            "    \\chords {\n"
+            "    }\n"
             "    \\new Staff {\n"
             f"      \\tempo 4 = {score.tempo}\n"
             "      \\clef treble\n"
@@ -86,8 +84,6 @@ class LilyPondFormatter:
             f"      \\time {time_str}\n"
             "      \n"
             f"{cls._indent(bass_formatted)}\n"
-            "    }\n"
-            "    \\chords {\n"
             "    }\n"
             "  >>\n"
             "  \\layout {}\n"

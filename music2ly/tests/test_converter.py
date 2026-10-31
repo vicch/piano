@@ -117,6 +117,17 @@ def test_chord_rule():
     )
     assert ChordRule.to_lilypond(chord) == "<c' e' g'>4"
 
+    # Notes given highest-to-lowest are reordered lowest-to-highest
+    chord_desc = ChordIR(
+        notes=[
+            NoteIR(pitch=PitchIR("G", 0, 4)),
+            NoteIR(pitch=PitchIR("E", 0, 4)),
+            NoteIR(pitch=PitchIR("C", 0, 4)),
+        ],
+        duration=DurationIR("quarter"),
+    )
+    assert ChordRule.to_lilypond(chord_desc) == "<c' e' g'>4"
+
     # Chord with tie and arpeggio
     chord_tie_arp = ChordIR(
         notes=[
@@ -345,6 +356,10 @@ def test_score_converter_end_to_end():
     ly = convert_musicxml_to_lilypond(score_xml, title="Für Elise Test")
     assert '\\version "2.24.3"' in ly
     assert '#(define title      "Für Elise Test")' in ly
+    assert '#(define source     "")' in ly
+    assert "instrumentName" not in ly
+    assert "\\vspace" not in ly
+    assert ly.index("\\chords {") < ly.index("\\new Staff {")
     assert "\\key c \\major" in ly
     assert "\\time 3/4" in ly
     assert "e''8 ds''8 e''8 ds''8 e''8 b'8 | d''8 c''8 a'2" in ly
